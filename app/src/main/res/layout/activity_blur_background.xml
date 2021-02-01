@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".welcome.BlurBackgroundActivity">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"/>
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_height="wrap_content"
+            android:text="System permission required"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_below="@+id/rlTop"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some permissions are required for\nbackground blur and screenshots"
+        android:layout_marginLeft="@dimen/_20sdp" />
+    <TextView
+        android:id="@+id/tvSup"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:text="Your screen is only captured when taking\na screenshot or for the blur effect\nThe screen Cast icon will appear when blur is\nenabled and the panel is opened\nThe blur effect can cause lag on some devices."
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp" />
+    <RelativeLayout
+        android:layout_below="@+id/tvSup"
+        android:id="@+id/rlStorage"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:id="@+id/imgSto"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_height="@dimen/_24sdp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Device Storage"
+            android:layout_toEndOf="@id/imgSto"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_toRightOf="@id/imgSto" />
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/rlStorage"
+        android:id="@+id/rlScreen"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:id="@+id/imgScreen"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_height="@dimen/_24sdp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Screen Capture\n\nPlease select Don't show\nagain when enabling\nscreen capture"
+            android:layout_toEndOf="@id/imgScreen"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_toRightOf="@id/imgScreen" />
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvPrivacy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:text="If you are having issues,tap here to read the FAQ"/>
+    <TextView
+        android:id="@+id/tvPrivacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy policy"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_30sdp"/>
+</RelativeLayout>

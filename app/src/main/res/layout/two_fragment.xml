@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".welcome.TwoFragment">
+
+    <TextView
+        android:id="@+id/tvFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Đầu tiên,hãy thiết lập\nmột số quyền" />
+
+    <RelativeLayout
+        android:id="@+id/rlAcess"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@+id/tvFirst"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgAcess"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_toEndOf="@id/imgAcess"
+            android:text="ACCESSIBILITY SERVICE\nRequired for the app to run"
+            android:layout_toRightOf="@id/imgAcess"
+            android:id="@+id/tvAcess"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:id="@+id/imgTurnAcess"
+            android:layout_alignParentEnd="true"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlDraw"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@+id/rlAcess"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgDraw"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_centerVertical="true"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_toEndOf="@id/imgDraw"
+            android:text="DRAW OVERLAYS\nFor the quick settings panel to\nbe dissplayed"
+            android:layout_toRightOf="@id/imgDraw"
+            android:id="@+id/tvDraw"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:id="@+id/imgTurnOverlay"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlShowno"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@+id/rlDraw"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgShowno"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_toEndOf="@id/imgShowno"
+            android:text="SHOW NOTIFICATIONS\nTo show notifications in the\n notification panel"
+            android:layout_toRightOf="@id/imgShowno"
+            android:id="@+id/tvShowno"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:id="@+id/imgTurnShow"
+            android:layout_alignParentEnd="true"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Permission can also be set later on"
+        android:layout_marginBottom="@dimen/_50sdp"/>
+</RelativeLayout>

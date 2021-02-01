@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SettingApp</string>
+    <string name="content_request">Since March 2019, Google prohibited the access to the         call log to all call recording apps. In order to identify a caller number, please, enable Call Recorder ACR App Connector in your device\'s Accessibility Settings.\n\nIn case a caller\'s number wasn\'t identified,         you can set it manually via the recording\'s context menu.\n\nApp Connector is also required to record cellular calls on Android 10 devices.\n\nNOTE: App Connector requires Accessibility Services permission.</string>
+    <string name="title_accessibility_1">Enable Call Recorder ACR App Connector</string>
+    <string name="active_app_connector">Active App Connector</string>
+</resources>

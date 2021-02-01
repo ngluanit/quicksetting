@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".welcome.ThreeFragment">
+
+    <TextView
+        android:id="@+id/tvBackgroud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:text="Background Type" />
+
+    <RelativeLayout
+        android:id="@+id/rlNone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_below="@+id/tvBackgroud">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="none"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlBlur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@+id/rlNone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="blur background"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlBlurWall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@+id/rlBlur">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="blur wallpager"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="true" />
+    </RelativeLayout>
+</RelativeLayout>
