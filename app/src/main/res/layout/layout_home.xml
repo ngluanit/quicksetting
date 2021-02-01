@@ -1,71 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f3f3f3"
+    android:background="#f0f0f0"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-  <LinearLayout
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-      <ImageView
-          android:id="@+id/menu_nav"
-          android:layout_width="30dp"
-          android:layout_height="30dp"
-          android:src="@drawable/ic_menu"
-          android:tint="@color/black"
-          android:layout_margin="15dp"/>
-      <TextView
-          android:id="@+id/title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Help"
-          android:layout_margin="15dp"
-          android:textSize="20sp"
-          android:textColor="@color/black"/>
-      <TextView
-          android:id="@+id/text_slide"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Nhanh chóng kích hoạt"
-          android:layout_gravity="center"
-          android:textSize="15sp"
-          android:textColor="@color/black"/>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="3"
-          android:textSize="20sp"
-          android:textColor="#f1604b"
-          android:layout_margin="15dp"
-          android:textStyle="bold"/>
-      <ImageView
-          android:layout_width="35dp"
-          android:layout_height="35dp"
-          android:src="@drawable/ic_down_arrow"
-          android:layout_gravity="center"/>
-  </LinearLayout>
     <RelativeLayout
-        android:id="@+id/status_service"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_margin="20dp"
-        android:layout_below="@+id/toolbar"
-        android:paddingVertical="10dp"
-        android:background="@drawable/bg_service">
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/menu_nav"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_menu"
+                android:tint="@color/black"
+                android:layout_margin="15dp"/>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Help"
+                android:layout_margin="15dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/text_slide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhanh chóng kích hoạt"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textSize="20sp"
+                android:textColor="#f1604b"
+                android:layout_margin="15dp"
+                android:textStyle="bold"/>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_down_arrow"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/status_service"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
+            android:layout_below="@+id/toolbar"
+            android:paddingVertical="10dp"
+            android:background="@drawable/bg_service">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/service_running"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+        <include
+            android:id="@+id/grid_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/service_running"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:layout_centerInParent="true"/>
+            layout="@layout/grid_item"
+            android:layout_below="@+id/status_service"/>
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/grid_layout"
+            android:background="#C1C1C1"/>
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view1"
+            android:layout_margin="@dimen/_10sdp"
+            layout="@layout/layout_home_bottom"/>
+
 
     </RelativeLayout>
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/grid_item"
-        android:layout_below="@+id/status_service"/>
-</RelativeLayout>
+</ScrollView>

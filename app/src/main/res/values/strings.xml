@@ -11,4 +11,8 @@
     <string name="handles">Handles</string>
     <string name="colors">Colors</string>
     <string name="title_styles">Title Styles</string>
+    <string name="send_us_an_email">Send us an email</string>
+    <string name="support_development">Support Development</string>
+    <string name="backup_restore">Backup / Restore</string>
+    <string name="tips">Tips</string>
 </resources>
