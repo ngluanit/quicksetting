@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
         <activity android:name=".welcome.BlurBackgroundActivity"></activity>
-        <activity android:name=".welcome.ThreeFragment" />
-        <activity android:name=".welcome.TwoFragment" />
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.Navigation_Drawer" />
         <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

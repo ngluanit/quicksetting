@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Chung">
+        <menu>
+            <item
+                android:title="Theme ứng dụng"
+                android:icon="@drawable/ic_color"
+                android:iconTint="@color/white"
+                android:id="@+id/theme_aplica"/>
+
+            <item
+                android:title="Quyền ADB"
+                android:icon="@drawable/ic_adb"
+                android:iconTint="@color/white"
+                android:id="@+id/ADB"/>
+
+            <item
+                android:title="Tasker"
+                android:icon="@drawable/ic_setting"
+                android:iconTint="@color/white"
+                android:id="@+id/tasker_setting"/>
+        </menu>
+    </item>
+    <item android:title="Thêm nhiều ứng dụng">
+        <menu>
+            <item
+                android:title="Play Store"
+                android:icon="@drawable/ic_playstore"
+                android:iconTint="@color/white"
+                android:id="@+id/playstore"/>
+        </menu>
+    </item>
+
+    <item android:title="Cộng đồng">
+        <menu>
+            <item
+                android:title="Twitter"
+                android:icon="@drawable/ic_twitter"
+                android:iconTint="@color/white"
+                android:id="@+id/twitter"/>
+
+            <item
+                android:title="Nhóm Telegram"
+                android:icon="@drawable/ic_send"
+                android:iconTint="@color/white"
+                android:id="@+id/telegram"/>
+
+            <item
+                android:title="Hộ trợ forum"
+                android:icon="@drawable/ic_help_forum"
+                android:iconTint="@color/white"
+                android:id="@+id/help_forum"/>
+        </menu>
+    </item>
+
+    <item android:title="Phản hồi">
+        <menu>
+            <item
+                android:title="Giúp dịch"
+                android:icon="@drawable/ic_global"
+                android:iconTint="@color/white"
+                android:id="@+id/help_translate"/>
+        </menu>
+    </item>
+</menu>
