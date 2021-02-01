@@ -17,7 +17,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"></style>
     <style name="AppTheme.popUpOverlay" parent="Theme.AppCompat.Light"></style>
 
-    <style name="Theme.Navigation_Drawer" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Navigation_Drawer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/white</item>
         <item name="android:statusBarColor">#00000000</item>
     </style>

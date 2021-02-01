@@ -5,4 +5,10 @@
     <string name="active_app_connector">Active App Connector</string>
     <string name="navigation_open">Open</string>
     <string name="navigation_close">Close</string>
+    <string name="service_running">Service running</string>
+    <string name="titles">Titles</string>
+    <string name="slides">Slides</string>
+    <string name="handles">Handles</string>
+    <string name="colors">Colors</string>
+    <string name="title_styles">Title Styles</string>
 </resources>
