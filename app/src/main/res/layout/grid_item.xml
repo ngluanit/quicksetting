@@ -19,7 +19,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -50,7 +50,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -82,7 +82,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -113,7 +113,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -145,7 +145,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -174,7 +174,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -205,7 +205,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -237,7 +237,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -269,7 +269,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
@@ -301,7 +301,7 @@
             android:layout_rowWeight="1"
             android:layout_margin="10dp"
             android:elevation="8dp"
-            android:translationZ="1dp"
+            android:translationZ="3dp"
             app:cardCornerRadius="20dp">
 
             <LinearLayout
