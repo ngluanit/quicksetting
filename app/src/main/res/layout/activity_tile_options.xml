@@ -55,7 +55,7 @@
             android:textSize="@dimen/_14sdp"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:text="@string/screen_timeout"
+            android:text=""
             android:layout_toRightOf="@id/imgScreen"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
@@ -70,14 +70,9 @@
         <ImageView
             android:id="@+id/imgNight"
             android:layout_width="@dimen/_24sdp"
-<<<<<<< HEAD
-            android:src="@drawable/ic_launcher_background"
-            android:layout_height="@dimen/_24sdp"/>
-=======
-            android:src="@drawable/ic_night"
             android:layout_height="@dimen/_24sdp"
-            android:tint="@color/text_primary"/>
->>>>>>> remotes/origin/binhh
+            android:src="@drawable/ic_night"
+            app:tint="@color/text_primary" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_toEndOf="@id/imgNight"
@@ -100,14 +95,9 @@
         <ImageView
             android:id="@+id/imgMusic"
             android:layout_width="@dimen/_24sdp"
-<<<<<<< HEAD
-            android:src="@drawable/ic_launcher_background"
-            android:layout_height="@dimen/_24sdp"/>
-=======
             android:src="@drawable/ic_music"
             android:layout_height="@dimen/_24sdp"
             android:tint="@color/text_primary"/>
->>>>>>> remotes/origin/binhh
         <TextView
             android:layout_width="wrap_content"
             android:layout_toEndOf="@id/imgMusic"

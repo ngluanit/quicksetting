@@ -126,12 +126,8 @@
             android:id="@+id/imgSelect"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-<<<<<<< HEAD
-            android:src="@drawable/ic_launcher_background"/>
-=======
             android:src="@drawable/ic_image"
             android:tint="@color/text_primary"/>
->>>>>>> remotes/origin/binhh
         <TextView
             android:layout_toEndOf="@id/imgSelect"
             android:layout_width="wrap_content"
@@ -142,58 +138,10 @@
             android:layout_toRightOf="@id/imgSelect"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
-<<<<<<< HEAD
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rlSelectIcon"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:text="@string/you_can_also_add_a"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:id="@+id/tvChoose"
-        android:layout_marginTop="@dimen/_20sdp"/>
-    <LinearLayout
-        android:weightSum="3"
-        android:layout_below="@+id/tvChoose"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:id="@+id/lnAdd"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tvUrl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/url"/>
-        <TextView
-            android:id="@+id/tvApp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/app"/>
-        <TextView
-            android:id="@+id/tvShortcut"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/shortcut"/>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/tvCustom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAllCaps="true"
-        android:layout_below="@id/lnAdd"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/custom_shortcut"/>
-=======
+
+
+
+
     <RelativeLayout
         android:id="@+id/rl_url"
         android:layout_below="@+id/rlSelectIcon"
@@ -290,18 +238,13 @@
          </RelativeLayout>
 
     </RelativeLayout>
->>>>>>> remotes/origin/binhh
     <TextView
         android:id="@+id/tvActive"
         android:layout_width="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_height="wrap_content"
         android:text="@string/active"
-<<<<<<< HEAD
-        android:layout_below="@id/tvCustom"
-=======
         android:layout_below="@id/rl_url"
->>>>>>> remotes/origin/binhh
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_20sdp" />
     <androidx.recyclerview.widget.RecyclerView

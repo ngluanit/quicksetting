@@ -51,10 +51,10 @@
             android:textSize="@dimen/_14sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/these_settings_are_premium_features_nto_unlock_them_buy_premium"/>
+            android:text=""/>
         <TextView
             android:layout_width="wrap_content"
-            android:text="@string/purchase"
+            android:text=""
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:layout_alignParentEnd="true"
@@ -86,7 +86,7 @@
             android:textSize="@dimen/_10sdp"
             android:id="@+id/tvCustom"
             android:layout_height="wrap_content"
-            android:text="@string/customise_individual_colors_and_transparency"
+            android:text=""
             android:layout_toRightOf="@id/imgCustom"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
@@ -113,7 +113,7 @@
             android:textSize="@dimen/_10sdp"
             android:id="@+id/tvStyles"
             android:layout_height="wrap_content"
-            android:text="@string/tile_styles"
+            android:text=""
             android:layout_toRightOf="@id/imgStyles"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
@@ -132,18 +132,17 @@
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:layout_toEndOf="@id/imgPanel"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerInParent="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp"
             android:id="@+id/tvPanel"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/set_panel_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_toEndOf="@id/imgPanel"
             android:layout_toRightOf="@id/imgPanel"
-            android:layout_marginLeft="@dimen/_20sdp" />
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlTapOnTheme"

@@ -18,7 +18,6 @@ import com.example.settingapp.dialog.TileToggleDialog
 import kotlinx.android.synthetic.main.activity_tiles.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.btn_cancel
->>>>>>> remotes/origin/binhh
 
 
 class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNotiAdapter.ItemClick {
