@@ -67,6 +67,7 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_toRightOf="@id/imgSto" />
         <ImageView
+            android:id="@+id/imgTurnStorage"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:src="@drawable/ic_launcher_background"
