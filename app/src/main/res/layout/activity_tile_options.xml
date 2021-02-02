@@ -55,7 +55,7 @@
             android:textSize="@dimen/_14sdp"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/screen_timeout"
             android:layout_toRightOf="@id/imgScreen"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>

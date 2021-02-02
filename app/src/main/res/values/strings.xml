@@ -49,4 +49,7 @@
     <string name="backup_restore">Backup / Restore</string>
     <string name="tips">Tips</string>
     <string name="extras">Extras</string>
+    <string name="normal">Normal</string>
+    <string name="adb_root">ADB/Root</string>
+    <string name="screen_timeout">Screen timeout</string>
 </resources>

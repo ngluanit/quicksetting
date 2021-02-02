@@ -37,6 +37,9 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         rlTileoption.setOnClickListener {
             startActivity(Intent(this,TileOptionsActivity::class.java))
         }
+        rlSelectIcon.setOnClickListener {
+            showDialog1(this)
+        }
         rcvInActive.setLayoutManager(GridLayoutManager(this, 4))
         rcvActive.setLayoutManager(GridLayoutManager(this, 4))
         for (i in 0..12){
@@ -50,9 +53,7 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         iconNotiAdapter1= IconActiveNotiAdapter(list1,this)
         rcvInActive.adapter=iconNotiAdapter
         rcvActive.adapter=iconNotiAdapter1
-
     }
-
     private fun showDialog1(tilesActivity: TilesActivity) {
         val dialog = Dialog(tilesActivity!!)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
