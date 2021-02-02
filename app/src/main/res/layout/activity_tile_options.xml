@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tiles.TileOptionsActivity">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
+
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+            android:text="@string/tile_options"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlScreen"
+        android:layout_below="@id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp">
+        <ImageView
+            android:id="@+id/imgScreen"
+            android:layout_width="@dimen/_24sdp"
+            android:src="@drawable/ic_mobile"
+            android:layout_height="@dimen/_24sdp"
+            android:tint="@color/text_primary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/imgScreen"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="@string/screen_timeout"
+            android:layout_toRightOf="@id/imgScreen"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlNightmode"
+        android:layout_below="@id/rlScreen"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp">
+        <ImageView
+            android:id="@+id/imgNight"
+            android:layout_width="@dimen/_24sdp"
+            android:src="@drawable/ic_night"
+            android:layout_height="@dimen/_24sdp"
+            android:tint="@color/text_primary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/imgNight"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="@string/night_mode"
+            android:layout_toRightOf="@id/imgNight"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/rlNightmode"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp">
+        <ImageView
+            android:id="@+id/imgMusic"
+            android:layout_width="@dimen/_24sdp"
+            android:src="@drawable/ic_music"
+            android:layout_height="@dimen/_24sdp"
+            android:tint="@color/text_primary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/imgMusic"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:text="@string/music_player"
+            android:layout_toRightOf="@id/imgMusic"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+</RelativeLayout>

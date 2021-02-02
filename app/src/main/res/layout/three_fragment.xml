@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1E90FF"
     tools:context=".welcome.ThreeFragment">
 
     <TextView
@@ -12,24 +13,34 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_50sdp"
-        android:text="Background Type" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:fontFamily="@font/robotolight"
+        android:text="@string/tv_title_three_fragment" />
 
     <RelativeLayout
         android:id="@+id/rlNone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_blue"
+        android:layout_marginHorizontal="@dimen/_60sdp"
         android:layout_marginTop="@dimen/_100sdp"
         android:layout_below="@+id/tvBackgroud">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="none"
+            android:text="@string/none"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/robotolight"
             android:layout_centerHorizontal="true"
             android:textAllCaps="true" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlBlur"
+        android:background="@drawable/bg_corner_blue"
+        android:layout_marginHorizontal="@dimen/_60sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
@@ -39,6 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="blur background"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/robotolight"
             android:layout_centerHorizontal="true"
             android:textAllCaps="true" />
     </RelativeLayout>
@@ -46,6 +60,8 @@
         android:id="@+id/rlBlurWall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_blue"
+        android:layout_marginHorizontal="@dimen/_60sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_below="@+id/rlBlur">
 
@@ -53,7 +69,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="blur wallpager"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/robotolight"
             android:layout_centerHorizontal="true"
             android:textAllCaps="true" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_a_style_for_the_panel_background"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:fontFamily="@font/robotolight"
+        android:textSize="@dimen/_14sdp"/>
 </RelativeLayout>

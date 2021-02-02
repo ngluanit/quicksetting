@@ -30,7 +30,7 @@
                 android:id="@+id/text_slide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nhanh chóng kích hoạt"
+                android:text="Change handle trigger position"
                 android:layout_gravity="center"
                 android:textSize="15sp"
                 android:textColor="@color/black"/>
@@ -74,7 +74,7 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/grid_layout"
             android:background="#C1C1C1"/>
 

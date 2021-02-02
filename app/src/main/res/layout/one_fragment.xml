@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#EE4000"
     android:layout_height="match_parent"
     tools:context=".welcome.OneFragment">
 
@@ -10,10 +11,13 @@
         android:id="@+id/tvwelcomeapp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chào mừng đến \n App name"
+        android:text="@string/tv_title_one_fragment"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:textSize="@dimen/_23sdp"
+        android:fontFamily="@font/robotolight"
+        android:textColor="@color/white"
         android:gravity="center_horizontal" />
     <ImageView
         android:layout_width="50dp"
@@ -23,7 +27,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lướt sang trái để bắt đầu"
+        android:text="@string/tv_des_one_fragment"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
