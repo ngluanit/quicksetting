@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.settingapp.R;
+import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;

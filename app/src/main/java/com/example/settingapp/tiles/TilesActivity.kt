@@ -17,6 +17,8 @@ import com.example.settingapp.R
 import com.example.settingapp.dialog.TileToggleDialog
 import kotlinx.android.synthetic.main.activity_tiles.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
+import kotlinx.android.synthetic.main.dialog_tile_toggle.btn_cancel
+>>>>>>> remotes/origin/binhh
 
 
 class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNotiAdapter.ItemClick {
@@ -51,6 +53,20 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         rcvActive.adapter=iconNotiAdapter1
 
     }
+
+    private fun showDialog1(tilesActivity: TilesActivity) {
+        val dialog = Dialog(tilesActivity!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_img_tiles)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.btn_cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
+    }
+
     fun showDialog(activity: Activity?) {
         val dialog = Dialog(activity!!)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -59,6 +75,9 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.rlNormal.setOnClickListener {
             Toast.makeText(activity,"OKOKO",Toast.LENGTH_LONG).show()
+        }
+        dialog.btn_cancel.setOnClickListener {
+            dialog.dismiss()
         }
         dialog.show()
     }

@@ -22,7 +22,9 @@
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
 
         <TextView
             android:layout_toEndOf="@id/imgBack"
@@ -43,17 +45,29 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
-    <TextView
-        android:id="@+id/tvDes1"
+    <RelativeLayout
+        android:id="@+id/rl_des"
         android:layout_below="@+id/rlTop"
-        android:layout_marginStart="@dimen/_60sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/drag_and_drop_tiles_to_reposition_them_in_the_nactive_area"
-        android:layout_marginLeft="@dimen/_60sdp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_tips"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_20sdp"/>
+        <TextView
+            android:id="@+id/tvDes1"
+            android:layout_marginStart="@dimen/_60sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drag_and_drop_tiles_to_reposition_them_in_the_nactive_area"
+            android:layout_marginLeft="@dimen/_60sdp" />
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlTileoption"
-        android:layout_below="@id/tvDes1"
+        android:layout_below="@id/rl_des"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/_20sdp"
@@ -63,7 +77,8 @@
             android:id="@+id/imgOption"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_setting"
+            android:tint="@color/text_primary"/>
         <TextView
             android:layout_toEndOf="@id/imgOption"
             android:layout_width="wrap_content"
@@ -86,7 +101,9 @@
             android:id="@+id/imgToggle"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_support"
+            android:tint="@color/text_primary"/>
         <TextView
             android:layout_toEndOf="@id/imgToggle"
             android:layout_width="wrap_content"
@@ -109,7 +126,12 @@
             android:id="@+id/imgSelect"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
+<<<<<<< HEAD
             android:src="@drawable/ic_launcher_background"/>
+=======
+            android:src="@drawable/ic_image"
+            android:tint="@color/text_primary"/>
+>>>>>>> remotes/origin/binhh
         <TextView
             android:layout_toEndOf="@id/imgSelect"
             android:layout_width="wrap_content"
@@ -120,6 +142,7 @@
             android:layout_toRightOf="@id/imgSelect"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
+<<<<<<< HEAD
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -170,13 +193,115 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_centerHorizontal="true"
         android:text="@string/custom_shortcut"/>
+=======
+    <RelativeLayout
+        android:id="@+id/rl_url"
+        android:layout_below="@+id/rlSelectIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f3f3f3"
+        android:paddingBottom="@dimen/_10sdp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:text="@string/you_can_also_add_a"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:id="@+id/tvChoose"
+            android:layout_marginTop="@dimen/_20sdp"/>
+        <LinearLayout
+            android:weightSum="3"
+            android:layout_below="@+id/tvChoose"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/lnAdd"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:paddingVertical="@dimen/_10sdp"
+                android:elevation="@dimen/_8sdp"
+                android:translationZ="@dimen/_2sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tvUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:layout_centerInParent="true"
+                    android:text="@string/url"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:paddingVertical="@dimen/_10sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:elevation="@dimen/_8sdp"
+                android:translationZ="@dimen/_2sdp"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tvApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/text_primary"
+                    android:text="@string/app"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:paddingVertical="@dimen/_10sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:elevation="@dimen/_8sdp"
+                android:translationZ="@dimen/_2sdp"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/tvShortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/text_primary"
+                    android:text="@string/shortcut"/>
+            </RelativeLayout>
+        </LinearLayout>
+         <RelativeLayout
+             android:layout_below="@id/lnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:paddingVertical="@dimen/_10sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:elevation="@dimen/_8sdp"
+                android:layout_centerInParent="true"
+                android:translationZ="@dimen/_2sdp">
+            <TextView
+                android:id="@+id/tvCustom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/text_primary"
+                android:text="@string/custom_shortcut"/>
+         </RelativeLayout>
+
+    </RelativeLayout>
+>>>>>>> remotes/origin/binhh
     <TextView
         android:id="@+id/tvActive"
         android:layout_width="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_height="wrap_content"
         android:text="@string/active"
+<<<<<<< HEAD
         android:layout_below="@id/tvCustom"
+=======
+        android:layout_below="@id/rl_url"
+>>>>>>> remotes/origin/binhh
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_20sdp" />
     <androidx.recyclerview.widget.RecyclerView

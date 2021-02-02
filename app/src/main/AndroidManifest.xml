@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
+        <activity android:name=".tiles.TileOptionsActivity"></activity>
+        <activity android:name=".tiles.TilesActivity">
+
+        </activity>
+        <activity android:name=".welcome.BlurBackgroundActivity" />
+        <activity android:name=".welcome.WelcomeActivity"></activity>
         <activity android:name=".tilestyle.TileStylesActivity"></activity>
         <activity android:name=".colors.ColorsActivity" />
         <activity android:name=".sliders.SlidersActivity" />
