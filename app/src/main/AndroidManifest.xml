@@ -13,19 +13,19 @@
         android:theme="@style/Theme.SettingApp">
         <activity android:name=".tiles.TileOptionsActivity"></activity>
         <activity android:name=".tiles.TilesActivity">
+
+        </activity>
+        <activity android:name=".welcome.BlurBackgroundActivity" />
+        <activity android:name=".welcome.WelcomeActivity"></activity>
+        <activity
+            android:name="com.example.miui_ify.MainActivity"
+            android:theme="@style/Theme.Navigation_Drawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".welcome.FiveFragment" />
-        <activity android:name=".welcome.FourFragment" />
-        <activity android:name=".welcome.BlurBackgroundActivity" />
-        <activity android:name=".welcome.WelcomeActivity"></activity>
-        <activity
-            android:name="com.example.miui_ify.MainActivity"
-            android:theme="@style/Theme.Navigation_Drawer" />
     </application>
 
 </manifest>

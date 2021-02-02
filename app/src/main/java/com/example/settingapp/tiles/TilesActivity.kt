@@ -1,10 +1,22 @@
 package com.example.settingapp.tiles
 
+import android.app.Activity
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.settingapp.R
+import com.example.settingapp.dialog.TileToggleDialog
 import kotlinx.android.synthetic.main.activity_tiles.*
+import kotlinx.android.synthetic.main.dialog_tile_toggle.*
 
 
 class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNotiAdapter.ItemClick {
@@ -18,6 +30,12 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         setContentView(R.layout.activity_tiles)
         list=ArrayList()
         list1=ArrayList()
+        rlTiletoggle.setOnClickListener {
+            showDialog(this)
+        }
+        rlTileoption.setOnClickListener {
+            startActivity(Intent(this,TileOptionsActivity::class.java))
+        }
         rcvInActive.setLayoutManager(GridLayoutManager(this, 4))
         rcvActive.setLayoutManager(GridLayoutManager(this, 4))
         for (i in 0..12){
@@ -33,7 +51,17 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         rcvActive.adapter=iconNotiAdapter1
 
     }
-
+    fun showDialog(activity: Activity?) {
+        val dialog = Dialog(activity!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_tile_toggle)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.rlNormal.setOnClickListener {
+            Toast.makeText(activity,"OKOKO",Toast.LENGTH_LONG).show()
+        }
+        dialog.show()
+    }
     override fun onItemclick(position: Int) {
         list1!!.add(list!![position])
         list!!.remove(list!![position])
