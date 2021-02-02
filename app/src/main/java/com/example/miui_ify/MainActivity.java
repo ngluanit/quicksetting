@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.settingapp.R;
+import com.example.settingapp.colors.ColorsActivity;
+import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView menu_nav;
-    LinearLayout lnTiles;
+    LinearLayout lnTiles,lnSlides,lnColors;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,22 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         getWindow().setStatusBarColor(Color.parseColor("#f0f0f0"));// set status background white
         lnTiles=findViewById(R.id.lnTiles);
+        lnSlides=findViewById(R.id.lnSlides);
+        lnColors=findViewById(R.id.lnColors);
+        lnSlides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, SlidersActivity.class);
+                startActivity(intent);
+            }
+        });
+        lnColors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, ColorsActivity.class);
+                startActivity(intent);
+            }
+        });
         lnTiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".colors.ColorsActivity">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+            android:text="Tiles"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/rlTop"
+        android:id="@+id/rlPurchase"
+        android:background="@color/red"
+        android:padding="@dimen/_5sdp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingLeft="@dimen/_20sdp">
+        <TextView
+            android:id="@+id/tvpurchasedes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/these_settings_are_premium_features_nto_unlock_them_buy_premium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/purchase"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/tvpurchasedes"
+            android:padding="@dimen/_20sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlCustom"
+        android:layout_below="@id/rlPurchase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgCustom"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:layout_toEndOf="@id/imgCustom"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:id="@+id/tvCustom"
+            android:layout_height="wrap_content"
+            android:text="@string/customise_individual_colors_and_transparency"
+            android:layout_toRightOf="@id/imgCustom"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlStyles"
+        android:layout_below="@id/rlCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgStyles"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:layout_toEndOf="@id/imgStyles"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:id="@+id/tvStyles"
+            android:layout_height="wrap_content"
+            android:text="@string/tile_styles"
+            android:layout_toRightOf="@id/imgStyles"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlPanel"
+        android:layout_below="@id/rlStyles"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgPanel"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:layout_toEndOf="@id/imgPanel"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:id="@+id/tvPanel"
+            android:layout_height="wrap_content"
+            android:text="@string/set_panel_image"
+            android:layout_toRightOf="@id/imgPanel"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlTapOnTheme"
+        android:layout_below="@id/rlPanel"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgTapOnTheme"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:layout_toEndOf="@id/imgTapOnTheme"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            android:id="@+id/tvTapOnTheme"
+            android:layout_height="wrap_content"
+            android:text="Tap on theme to apply it."
+            android:layout_toRightOf="@id/imgTapOnTheme"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlTapOnTheme"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp" />
+</RelativeLayout>

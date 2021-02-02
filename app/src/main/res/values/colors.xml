@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color_toolbar1">#3367D6</color>
     <color name="text_primary">#f1604b</color>
+    <color name="red">#FF3333</color>
 </resources>
