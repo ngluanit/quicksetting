@@ -74,7 +74,7 @@
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/grid_layout"
             android:background="#C1C1C1"/>
 
@@ -84,7 +84,6 @@
             android:layout_below="@id/view1"
             android:layout_margin="@dimen/_10sdp"
             layout="@layout/layout_home_bottom"/>
-
 
     </RelativeLayout>
 </ScrollView>

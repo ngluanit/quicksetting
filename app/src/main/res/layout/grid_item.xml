@@ -30,15 +30,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_app"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/titles"
                     android:textSize="16sp"
-                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -60,7 +61,8 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/ic_settings"
                     android:tint="@color/text_primary" />
                 <TextView
@@ -68,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/slides"
                     android:textSize="16sp"
-                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -90,14 +93,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_color"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:text="@string/colors"
                     android:textSize="16sp"
-                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -119,7 +124,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_app"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
                     android:layout_width="100dp"
@@ -127,6 +133,7 @@
                     android:text="@string/title_styles"
                     android:layout_gravity="center"
                     android:textSize="16sp"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textAlignment="center"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -178,14 +185,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_app"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Layout"
                     android:textSize="16sp"
-                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -207,14 +216,16 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_notification"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="Notifications"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -237,14 +248,17 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_nen"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="Loại nền"
+                    android:text="Background type"
                     android:textSize="16sp"
-                    android:layout_marginTop="20dp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -266,15 +280,17 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_nen"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:text="Thanh trạng thái dưới cùng"
+                    android:text="Bottom Status Bar"
                     android:textAlignment="center"
                     android:layout_gravity="center"
                     android:textSize="16sp"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -303,7 +319,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Ngoài ra"
+                    android:text="@string/extras"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
             </LinearLayout>
