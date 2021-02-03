@@ -20,10 +20,6 @@
         <activity android:name=".tilestyle.TileStylesActivity" />
         <activity android:name=".colors.ColorsActivity" />
         <activity android:name=".sliders.SlidersActivity" />
-        <activity android:name=".tiles.TileOptionsActivity" />
-        <activity android:name=".tiles.TilesActivity" />
-        <activity android:name=".welcome.BlurBackgroundActivity" />
-        <activity android:name=".welcome.WelcomeActivity" />
         <activity
             android:name="com.example.miui_ify.MainActivity"
             android:theme="@style/Theme.Navigation_Drawer">
@@ -33,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <service android:name="com.example.miui_ify.FloatingWindow"></service>
         <service
             android:name=".util.MyAccessibilityService"
             android:enabled="true"
