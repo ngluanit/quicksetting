@@ -36,7 +36,7 @@
     <string name="inactive">Inactive</string>
     <string name="night_mode">Night mode</string>
     <string name="music_player">Music player</string>
-    <string name="select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data">Select a method to toggle secure settings<br/>such as mobile data</string>
+    <string name="select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data">Select a method to toggle secure settings<br />such as mobile data</string>
 
     <string name="service_running">Service running</string>
     <string name="titles">Titles</string>
@@ -52,4 +52,27 @@
     <string name="normal">Normal</string>
     <string name="adb_root">ADB/Root</string>
     <string name="screen_timeout">Screen timeout</string>
+    <string name="enabled_style">Enabled style</string>
+    <string name="disabled_style">Disabled style</string>
+    <string name="enable_tile_gradients">Enable tile gradients</string>
+    <string name="tile_icon_shape">Tile icon shape</string>
+    <string name="solid_colors">Solid colors</string>
+    <string name="tile_background_enabled">Tile background(enabled)</string>
+    <string name="tile_background_disabled">Tile background(disabled)</string>
+    <string name="tile_icon_enabled">Tile icon(enabled)</string>
+    <string name="tile_icon_disabled">Tile icon(disabled)</string>
+    <string name="enabled_tile_gradient">Enabled tile gradient</string>
+    <string name="preset_gradients">Preset gradients</string>
+    <string name="tap_a_gradient_to_apply_it_scroll_for_more">Tap a gradient to apply it.Scroll for more</string>
+    <string name="gradient_color_start">Gradient color start</string>
+    <string name="gradient_color_end">Gradient color end</string>
+    <string name="swipe_upwards_to_open_the_panel_when_the_handle_is_on_the_left_or_right">Swipe upwards to open the panel when the Handle is on the left or right.</string>
+    <string name="choose_apps_to_hide_the_handles_in">Choose apps to hide the handles in</string>
+    <string name="blacklist">Blacklist</string>
+    <string name="hide_handle_icon">Hide handle icon</string>
+    <string name="hide_in_fullscreen">Hide in fullscreen</string>
+    <string name="hide_in_landscape_mode">Hide in landscape mode</string>
+    <string name="bottom_handle">Bottom Handle</string>
+    <string name="disable_handle">Disable handle</string>
+    <string name="description_accessibility">update later</string>
 </resources>

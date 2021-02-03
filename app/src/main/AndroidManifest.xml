@@ -11,13 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
-        <activity android:name=".tiles.TileOptionsActivity"></activity>
-        <activity android:name=".tiles.TilesActivity">
-
-        </activity>
+        <activity android:name=".handles.HandlesActivity"></activity>
+        <activity android:name=".tiles.TileOptionsActivity" />
+        <activity android:name=".tiles.TilesActivity"></activity>
         <activity android:name=".welcome.BlurBackgroundActivity" />
-        <activity android:name=".welcome.WelcomeActivity"></activity>
-        <activity android:name=".tilestyle.TileStylesActivity"></activity>
+        <activity android:name=".welcome.WelcomeActivity" />
+        <activity android:name=".tilestyle.TileStylesActivity" />
         <activity android:name=".colors.ColorsActivity" />
         <activity android:name=".sliders.SlidersActivity" />
         <activity android:name=".tiles.TileOptionsActivity" />
@@ -33,6 +32,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".util.MyAccessibilityService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="SettingApp"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/serviceconfig" />
+        </service>
     </application>
 
 </manifest>
