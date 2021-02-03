@@ -84,4 +84,5 @@
     <string name="number_of_rows">Number of rows</string>
     <string name="show_panel_footer">Show panel footer</string>
     <string name="crop_app_icon_to_circles">Crop app icon to circles</string>
+    <string name="left_handle">Left handle</string>
 </resources>

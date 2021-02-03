@@ -395,7 +395,7 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rlcrop"
-                    android:layout_below="@+id/rlhidetext"
+                    android:layout_below="@+id/rlNoti"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_width="match_parent"
