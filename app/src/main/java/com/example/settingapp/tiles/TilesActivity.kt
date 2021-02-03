@@ -29,6 +29,11 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tiles)
+
+        imgBack.setOnClickListener {
+            val intent = Intent(this,com.example.miui_ify.MainActivity::class.java);
+            startActivity(intent)
+        }
         list=ArrayList()
         list1=ArrayList()
         rlTiletoggle.setOnClickListener {

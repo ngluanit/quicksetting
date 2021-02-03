@@ -52,4 +52,9 @@
     <string name="normal">Normal</string>
     <string name="adb_root">ADB/Root</string>
     <string name="screen_timeout">Screen timeout</string>
+    <string name="these_settings_are_premium_features">These settings are premium features.</string>
+    <string name="to_unlock_them_buy_premium">To unlock them, buy premium.</string>
+    <string name="customise_individual_colors_and_transparency">Customise Individual Colors and Transparency</string>
+    <string name="media_volume">Media volume</string>
+    <string name="alarm_volume">Alarm volume</string>
 </resources>

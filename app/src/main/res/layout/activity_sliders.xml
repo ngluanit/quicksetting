@@ -15,7 +15,9 @@
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
 
         <TextView
             android:layout_toEndOf="@id/imgBack"
@@ -26,13 +28,14 @@
             android:textSize="@dimen/_20sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
-            android:text="Tiles"
+            android:text="Sliders"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_reload"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
@@ -58,12 +61,12 @@
             android:id="@+id/imgBrig"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_brightness"/>
         <TextView
             android:id="@+id/tvBrigDes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Brightness"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_50sdp"
@@ -72,9 +75,9 @@
             android:id="@+id/imgTurn"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_on"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp" />
     </RelativeLayout>
@@ -90,12 +93,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/line1"
-        android:text=""
+        android:text="Volume"
         android:textSize="@dimen/_14sdp"
-        android:textColor="@color/red"
+        android:textColor="@color/text_primary"
         android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_70sdp"
-        android:layout_marginLeft="@dimen/_20sdp" />
+        android:layout_marginLeft="@dimen/_70sdp"/>
     <RelativeLayout
         android:id="@+id/rlMedia"
         android:layout_below="@+id/tvVolume"
@@ -108,12 +110,12 @@
             android:id="@+id/imgMedia"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_music"/>
         <TextView
             android:id="@+id/tvMedia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/media_volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_50sdp"
@@ -122,9 +124,9 @@
             android:id="@+id/imgTurnMedia"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp" />
     </RelativeLayout>
@@ -140,12 +142,12 @@
             android:id="@+id/imgAlarm"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_alarm"/>
         <TextView
             android:id="@+id/tvAlarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/alarm_volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_50sdp"
@@ -154,9 +156,9 @@
             android:id="@+id/imgTurnAlarm"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp" />
     </RelativeLayout>
@@ -172,12 +174,12 @@
             android:id="@+id/imgRing"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_phone"/>
         <TextView
             android:id="@+id/tvRing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Ring volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_50sdp"
@@ -186,9 +188,9 @@
             android:id="@+id/imgTurnRing"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp" />
     </RelativeLayout>
@@ -204,12 +206,12 @@
             android:id="@+id/imgNoti"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_notification"/>
         <TextView
             android:id="@+id/tvNoti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Notification volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_50sdp"
@@ -218,9 +220,9 @@
             android:id="@+id/imgTurnNoti"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp" />
     </RelativeLayout>
@@ -236,12 +238,12 @@
             android:id="@+id/imgVoice"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_call_in"/>
         <TextView
             android:id="@+id/tvVoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Voice call volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/_50sdp"
@@ -250,9 +252,9 @@
             android:id="@+id/imgTurnVoice"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp" />
     </RelativeLayout>

@@ -9,13 +9,15 @@
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_20sdp">
+        android:layout_margin="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
 
         <TextView
             android:layout_toEndOf="@id/imgBack"
@@ -26,21 +28,16 @@
             android:textSize="@dimen/_20sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
-            android:text="Tiles"
+            android:text="Colors"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
-        <ImageView
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/rlTop"
         android:id="@+id/rlPurchase"
-        android:background="@color/red"
+        android:background="@color/text_primary"
         android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/_20sdp"
@@ -48,13 +45,22 @@
         <TextView
             android:id="@+id/tvpurchasedes"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_13sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/these_settings_are_premium_features"/>
+        <TextView
+            android:id="@+id/tvpurchasedes2"
+            android:layout_below="@+id/tvpurchasedes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_unlock_them_buy_premium"/>
         <TextView
             android:layout_width="wrap_content"
-            android:text=""
+            android:text="PURCHASE"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:layout_alignParentEnd="true"
@@ -68,13 +74,14 @@
         android:layout_below="@id/rlPurchase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_20sdp">
+        android:layout_margin="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgCustom"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_color"
+            android:tint="@color/text_primary"/>
 
         <TextView
             android:layout_toEndOf="@id/imgCustom"
@@ -86,22 +93,41 @@
             android:textSize="@dimen/_10sdp"
             android:id="@+id/tvCustom"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="@string/customise_individual_colors_and_transparency"
             android:layout_toRightOf="@id/imgCustom"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/rlCustom"
+        android:background="#C1C1C1"/>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/rlStyles"
+        android:background="#C1C1C1"/>
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/rlPanel"
+        android:background="#C1C1C1"/>
     <RelativeLayout
         android:id="@+id/rlStyles"
         android:layout_below="@id/rlCustom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_20sdp">
+        android:layout_margin="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgStyles"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_tiles"
+            android:tint="@color/text_primary"/>
 
         <TextView
             android:layout_toEndOf="@id/imgStyles"
@@ -113,7 +139,7 @@
             android:textSize="@dimen/_10sdp"
             android:id="@+id/tvStyles"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="Tiles Styles"
             android:layout_toRightOf="@id/imgStyles"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
@@ -123,13 +149,14 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_20sdp">
+        android:layout_margin="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgPanel"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_image"
+            android:tint="@color/text_primary"/>
 
         <TextView
             android:id="@+id/tvPanel"
@@ -140,7 +167,7 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_toEndOf="@id/imgPanel"
             android:layout_toRightOf="@id/imgPanel"
-            android:text=""
+            android:text="Set Panel Image"
             android:textColor="@color/black"
             android:textSize="@dimen/_10sdp" />
     </RelativeLayout>
@@ -150,13 +177,13 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_20sdp">
+        android:layout_margin="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgTapOnTheme"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_tips"/>
 
         <TextView
             android:layout_toEndOf="@id/imgTapOnTheme"
@@ -164,7 +191,7 @@
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerInParent="true"
-            android:textColor="@color/black"
+            android:textColor="#232323"
             android:textSize="@dimen/_10sdp"
             android:id="@+id/tvTapOnTheme"
             android:layout_height="wrap_content"
