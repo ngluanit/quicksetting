@@ -11,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
-        <activity android:name=".handles.HandlesActivity"></activity>
+        <activity android:name=".layout.Layout_Activity"></activity>
+        <activity android:name=".handles.HandlesActivity" />
         <activity android:name=".tiles.TileOptionsActivity" />
-        <activity android:name=".tiles.TilesActivity"></activity>
+        <activity android:name=".tiles.TilesActivity" />
         <activity android:name=".welcome.BlurBackgroundActivity" />
         <activity android:name=".welcome.WelcomeActivity" />
         <activity android:name=".tilestyle.TileStylesActivity" />
@@ -32,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".util.MyAccessibilityService"
             android:enabled="true"

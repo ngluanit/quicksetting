@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.example.settingapp.R;
 import com.example.settingapp.handles.HandlesActivity;
+import com.example.settingapp.layout.Layout_Activity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         lnTiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TilesActivity.class);
+                Intent intent = new Intent(MainActivity.this, Layout_Activity.class);
                 startActivity(intent);
             }
         });

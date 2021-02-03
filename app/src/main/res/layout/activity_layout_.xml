@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layout.Layout_Activity">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+            android:text="@string/layout"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_reload"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="TODO" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlTop">
+        <RelativeLayout
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rl_number_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/number_of_rows"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_50sdp" />
+                <SeekBar
+                    android:id="@+id/seekbar_number_rows"
+                    android:layout_below="@+id/tv_title1"
+                    android:layout_width="300dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:thumbTint="@color/text_primary"
+                    android:max="7"
+                    android:progressTint="@color/text_primary"/>
+                <TextView
+                    android:id="@+id/tv_number_row"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_toRightOf="@+id/seekbar_number_rows"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_number_columns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_below="@+id/rl_number_row">
+
+                <TextView
+                    android:id="@+id/tv_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number of columns"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_50sdp"/>
+                <SeekBar
+                    android:id="@+id/seekbar_number_columns"
+                    android:layout_below="@+id/tv_title2"
+                    android:layout_width="300dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:thumbTint="@color/text_primary"
+                    android:max="8"
+                    android:progressTint="@color/text_primary"/>
+                <TextView
+                    android:id="@+id/tv_number_columns"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_toRightOf="@+id/seekbar_number_columns"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_number_small_columns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_number_columns"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number of small columns"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_50sdp"/>
+                <SeekBar
+                    android:id="@+id/seekbar_number_small_columns"
+                    android:layout_below="@+id/tv_title3"
+                    android:layout_width="300dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:thumbTint="@color/text_primary"
+                    android:max="8"
+                    android:progressTint="@color/text_primary"/>
+                <TextView
+                    android:id="@+id/tv_number_small_columns"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_toRightOf="@+id/seekbar_number_small_columns"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_panel_radius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_number_small_columns"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_title4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Panel corner radius"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_50sdp"/>
+                <SeekBar
+                    android:id="@+id/seekbar_panel_radius"
+                    android:layout_below="@+id/tv_title4"
+                    android:layout_width="300dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:thumbTint="@color/text_primary"
+                    android:max="30"
+                    android:progressTint="@color/text_primary"/>
+                <TextView
+                    android:id="@+id/tv_panel_radius"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_toRightOf="@+id/seekbar_panel_radius"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_panel_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_panel_radius"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_title5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Panel padding"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_50sdp"/>
+                <SeekBar
+                    android:id="@+id/seekbar_panel_padding"
+                    android:layout_below="@+id/tv_title5"
+                    android:layout_width="300dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:thumbTint="@color/text_primary"
+                    android:max="25"
+                    android:progressTint="@color/text_primary"/>
+                <TextView
+                    android:id="@+id/tv_panel_padding"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_toRightOf="@+id/seekbar_panel_padding"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_tile_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_panel_padding"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_title6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tile size"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_50sdp"/>
+                <SeekBar
+                    android:id="@+id/seekbar_tilesize"
+                    android:layout_below="@+id/tv_title6"
+                    android:layout_width="300dp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:thumbTint="@color/text_primary"
+                    android:max="50"
+                    android:progressTint="@color/text_primary"/>
+                <TextView
+                    android:id="@+id/tv_tilesize"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_toRightOf="@+id/seekbar_tilesize"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_tile_size">
+                <RelativeLayout
+                    android:id="@+id/rlMedia"
+                    android:layout_below="@+id/tvVolume"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp">
+                    <ImageView
+                        android:id="@+id/imgMedia"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:src="@drawable/ic_launcher_background"/>
+                    <TextView
+                        android:id="@+id/tvMedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sytem icons"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_20sdp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Enable or disable icons in the system icon area"
+                        android:layout_below="@id/tvMedia"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:textSize="@dimen/_13sdp"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlshowpanel"
+                    android:layout_below="@+id/rlMedia"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp">
+                    <ImageView
+                        android:id="@+id/imgshowpanel"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:src="@drawable/ic_download"/>
+                    <TextView
+                        android:id="@+id/tvAlarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/show_panel_footer"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_20sdp" />
+                    <ImageView
+                        android:id="@+id/imgTurnAlarm"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/ic_switch_off"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_20sdp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlhidetext"
+                    android:layout_below="@+id/rlshowpanel"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp">
+                    <ImageView
+                        android:id="@+id/imghidetext"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:src="@drawable/ic_text_filed"/>
+                    <TextView
+                        android:id="@+id/tvhidetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hide tile text"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_20sdp" />
+                    <ImageView
+                        android:id="@+id/imgTurnRing"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/ic_switch_off"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_20sdp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlNoti"
+                    android:layout_below="@+id/rlhidetext"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp">
+
+                    <TextView
+                        android:id="@+id/tvNoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Show alarm in footer"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_20sdp" />
+                    <ImageView
+                        android:id="@+id/imgTurnNoti"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/ic_switch_off"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_20sdp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlcrop"
+                    android:layout_below="@+id/rlhidetext"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp">
+                    <ImageView
+                        android:id="@+id/imgcropapp"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:src="@drawable/ic_crop"/>
+                    <TextView
+                        android:id="@+id/tvcropapp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/crop_app_icon_to_circles"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_20sdp" />
+                    <ImageView
+                        android:id="@+id/imgturncrop"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/ic_switch_off"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_20sdp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rlclock"
+                    android:layout_below="@+id/rlcrop"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp">
+                    <ImageView
+                        android:id="@+id/imgVoice"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:src="@drawable/ic_clock"/>
+                    <TextView
+                        android:id="@+id/tvVoice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User 24-hour clock"
+                        android:textSize="@dimen/_14sdp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_20sdp" />
+                    <ImageView
+                        android:id="@+id/imgTurnVoice"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/ic_switch_off"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_20sdp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

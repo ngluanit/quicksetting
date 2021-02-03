@@ -36,7 +36,7 @@
     <string name="inactive">Inactive</string>
     <string name="night_mode">Night mode</string>
     <string name="music_player">Music player</string>
-    <string name="select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data">Select a method to toggle secure settings<br/>such as mobile data</string>
+    <string name="select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data">Select a method to toggle secure settings<br />such as mobile data</string>
 
     <string name="service_running">Service running</string>
     <string name="titles">Titles</string>
@@ -80,4 +80,8 @@
     <string name="customise_individual_colors_and_transparency">Customise Individual Colors and Transparency</string>
     <string name="media_volume">Media volume</string>
     <string name="alarm_volume">Alarm volume</string>
+    <string name="layout">Layout</string>
+    <string name="number_of_rows">Number of rows</string>
+    <string name="show_panel_footer">Show panel footer</string>
+    <string name="crop_app_icon_to_circles">Crop app icon to circles</string>
 </resources>
