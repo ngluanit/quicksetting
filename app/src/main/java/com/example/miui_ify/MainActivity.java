@@ -31,10 +31,12 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.settingapp.R;
+import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;
+import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
 import com.google.android.material.navigation.NavigationView;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView menu_nav;
-    LinearLayout lnTiles, lnSlides, lnColors;
+    LinearLayout lnTiles, lnSlides, lnColors,lnTileStyle,lnHandles;
     RelativeLayout rlConnect;
     Button btnTest;
     private int REQUEST_ACCESSIBILITY = 777;
@@ -58,6 +60,20 @@ public class MainActivity extends AppCompatActivity {
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
         rlConnect = findViewById(R.id.status_service);
+        lnTileStyle=findViewById(R.id.lnTileStyles);
+        lnHandles=findViewById(R.id.lnHandler);
+        lnTileStyle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TileStylesActivity.class));
+            }
+        });
+        lnHandles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HandlesActivity.class));
+            }
+        });
         rlConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
