@@ -36,7 +36,7 @@
     <string name="inactive">Inactive</string>
     <string name="night_mode">Night mode</string>
     <string name="music_player">Music player</string>
-    <string name="select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data">Select a method to toggle secure settings<br />such as mobile data</string>
+    <string name="select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data">Select a method to toggle secure settings<br/>such as mobile data</string>
 
     <string name="service_running">Service running</string>
     <string name="titles">Titles</string>
@@ -75,4 +75,9 @@
     <string name="bottom_handle">Bottom Handle</string>
     <string name="disable_handle">Disable handle</string>
     <string name="description_accessibility">update later</string>
+    <string name="these_settings_are_premium_features">These settings are premium features.</string>
+    <string name="to_unlock_them_buy_premium">To unlock them, buy premium.</string>
+    <string name="customise_individual_colors_and_transparency">Customise Individual Colors and Transparency</string>
+    <string name="media_volume">Media volume</string>
+    <string name="alarm_volume">Alarm volume</string>
 </resources>
