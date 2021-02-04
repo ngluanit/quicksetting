@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Welcome\\StudioProjects\\AndroidSlidingUpPanel\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png",
+        "source": "C:\\Users\\Welcome\\.android\\build-cache\\34b2d577d2e48390ad1858853c49fc041f094723\\output\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Welcome\\StudioProjects\\AndroidSlidingUpPanel\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png",
+        "source": "C:\\Users\\Welcome\\.android\\build-cache\\34b2d577d2e48390ad1858853c49fc041f094723\\output\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Welcome\\StudioProjects\\AndroidSlidingUpPanel\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png",
+        "source": "C:\\Users\\Welcome\\.android\\build-cache\\34b2d577d2e48390ad1858853c49fc041f094723\\output\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Welcome\\StudioProjects\\AndroidSlidingUpPanel\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notification_bg_low_normal.9.png",
+        "source": "C:\\Users\\Welcome\\.android\\build-cache\\34b2d577d2e48390ad1858853c49fc041f094723\\output\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Welcome\\StudioProjects\\AndroidSlidingUpPanel\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notification_bg_normal.9.png",
+        "source": "C:\\Users\\Welcome\\.android\\build-cache\\34b2d577d2e48390ad1858853c49fc041f094723\\output\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+    }
+]

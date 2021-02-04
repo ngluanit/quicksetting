@@ -32,6 +32,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.settingapp.R;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.Set;
 
@@ -47,6 +48,8 @@ public class FloatingWindow extends Service {
     private ContentResolver cResolver;
     //Window object, that will store a reference to the current window
     private Window window;
+    private SlidingUpPanelLayout mLayout;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -100,42 +103,6 @@ public class FloatingWindow extends Service {
         mWindowsParams.y = 100;
         mWindowManager.addView(mView, mWindowsParams);
 
-        mView.setOnTouchListener(new View.OnTouchListener() {
-            private int initialX;
-            private int initialY;
-            private float initialTouchX;
-            private float initialTouchY;
-
-            long startTime = System.currentTimeMillis();
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (System.currentTimeMillis() - startTime <= 300) {
-                    return false;
-                }
-                if (isViewInBounds(mView, (int) (event.getRawX()), (int) (event.getRawY()))) {
-                    editTextReceiveFocus();
-                } else {
-                    editTextDontReceiveFocus();
-                }
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        initialX = mWindowsParams.x;
-                        initialY = mWindowsParams.y;
-                        initialTouchX = event.getRawX();
-                        initialTouchY = event.getRawY();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        mWindowsParams.x = initialX + (int) (event.getRawX() - initialTouchX);
-                        mWindowsParams.y = initialY + (int) (event.getRawY() - initialTouchY);
-                        mWindowManager.updateViewLayout(mView, mWindowsParams);
-                        break;
-                }
-                return false;
-            }
-        });
     }
 
     private boolean isViewInBounds(View view, int x, int y) {
@@ -174,6 +141,25 @@ public class FloatingWindow extends Service {
         seekBar = (SeekBar) mView.findViewById(R.id.BrightBar);
         cResolver =  getContentResolver();
         BrightnessControl(seekBar);
+        mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
+        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i("TAG", "onPanelSlide, offset " + slideOffset);
+            }
+            @Override
+            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+                Log.i("TAG", "onPanelSlide, offset ");
+            }
+
+
+        });
+        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

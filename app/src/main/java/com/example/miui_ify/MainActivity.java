@@ -52,6 +52,7 @@ import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
 import com.google.android.material.navigation.NavigationView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout rlConnect;
     Button btnTest,btn_ok;
     Context context;
+    LinearLayout dragView;
     private int REQUEST_ACCESSIBILITY = 777;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -71,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
         Window window = getWindow();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         getWindow().setStatusBarColor(Color.parseColor("#f0f0f0"));// set status background white
+
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
         btn_ok = findViewById(R.id.btn_ok);
+        dragView=findViewById(R.id.dragView);
         rlConnect = findViewById(R.id.status_service);
         lnTileStyle = findViewById(R.id.lnTileStyles);
         lnHandles = findViewById(R.id.lnHandler);
@@ -316,7 +320,6 @@ public class MainActivity extends AppCompatActivity {
     }
     private void askForPermission(String permission, Integer requestCode) {
         if (ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_GRANTED) {
-
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, permission)) {
                 //This is called if user has denied the permission before
