@@ -68,7 +68,7 @@
     <string name="gradient_color_end">Gradient color end</string>
     <string name="swipe_upwards_to_open_the_panel_when_the_handle_is_on_the_left_or_right">Swipe upwards to open the panel when the Handle is on the left or right.</string>
     <string name="choose_apps_to_hide_the_handles_in">Choose apps to hide the handles in</string>
-    <string name="blacklist">Blacklist</string>
+    <string name="blacklist1">Blacklist</string>
     <string name="hide_handle_icon">Hide handle icon</string>
     <string name="hide_in_fullscreen">Hide in fullscreen</string>
     <string name="hide_in_landscape_mode">Hide in landscape mode</string>
@@ -85,4 +85,16 @@
     <string name="show_panel_footer">Show panel footer</string>
     <string name="crop_app_icon_to_circles">Crop app icon to circles</string>
     <string name="left_handle">Left handle</string>
+    <string name="open_panel_directly_to_expaned">Open panel directly to expaned</string>
+    <string name="smooth_brightness">Smooth brightness</string>
+    <string name="blur_background">Blur Background</string>
+    <string name="hide_persistent_notifications">Hide persistent notifications</string>
+    <string name="blacklist">Blacklist</string>
+    <string name="choose_apps_to_hide_notifications_from">Choose apps to hide notifications from</string>
+    <string name="dynamic_notification_colors">Dynamic notification colors</string>
+    <string name="notification_colors_will_match_the_app_icon_colors">Notification colors will match the app icon colors</string>
+    <string name="notification_background">Notification background</string>
+    <string name="quick_clear_all_notifications">Quick clear all notifications</string>
+    <string name="hide_while_keyboard_is_open">Hide while keyboard is open</string>
+    <string name="enable_if_you_are_experiencing_issues_while_the_keyboard_is_open">Enable if you are experiencing issues while the keyboard is open</string>
 </resources>

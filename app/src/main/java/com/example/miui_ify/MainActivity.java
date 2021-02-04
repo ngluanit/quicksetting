@@ -14,11 +14,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.ColorStateListDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,9 +39,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
 import com.example.settingapp.R;
+import com.example.settingapp.extra.ExtraActivity;
 import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.layout.Layout_Activity;
+import com.example.settingapp.notifications.NotificationActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
@@ -50,9 +57,10 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView menu_nav;
-    LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles;
+    LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles,lnLayout,lnExtra,lnBackgroundType,lnNotification,lnStatusbar;
     RelativeLayout rlConnect;
-    Button btnTest;
+    Button btnTest,btn_ok;
+    Context context;
     private int REQUEST_ACCESSIBILITY = 777;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -66,9 +74,51 @@ public class MainActivity extends AppCompatActivity {
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
+        btn_ok = findViewById(R.id.btn_ok);
         rlConnect = findViewById(R.id.status_service);
         lnTileStyle = findViewById(R.id.lnTileStyles);
         lnHandles = findViewById(R.id.lnHandler);
+        lnLayout = findViewById(R.id.lnLayout);
+        lnExtra = findViewById(R.id.lnExtra);
+        lnNotification = findViewById(R.id.lnNotification);
+        lnStatusbar = findViewById(R.id.lnStatusbar);
+        lnBackgroundType = findViewById(R.id.lnBackgroundType);
+        lnNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+            }
+        });
+
+        lnStatusbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, BottomStatusActivity.class));
+            }
+        });
+
+        lnBackgroundType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.setContentView(R.layout.dialog_backgroundtype);
+                dialog.show();
+            }
+        });
+        lnExtra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ExtraActivity.class));
+            }
+        });
+        lnLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Layout_Activity.class));
+            }
+        });
         lnTileStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         lnTiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Layout_Activity.class);
+                Intent intent = new Intent(MainActivity.this, TilesActivity.class);
                 startActivity(intent);
             }
         });

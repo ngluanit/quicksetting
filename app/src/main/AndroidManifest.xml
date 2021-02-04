@@ -3,6 +3,8 @@
     package="com.example.settingapp">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,25 +13,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
-        <activity android:name=".layout.Layout_Activity"></activity>
+        <activity android:name=".BottomStatusBar.BottomStatusActivity"></activity>
+        <activity android:name=".notifications.NotificationActivity" />
+        <activity android:name=".extra.ExtraActivity" />
+        <activity android:name=".layout.Layout_Activity" />
         <activity android:name=".handles.HandlesActivity" />
         <activity android:name=".tiles.TileOptionsActivity" />
         <activity android:name=".tiles.TilesActivity" />
         <activity android:name=".welcome.BlurBackgroundActivity" />
-        <activity android:name=".welcome.WelcomeActivity" />
-        <activity android:name=".tilestyle.TileStylesActivity" />
-        <activity android:name=".colors.ColorsActivity" />
-        <activity android:name=".sliders.SlidersActivity" />
-        <activity
-            android:name="com.example.miui_ify.MainActivity"
-            android:theme="@style/Theme.Navigation_Drawer">
+        <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.example.miui_ify.FloatingWindow"></service>
+        <activity android:name=".tilestyle.TileStylesActivity" />
+        <activity android:name=".colors.ColorsActivity" />
+        <activity android:name=".sliders.SlidersActivity" />
+        <activity
+            android:name="com.example.miui_ify.MainActivity"
+            android:theme="@style/Theme.Navigation_Drawer">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+
+        <service android:name="com.example.miui_ify.FloatingWindow" />
         <service
             android:name=".util.MyAccessibilityService"
             android:enabled="true"

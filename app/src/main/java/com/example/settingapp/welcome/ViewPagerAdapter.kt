@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     var oneFragment : OneFragment?=null
     var twoFragment : TwoFragment?=null
+    var threeFragment : ThreeFragment?=null
+    var FourFragment : FourFragment?=null
+    var FiveFragment : FiveFragment?=null
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> {
@@ -19,18 +22,18 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
             }
             2 -> {
-                oneFragment= OneFragment();
-                return oneFragment as OneFragment
+                threeFragment= ThreeFragment();
+                return threeFragment as ThreeFragment
 
             }
             3 -> {
-                oneFragment= OneFragment();
-                return oneFragment as OneFragment
+                FourFragment= FourFragment();
+                return FourFragment as FourFragment
 
             }
             4 -> {
-                oneFragment= OneFragment();
-                return oneFragment as OneFragment
+                FiveFragment= FiveFragment();
+                return FiveFragment as FiveFragment
 
             }
             else ->{

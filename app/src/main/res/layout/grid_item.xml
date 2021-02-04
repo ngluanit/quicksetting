@@ -183,6 +183,7 @@
             app:cardCornerRadius="20dp">
 
             <LinearLayout
+                android:id="@+id/lnLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -214,6 +215,7 @@
             app:cardCornerRadius="20dp">
 
             <LinearLayout
+                android:id="@+id/lnNotification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -246,6 +248,7 @@
             app:cardCornerRadius="20dp">
 
             <LinearLayout
+                android:id="@+id/lnBackgroundType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -278,6 +281,7 @@
             app:cardCornerRadius="20dp">
 
             <LinearLayout
+                android:id="@+id/lnStatusbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -310,6 +314,7 @@
             app:cardCornerRadius="20dp">
 
             <LinearLayout
+                android:id="@+id/lnExtra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

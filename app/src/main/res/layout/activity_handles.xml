@@ -273,7 +273,7 @@
                    android:textSize="@dimen/_14sdp"
                    android:id="@+id/tvHideKeyboardOpen"
                    android:layout_height="wrap_content"
-                   android:text="Hide while keyboard is open"
+                   android:text="@string/hide_while_keyboard_is_open"
                    android:layout_toRightOf="@id/imgHideKeyboardOpen"
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
