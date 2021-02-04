@@ -313,6 +313,7 @@
                         android:id="@+id/imgshowpanel"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_download"/>
                     <TextView
                         android:id="@+id/tvAlarm"
@@ -345,6 +346,7 @@
                         android:id="@+id/imghidetext"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_text_filed"/>
                     <TextView
                         android:id="@+id/tvhidetext"
@@ -405,6 +407,7 @@
                         android:id="@+id/imgcropapp"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_crop"/>
                     <TextView
                         android:id="@+id/tvcropapp"
@@ -437,6 +440,7 @@
                         android:id="@+id/imgVoice"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
+                        android:padding="@dimen/_2sdp"
                         android:src="@drawable/ic_clock"/>
                     <TextView
                         android:id="@+id/tvVoice"

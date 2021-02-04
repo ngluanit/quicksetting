@@ -90,7 +90,7 @@
             android:layout_centerVertical="true"
             android:layout_centerInParent="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
             android:id="@+id/tvCustom"
             android:layout_height="wrap_content"
             android:text="@string/customise_individual_colors_and_transparency"
@@ -136,7 +136,7 @@
             android:layout_centerVertical="true"
             android:layout_centerInParent="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
             android:id="@+id/tvStyles"
             android:layout_height="wrap_content"
             android:text="Tiles Styles"
@@ -169,7 +169,7 @@
             android:layout_toRightOf="@id/imgPanel"
             android:text="Set Panel Image"
             android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp" />
+            android:textSize="@dimen/_12sdp" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlTapOnTheme"
@@ -192,7 +192,7 @@
             android:layout_centerVertical="true"
             android:layout_centerInParent="true"
             android:textColor="#232323"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
             android:id="@+id/tvTapOnTheme"
             android:layout_height="wrap_content"
             android:text="Tap on theme to apply it."
