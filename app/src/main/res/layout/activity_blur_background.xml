@@ -16,14 +16,18 @@
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
         <TextView
             android:layout_toEndOf="@id/imgBack"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/_17sdp"
             android:text="System permission required"
+            android:textColor="@color/black"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
@@ -55,8 +59,9 @@
         <ImageView
             android:layout_width="@dimen/_24sdp"
             android:id="@+id/imgSto"
-            android:src="@drawable/ic_launcher_background"
-            android:layout_height="@dimen/_24sdp"/>
+            android:src="@drawable/ic_storage"
+            android:layout_height="@dimen/_24sdp"
+            android:tint="@color/text_primary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +75,7 @@
             android:id="@+id/imgTurnStorage"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
@@ -85,8 +90,9 @@
             android:layout_width="@dimen/_24sdp"
             android:id="@+id/imgScreen"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher_background"
-            android:layout_height="@dimen/_24sdp"/>
+            android:src="@drawable/ic_cap_screen"
+            android:layout_height="@dimen/_24sdp"
+            android:tint="@color/text_primary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +106,7 @@
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_switch_on"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
     </RelativeLayout>

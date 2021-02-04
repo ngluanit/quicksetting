@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E90FF"
+    android:background="@drawable/hihihihi"
     tools:context=".welcome.ThreeFragment">
 
     <TextView
@@ -17,6 +17,37 @@
         android:textSize="@dimen/_20sdp"
         android:fontFamily="@font/robotolight"
         android:text="@string/tv_title_three_fragment" />
+    <ImageView
+        android:id="@+id/tick_none"
+        android:layout_below="@+id/tvBackgroud"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_110sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:src="@drawable/ic_tick"
+        android:tint="@color/white"/>
+    <ImageView
+        android:id="@+id/tick_draw"
+        android:layout_below="@+id/tick_none"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:visibility="invisible"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:src="@drawable/ic_tick"
+        android:tint="@color/white"/>
+    <ImageView
+        android:id="@+id/tick_noti"
+        android:layout_below="@+id/tick_draw"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:visibility="invisible"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:src="@drawable/ic_tick"
+        android:tint="@color/white"/>
+
 
     <RelativeLayout
         android:id="@+id/rlNone"
@@ -35,8 +66,15 @@
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/white"
             android:fontFamily="@font/robotolight"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:textAllCaps="true" />
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_close"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:tint="@color/white"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlBlur"
@@ -55,8 +93,16 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
             android:fontFamily="@font/robotolight"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_centerVertical="true"
             android:textAllCaps="true" />
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_nen"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:tint="@color/white"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rlBlurWall"
@@ -75,8 +121,16 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
             android:fontFamily="@font/robotolight"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_centerVertical="true"
             android:textAllCaps="true" />
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_image"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:tint="@color/white"/>
     </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"

@@ -34,7 +34,7 @@
             android:id="@+id/radio_normal"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_image"/>
+            android:src="@drawable/ic_radio_on"/>
         <TextView
             android:text="None"
             android:id="@+id/tvNormal"
@@ -56,7 +56,7 @@
             android:id="@+id/radio_ADB"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_tips"/>
+            android:src="@drawable/ic_radio_off"/>
         <TextView
             android:id="@+id/tvadb"
             android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
             android:id="@+id/radio_blurWallpaper"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_tips"/>
+            android:src="@drawable/ic_radio_off"/>
         <TextView
             android:id="@+id/tvblurWallpaper"
             android:layout_width="wrap_content"
@@ -104,7 +104,6 @@
             android:background="@drawable/bg_primary"
             android:text="OK"
             android:layout_toRightOf="@+id/btn_cancel"
-            android:layout_marginLeft="@dimen/_15sdp"
             android:textColor="@color/white"/>
 
     </RelativeLayout>

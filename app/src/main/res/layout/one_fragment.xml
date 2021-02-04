@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#EE4000"
+    android:background="@color/text_primary"
     android:layout_height="match_parent"
     tools:context=".welcome.OneFragment">
 
@@ -20,10 +20,10 @@
         android:textColor="@color/white"
         android:gravity="center_horizontal" />
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_launcher_background"/>
+        android:src="@drawable/ic_logo"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

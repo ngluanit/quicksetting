@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".welcome.FourFragment">
+    tools:context=".welcome.FourFragment"
+    android:background="#0098fd">
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_title_four_fragment"
+        android:fontFamily="@font/robotolight"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_40sdp"
         android:textSize="@dimen/_20sdp"/>
@@ -18,35 +21,72 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_des_four_fragment"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/tvTitle"
         android:layout_marginTop="@dimen/_40sdp"
-        android:textSize="@dimen/_12sdp"/>
-    <TextView
-        android:id="@+id/tvLeft"
-        android:layout_width="wrap_content"
+        android:fontFamily="@font/robotolight"
+        android:layout_marginHorizontal="@dimen/_40sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sdp"/>
+    <RelativeLayout
+        android:id="@+id/rlLeft"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tvDes"
-        android:text="@string/left"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:textSize="@dimen/_12sdp"/>
-    <TextView
-        android:id="@+id/tvRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tvLeft"
-        android:text="@string/right"
+        android:background="@drawable/bg_corner_blue"
+        android:layout_marginHorizontal="@dimen/_60sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:textSize="@dimen/_12sdp"/>
-    <TextView
-        android:id="@+id/tvBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_5sdp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/tvRight"
-        android:text="@string/bottom"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:textSize="@dimen/_12sdp"/>
+        android:layout_below="@id/tvDes">
+        <TextView
+            android:id="@+id/tvRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/left"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlRight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_blue"
+        android:layout_marginHorizontal="@dimen/_60sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:layout_below="@id/rlLeft">
+        <TextView
+            android:id="@+id/tvLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/right"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corner_blue"
+        android:layout_marginHorizontal="@dimen/_60sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_centerHorizontal="true"
+        android:paddingVertical="@dimen/_5sdp"
+        android:layout_below="@id/rlRight">
+        <TextView
+            android:id="@+id/tvBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/bottom"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"/>
+    </RelativeLayout>
+
 </RelativeLayout>

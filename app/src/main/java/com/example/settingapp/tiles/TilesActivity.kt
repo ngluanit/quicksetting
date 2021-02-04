@@ -5,19 +5,18 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.settingapp.R
-import com.example.settingapp.dialog.TileToggleDialog
 import kotlinx.android.synthetic.main.activity_tiles.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
-import kotlinx.android.synthetic.main.dialog_tile_toggle.btn_cancel
 
 
 class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNotiAdapter.ItemClick {
@@ -26,12 +25,20 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
     var iconNotiAdapter:IconNotiAdapter?=null
     var iconNotiAdapter1:IconActiveNotiAdapter?=null
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tiles)
 
+        val window: Window = this.getWindow()
+        getWindow().decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR //  set status text dark
+
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+
+
         imgBack.setOnClickListener {
-            val intent = Intent(this,com.example.miui_ify.MainActivity::class.java);
+            val intent = Intent(this, com.example.miui_ify.MainActivity::class.java);
             startActivity(intent)
         }
         list=ArrayList()
@@ -40,7 +47,7 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
             showDialog(this)
         }
         rlTileoption.setOnClickListener {
-            startActivity(Intent(this,TileOptionsActivity::class.java))
+            startActivity(Intent(this, TileOptionsActivity::class.java))
         }
         rlSelectIcon.setOnClickListener {
             showDialog1(this)
@@ -54,8 +61,8 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
             itemNotification.name="test"
             list!!.add(itemNotification)
         }
-        iconNotiAdapter=IconNotiAdapter(list,this)
-        iconNotiAdapter1= IconActiveNotiAdapter(list1,this)
+        iconNotiAdapter=IconNotiAdapter(list, this)
+        iconNotiAdapter1= IconActiveNotiAdapter(list1, this)
         rcvInActive.adapter=iconNotiAdapter
         rcvActive.adapter=iconNotiAdapter1
     }
@@ -79,7 +86,7 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         dialog.setContentView(R.layout.dialog_tile_toggle)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.rlNormal.setOnClickListener {
-            Toast.makeText(activity,"OKOKO",Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "OKOKO", Toast.LENGTH_LONG).show()
         }
         dialog.btn_cancel.setOnClickListener {
             dialog.dismiss()
@@ -89,8 +96,8 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
     override fun onItemclick(position: Int) {
         list1!!.add(list!![position])
         list!!.remove(list!![position])
-        iconNotiAdapter=IconNotiAdapter(list,this)
-        iconNotiAdapter1= IconActiveNotiAdapter(list1,this)
+        iconNotiAdapter=IconNotiAdapter(list, this)
+        iconNotiAdapter1= IconActiveNotiAdapter(list1, this)
         rcvInActive.adapter=iconNotiAdapter
         rcvActive.adapter=iconNotiAdapter1
         iconNotiAdapter1!!.notifyDataSetChanged()
@@ -100,8 +107,8 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
     override fun onItemclick1(position: Int) {
         list!!.add(list1!![position])
         list1!!.remove(list1!![position])
-        iconNotiAdapter=IconNotiAdapter(list,this)
-        iconNotiAdapter1= IconActiveNotiAdapter(list1,this)
+        iconNotiAdapter=IconNotiAdapter(list, this)
+        iconNotiAdapter1= IconActiveNotiAdapter(list1, this)
         rcvInActive.adapter=iconNotiAdapter
         rcvActive.adapter=iconNotiAdapter1
         iconNotiAdapter1!!.notifyDataSetChanged()

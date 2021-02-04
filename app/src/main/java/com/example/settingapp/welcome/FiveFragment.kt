@@ -18,4 +18,5 @@ class FiveFragment : Fragment() {
         view=inflater.inflate(R.layout.activity_five_fragment,container,false)
         return view
     }
+
 }
