@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E90FF"
+    android:background="#0098fd"
     tools:context=".welcome.TwoFragment">
 
     <TextView
@@ -16,12 +16,13 @@
         android:textSize="@dimen/_20sdp"
         android:textColor="@color/white"
         android:fontFamily="@font/robotolight"
+        android:layout_marginHorizontal="@dimen/_40sdp"
         android:gravity="center"
         android:text="@string/tv_title_two_fragment" />
 
     <RelativeLayout
         android:id="@+id/rlAcess"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_below="@+id/tvFirst"
         android:background="@drawable/bg_corner_blue"
         android:padding="@dimen/_10sdp"
@@ -30,29 +31,33 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imgAcess"
-            android:layout_width="@dimen/_24sdp"
+            android:layout_width="@dimen/_30sdp"
             android:layout_centerVertical="true"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_people"
+            android:tint="#afe5ff"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_toEndOf="@id/imgAcess"
-            android:layout_centerHorizontal="true"
             android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            android:text="ACCESSIBILITY SERVICE"
+            android:id="@+id/tvAcess"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F3F3F3"
             android:textSize="@dimen/_12sdp"
-            android:text="@string/tv_title_accessibility"
-            android:layout_toRightOf="@id/imgAcess"
-            android:id="@+id/tvAcess"
-            android:layout_marginLeft="@dimen/_20sdp" />
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            android:text="Required for the app to run"
+            android:layout_below="@+id/tvAcess"/>
         <ImageView
             android:id="@+id/imgTurnAcess"
-            android:layout_alignParentEnd="true"
-            android:layout_width="@dimen/_24sdp"
+            android:layout_width="@dimen/_30sdp"
             android:layout_centerVertical="true"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
     <RelativeLayout
@@ -66,28 +71,35 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imgDraw"
-            android:layout_width="@dimen/_24sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:padding="@dimen/_5sdp"
             android:layout_centerVertical="true"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_draw"
+            android:tint="#afe5ff"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_toEndOf="@id/imgDraw"
-            android:text="@string/tv_draw_overlay"
             android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            android:text="DRAW OVERLAYS"
+            android:id="@+id/tvDraw"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F3F3F3"
             android:textSize="@dimen/_12sdp"
-            android:layout_toRightOf="@id/imgDraw"
-            android:id="@+id/tvDraw"
-            android:layout_marginLeft="@dimen/_20sdp" />
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            android:text="For the quick settings panel to be displayed"
+            android:layout_below="@+id/tvDraw"/>
         <ImageView
             android:id="@+id/imgTurnOverlay"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
     <RelativeLayout
@@ -98,32 +110,38 @@
         android:background="@drawable/bg_corner_blue"
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imgShowno"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:padding="@dimen/_5sdp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_list"
+            android:tint="#afe5ff"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
             android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            android:text="SHOW NOTIFICATIONS"
+            android:id="@+id/tvNoti"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F3F3F3"
             android:textSize="@dimen/_12sdp"
-            android:layout_toEndOf="@id/imgShowno"
-            android:text="@string/tv_title_show_noti"
-            android:layout_toRightOf="@id/imgShowno"
-            android:id="@+id/tvShowno"
-            android:layout_marginLeft="@dimen/_20sdp" />
+            android:layout_marginHorizontal="@dimen/_50sdp"
+            android:text="To show notifications in the notìication panel"
+            android:layout_below="@+id/tvNoti"/>
         <ImageView
             android:id="@+id/imgTurnShow"
             android:layout_alignParentEnd="true"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
     <TextView

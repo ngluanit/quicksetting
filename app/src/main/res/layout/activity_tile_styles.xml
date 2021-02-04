@@ -40,7 +40,8 @@
         android:id="@+id/lnAble"
         android:layout_width="match_parent"
         android:weightSum="2"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
         android:layout_below="@+id/rlTop"
         android:layout_height="wrap_content">
         <RelativeLayout
@@ -105,6 +106,7 @@
                     android:id="@+id/imgGradient"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_gradient" />
                 <TextView
                     android:layout_toEndOf="@id/imgGradient"
@@ -135,6 +137,7 @@
                     android:id="@+id/imgShape"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_geometry"
                     android:tint="#737373"/>
                 <TextView
@@ -168,6 +171,7 @@
                     android:id="@+id/imgSolid"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_circle" />
                 <TextView
                     android:layout_toEndOf="@id/imgSolid"
@@ -300,6 +304,7 @@
                     android:id="@+id/imgEnableGradient"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_launcher_background" />
                 <TextView
                     android:layout_toEndOf="@id/imgEnableGradient"

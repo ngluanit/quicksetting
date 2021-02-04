@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
+
         <activity android:name=".BottomStatusBar.BottomStatusActivity"></activity>
         <activity android:name=".notifications.NotificationActivity" />
         <activity android:name=".extra.ExtraActivity" />
@@ -20,7 +21,8 @@
         <activity android:name=".handles.HandlesActivity" />
         <activity android:name=".tiles.TileOptionsActivity" />
         <activity android:name=".tiles.TilesActivity" />
-        <activity android:name=".welcome.BlurBackgroundActivity" />
+        <activity android:name=".welcome.BlurBackgroundActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".welcome.WelcomeActivity">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -40,6 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <service android:name="com.example.miui_ify.FloatingWindow" />
         <service

@@ -78,6 +78,7 @@
             android:id="@+id/imgOption"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
             android:src="@drawable/ic_setting"
             android:tint="@color/text_primary"/>
         <TextView
@@ -127,6 +128,7 @@
             android:id="@+id/imgSelect"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
             android:src="@drawable/ic_image"
             android:tint="@color/text_primary"/>
         <TextView
@@ -171,8 +173,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_text"
                 android:paddingVertical="@dimen/_10sdp"
-                android:elevation="@dimen/_8sdp"
-                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_4sdp"
                 android:layout_margin="@dimen/_5sdp"
                 android:layout_weight="1">
                 <TextView
@@ -189,8 +190,7 @@
                 android:background="@drawable/bg_text"
                 android:paddingVertical="@dimen/_10sdp"
                 android:layout_margin="@dimen/_5sdp"
-                android:elevation="@dimen/_8sdp"
-                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_4sdp"
                 android:layout_weight="1">
                 <TextView
                     android:id="@+id/tvApp"
@@ -206,8 +206,7 @@
                 android:background="@drawable/bg_text"
                 android:paddingVertical="@dimen/_10sdp"
                 android:layout_margin="@dimen/_5sdp"
-                android:elevation="@dimen/_8sdp"
-                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_4sdp"
                 android:layout_weight="1">
                 <TextView
                     android:id="@+id/tvShortcut"
@@ -225,9 +224,8 @@
                 android:background="@drawable/bg_text"
                 android:paddingVertical="@dimen/_10sdp"
                 android:layout_margin="@dimen/_5sdp"
-                android:elevation="@dimen/_8sdp"
-                android:layout_centerInParent="true"
-                android:translationZ="@dimen/_2sdp">
+                android:elevation="@dimen/_4sdp"
+                android:layout_centerInParent="true">
             <TextView
                 android:id="@+id/tvCustom"
                 android:layout_width="wrap_content"
