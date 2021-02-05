@@ -19,6 +19,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -58,27 +59,31 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView menu_nav;
-    LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles,lnLayout,lnExtra,lnBackgroundType,lnNotification,lnStatusbar;
+    LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles, lnLayout, lnExtra, lnBackgroundType, lnNotification, lnStatusbar;
     RelativeLayout rlConnect;
-    Button btnTest,btn_ok;
+    Button btnTest, btn_ok;
     Context context;
     LinearLayout dragView;
     private int REQUEST_ACCESSIBILITY = 777;
+    SharedPreferences pref;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = pref.edit();
         Window window = getWindow();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         getWindow().setStatusBarColor(Color.parseColor("#f0f0f0"));// set status background white
-
+        editor.putBoolean("first", true);
+        editor.commit();
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
         btn_ok = findViewById(R.id.btn_ok);
-        dragView=findViewById(R.id.dragView);
+        dragView = findViewById(R.id.dragView);
         rlConnect = findViewById(R.id.status_service);
         lnTileStyle = findViewById(R.id.lnTileStyles);
         lnHandles = findViewById(R.id.lnHandler);
@@ -170,8 +175,7 @@ public class MainActivity extends AppCompatActivity {
         menu_nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                drawerLayout.openDrawer(GravityCompat.START);
+               drawerLayout.openDrawer(GravityCompat.START);
             }
         });
 
@@ -304,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             youDesirePermissionCode(MainActivity.this);
-         //   openFloatingWindow(context);
+            //   openFloatingWindow(context);
         }
     }
 
@@ -314,10 +318,11 @@ public class MainActivity extends AppCompatActivity {
             c.stopService(intent);
             c.startService(intent);
         } else {
-            askForPermission(android.Manifest.permission.WRITE_SETTINGS,1);
+            askForPermission(android.Manifest.permission.WRITE_SETTINGS, 1);
         }
 
     }
+
     private void askForPermission(String permission, Integer requestCode) {
         if (ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_GRANTED) {
             // Should we show an explanation?
@@ -336,7 +341,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "" + permission + " is already granted.", Toast.LENGTH_SHORT).show();
         }
     }
-    public static void youDesirePermissionCode(Activity context){
+
+    public static void youDesirePermissionCode(Activity context) {
         boolean permission;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             permission = Settings.System.canWrite(context);
@@ -347,16 +353,20 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(context, FloatingWindow.class);
             context.stopService(intent);
             context.startService(intent);
-        }  else {
+        } else {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                intent.setData(Uri.parse("package:" + context.getPackageName()));
-                context.startActivityForResult(intent, 123);
+//                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+//                intent.setData(Uri.parse("package:" + context.getPackageName()));
+//                context.startActivityForResult(intent, 123);
+                Intent intent = new Intent(context, FloatingWindow.class);
+                context.stopService(intent);
+                context.startService(intent);
             } else {
                 ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.WRITE_SETTINGS}, 123);
             }
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -371,7 +381,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
@@ -384,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_ACCESSIBILITY && resultCode == RESULT_OK) {
             checkDrawOverlayPermission(this);
-        } else if (requestCode == Overlay_REQUEST_CODE){
+        } else if (requestCode == Overlay_REQUEST_CODE) {
             if (Build.VERSION.SDK_INT >= 23) {
                 if (Settings.canDrawOverlays(this)) {
                     openFloatingWindow(this);
@@ -392,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 openFloatingWindow(this);
             }
-        }else if (requestCode==123&& Settings.System.canWrite(this)){
+        } else if (requestCode == 123 && Settings.System.canWrite(this)) {
             Intent intent = new Intent(this, FloatingWindow.class);
             this.stopService(intent);
             this.startService(intent);
