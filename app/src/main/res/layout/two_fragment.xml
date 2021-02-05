@@ -54,9 +54,9 @@
             android:layout_below="@+id/tvAcess"/>
         <ImageView
             android:id="@+id/imgTurnAcess"
-            android:layout_width="@dimen/_30sdp"
+            android:layout_width="@dimen/_35sdp"
             android:layout_centerVertical="true"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_35sdp"
             android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
@@ -97,8 +97,8 @@
             android:id="@+id/imgTurnOverlay"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
@@ -138,8 +138,8 @@
         <ImageView
             android:id="@+id/imgTurnShow"
             android:layout_alignParentEnd="true"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_switch_off"
             android:layout_alignParentRight="true" />

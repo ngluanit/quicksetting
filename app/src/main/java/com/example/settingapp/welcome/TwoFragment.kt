@@ -18,11 +18,16 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.settingapp.R
 import com.example.settingapp.util.MyAccessibilityService
+import kotlinx.android.synthetic.main.activity_sliders.*
 import kotlinx.android.synthetic.main.two_fragment.*
 import kotlinx.android.synthetic.main.two_fragment.view.*
 
 
 class TwoFragment : Fragment() {
+
+    private var imgTurnAcessShown = true
+    private var imgTurnOverlayShown = true
+    private var imgTurnShowShown = true
     private val REQUEST_ACCESSIBILITY = 777
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -34,13 +39,38 @@ class TwoFragment : Fragment() {
         val view: View
         view = inflater.inflate(R.layout.two_fragment, container, false)
         view.imgTurnAcess.setOnClickListener {
-            acesspermission(activity!!)
+            if ((imgTurnAcess != null) && (imgTurnAcessShown)){
+                imgTurnAcess.setImageResource(R.drawable.ic_open);
+                imgTurnAcessShown = false
+                acesspermission(activity!!)
+            }
+            else{
+                if (imgTurnAcess != null) imgTurnAcess.setImageResource(R.drawable.ic_switch_off);
+                imgTurnAcessShown = true
+            }
         }
         view.imgTurnOverlay.setOnClickListener {
-            overlay(activity!!)
+            if ((imgTurnOverlay != null) && (imgTurnOverlayShown)){
+                imgTurnOverlay.setImageResource(R.drawable.ic_open);
+                imgTurnOverlayShown = false
+                overlay(activity!!)
+            }
+            else{
+                if (imgTurnOverlay != null) imgTurnOverlay.setImageResource(R.drawable.ic_switch_off);
+                imgTurnOverlayShown = true
+            }
         }
         view.imgTurnShow.setOnClickListener {
-            startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+            if ((imgTurnShow != null) && (imgTurnShowShown)){
+                imgTurnShow.setImageResource(R.drawable.ic_open);
+                imgTurnShowShown = false
+                startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+            }
+            else{
+                if (imgTurnShow != null) imgTurnShow.setImageResource(R.drawable.ic_switch_off);
+                imgTurnShowShown = true
+            }
+
         }
         return view
     }
