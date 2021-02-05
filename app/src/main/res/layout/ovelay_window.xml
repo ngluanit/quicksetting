@@ -23,7 +23,6 @@
         android:id="@+id/dragView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
-        android:background="#ffffff"
         android:clickable="true"
         android:focusable="false"
         android:orientation="vertical">
@@ -43,16 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="Close" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/BrightBar"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text=" Adjust the Brightness"
+                android:text="Close"
                 android:visibility="gone" />
 
             <SeekBar
@@ -62,6 +52,78 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="left|bottom"
                 android:background="#87CEEB" />
+
+            <TextView
+                android:id="@+id/tvHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fontFamily="@font/robotolight"
+                android:text="16:10"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_24sdp" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tvHour"
+                android:fontFamily="@font/robotolight"
+                android:text="Fri,Feb 5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <RelativeLayout
+                android:id="@+id/rlIconSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tvHour"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/imgSetting"
+                    android:layout_toRightOf="@id/imgSetting"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <ImageView
+                    android:id="@+id/imgSetting"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/imgProfile"
+                    android:layout_toRightOf="@id/imgProfile"
+                    android:src="@drawable/ic_launcher_background" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@id/rlIconSetting"
+                android:layout_alignParentRight="true">
+
+                <TextView
+                    android:id="@+id/tvPin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:fontFamily="@font/robotolight"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <LinearLayout

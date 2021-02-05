@@ -64,7 +64,8 @@ class TwoFragment : Fragment() {
             if ((imgTurnShow != null) && (imgTurnShowShown)){
                 imgTurnShow.setImageResource(R.drawable.ic_open);
                 imgTurnShowShown = false
-                startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+//                startActivity(Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"))
+                startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
             }
             else{
                 if (imgTurnShow != null) imgTurnShow.setImageResource(R.drawable.ic_switch_off);

@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -34,6 +35,9 @@ import androidx.core.content.ContextCompat;
 import com.example.settingapp.R;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Set;
 
 public class FloatingWindow extends Service {
@@ -82,8 +86,8 @@ public class FloatingWindow extends Service {
     WindowManager.LayoutParams mWindowsParams;
     private void moveView() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
-        int width = (int) (metrics.widthPixels * 0.7f);
-        int height = (int) (metrics.heightPixels * 0.45f);
+        int width = (int) (metrics.widthPixels * 1f);
+        int height = (int) (metrics.heightPixels * 1f);
         mWindowsParams = new WindowManager.LayoutParams(
                 width,//WindowManager.LayoutParams.WRAP_CONTENT,
                 height,//WindowManager.LayoutParams.WRAP_CONTENT,
@@ -100,7 +104,7 @@ public class FloatingWindow extends Service {
 
         mWindowsParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         //params.x = 0;
-        mWindowsParams.y = 100;
+    //        mWindowsParams.y = 100;
         mWindowManager.addView(mView, mWindowsParams);
 
     }
@@ -142,6 +146,32 @@ public class FloatingWindow extends Service {
         cResolver =  getContentResolver();
         BrightnessControl(seekBar);
         mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
+        TextView tvDate,tvHour;
+        ImageView imgEdit,imgSetting,imgProfile;
+        tvDate=(TextView) mView.findViewById(R.id.tvDate);
+        tvHour=(TextView) mView.findViewById(R.id.tvHour);
+        imgEdit=(ImageView) mView.findViewById(R.id.imgEdit);
+        imgSetting=(ImageView) mView.findViewById(R.id.imgSetting);
+        imgProfile=(ImageView) mView.findViewById(R.id.imgProfile);
+        imgEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        imgSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopSelf();
+                startActivity(new Intent(Settings.ACTION_SETTINGS));
+            }
+        });
+        DateFormat df = new SimpleDateFormat("EEE,MMM d");
+        String date = df.format(Calendar.getInstance().getTime());
+        tvDate.setText(date);
+        DateFormat dfhour = new SimpleDateFormat("HH:mm");
+        String hour = dfhour.format(Calendar.getInstance().getTime());
+        tvHour.setText(hour);
         mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {

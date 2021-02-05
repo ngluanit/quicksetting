@@ -55,7 +55,7 @@ import com.example.settingapp.util.MyAccessibilityService;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView menu_nav;
@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NotificationActivity.class));
-
             }
         });
 
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BottomStatusActivity.class));
-
             }
         });
 
@@ -129,21 +127,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Layout_Activity.class));
-
             }
         });
         lnTileStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, TileStylesActivity.class));
-
             }
         });
         lnHandles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HandlesActivity.class));
-
             }
         });
         rlConnect.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
                 startActivity(intent);
-
             }
         });
         lnTiles.setOnClickListener(new View.OnClickListener() {
@@ -187,44 +181,44 @@ public class MainActivity extends AppCompatActivity {
                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                drawerLayout.closeDrawer(GravityCompat.START);
-                switch (id) {
-                    case R.id.theme_aplica:
-                        Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.ADB:
-                        Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.tasker_setting:
-                        Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.playstore:
-                        Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.twitter:
-                        Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.telegram:
-                        Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.help_forum:
-                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.help_translate:
-                        Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        return true;
-                }
-                return true;
-            }
-
-        });
+        navigationView.setNavigationItemSelectedListener(this);
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                int id = item.getItemId();
+//                drawerLayout.closeDrawer(GravityCompat.START);
+//                switch (id) {
+//                    case R.id.theme_aplica:
+//                        Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.ADB:
+//                        Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.tasker_setting:
+//                        Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.playstore:
+//                        Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.twitter:
+//                        Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.telegram:
+//                        Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.help_forum:
+//                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.help_translate:
+//                        Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    default:
+//                        return true;
+//                }
+//                return true;
+//            }
+//
+//        });
 
     }
 
@@ -277,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-
 
     private void acesspermission(Context mContext) {
 //        Intent intent=new Intent(this, MaintwoActivity.class);
@@ -334,16 +327,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void askForPermission(String permission, Integer requestCode) {
         if (ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_GRANTED) {
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, permission)) {
-                //This is called if user has denied the permission before
-                //In this case I am just asking the permission again
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{permission}, requestCode);
-
             } else {
-
                 Log.d("TAG", "askForPermission: " + permission);
-
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{permission}, requestCode);
             }
         } else {
@@ -395,7 +382,6 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -415,6 +401,39 @@ public class MainActivity extends AppCompatActivity {
             this.stopService(intent);
             this.startService(intent);
         }
+    }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        System.out.println("121123"+item.getItemId()+".....zzzz");
+        switch (item.getItemId()) {
+            case R.id.theme_aplica:
+                Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.ADB:
+                Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tasker_setting:
+                Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.playstore:
+                Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.twitter:
+                Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.telegram:
+                Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.help_forum:
+                Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.help_translate:
+                Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                return true;
+        }
+        return false;
     }
 }

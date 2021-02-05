@@ -39,8 +39,8 @@
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
-            android:layout_width="@dimen/_22sdp"
-            android:layout_height="@dimen/_22sdp"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
             android:padding="@dimen/_2sdp"
             android:src="@drawable/ic_reload"
             android:layout_alignParentEnd="true"
@@ -249,8 +249,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
         android:layout_below="@+id/tvActive"
-        android:id="@+id/rcvActive"/>
+        android:id="@+id/rcvActive"
+        android:layout_marginLeft="@dimen/_20sdp" />
         <TextView
             android:id="@+id/tvInActive"
             android:layout_width="wrap_content"
@@ -263,6 +265,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
             android:layout_below="@+id/tvInActive"
             android:id="@+id/rcvInActive"/>
     </RelativeLayout>
