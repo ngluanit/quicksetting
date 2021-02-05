@@ -21,8 +21,13 @@ class ColorsActivity : AppCompatActivity() {
         getWindow().decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR //  set status text dark
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         imgBack.setOnClickListener {
-            val intent = Intent(this,com.example.miui_ify.MainActivity::class.java);
-            startActivity(intent)
+            onBackPressed()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this,com.example.miui_ify.MainActivity::class.java);
+        startActivity(intent)
+        finish()
     }
 }

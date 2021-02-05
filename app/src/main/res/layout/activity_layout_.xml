@@ -324,15 +324,16 @@
                         android:textColor="@color/black"
                         android:layout_marginStart="@dimen/_50sdp"
                         android:layout_marginLeft="@dimen/_20sdp" />
+
                     <ImageView
-                        android:id="@+id/imgTurnAlarm"
+                        android:id="@+id/imgshow_footer"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:src="@drawable/ic_switch_off"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/_20sdp" />
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:src="@drawable/ic_switch_off" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rlhidetext"
@@ -358,11 +359,11 @@
                         android:layout_marginStart="@dimen/_50sdp"
                         android:layout_marginLeft="@dimen/_20sdp" />
                     <ImageView
-                        android:id="@+id/imgTurnRing"
+                        android:id="@+id/imgHideText"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:src="@drawable/ic_switch_off"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_20sdp" />
@@ -386,11 +387,11 @@
                         android:layout_marginStart="@dimen/_50sdp"
                         android:layout_marginLeft="@dimen/_20sdp" />
                     <ImageView
-                        android:id="@+id/imgTurnNoti"
+                        android:id="@+id/imgAlarm_footer"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:src="@drawable/ic_switch_off"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_20sdp" />
@@ -422,8 +423,8 @@
                         android:id="@+id/imgturncrop"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:src="@drawable/ic_switch_off"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_20sdp" />
@@ -452,11 +453,11 @@
                         android:layout_marginStart="@dimen/_50sdp"
                         android:layout_marginLeft="@dimen/_20sdp" />
                     <ImageView
-                        android:id="@+id/imgTurnVoice"
+                        android:id="@+id/img_24_clock"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:src="@drawable/ic_switch_off"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/_20sdp" />
