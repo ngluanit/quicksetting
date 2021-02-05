@@ -26,6 +26,7 @@
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
             android:text="Tiles"
+            android:fontFamily="@font/robotoregular"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
@@ -118,6 +119,7 @@
                     android:id="@+id/tvGradient"
                     android:layout_height="wrap_content"
                     android:text="@string/enable_tile_gradients"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_toRightOf="@id/imgGradient"
                     android:layout_marginLeft="@dimen/_20sdp" />
 
@@ -152,6 +154,7 @@
                     android:id="@+id/tvShape"
                     android:layout_height="wrap_content"
                     android:text="@string/tile_icon_shape"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_toRightOf="@id/imgShape"
                     android:layout_marginLeft="@dimen/_20sdp" />
             </RelativeLayout>
@@ -186,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/solid_colors"
                     android:layout_toRightOf="@id/imgSolid"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginLeft="@dimen/_20sdp" />
             </RelativeLayout>
             <RelativeLayout
@@ -235,6 +239,7 @@
                     android:textSize="@dimen/_14sdp"
                     android:id="@+id/tvDisables"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/robotoregular"
                     android:text="@string/tile_background_disabled"
                     android:layout_marginLeft="@dimen/_20sdp" />
             </RelativeLayout>
@@ -286,6 +291,7 @@
                     android:id="@+id/tvDisableIcon"
                     android:layout_height="wrap_content"
                     android:text="@string/tile_icon_disabled"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginLeft="@dimen/_20sdp" />
             </RelativeLayout>
             <View
@@ -319,6 +325,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/enabled_tile_gradient"
                     android:layout_toRightOf="@id/imgEnableGradient"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginLeft="@dimen/_20sdp" />
             </RelativeLayout>
             <RelativeLayout

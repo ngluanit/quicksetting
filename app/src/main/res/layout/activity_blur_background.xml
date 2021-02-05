@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_17sdp"
             android:text="System permission required"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/black"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
@@ -38,6 +39,7 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
         android:text="Some permissions are required for\nbackground blur and screenshots"
         android:layout_marginLeft="@dimen/_20sdp" />
     <TextView
@@ -48,6 +50,7 @@
         android:layout_width="wrap_content"
         android:text="Your screen is only captured when taking\na screenshot or for the blur effect\nThe screen Cast icon will appear when blur is\nenabled and the panel is opened\nThe blur effect can cause lag on some devices."
         android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
         android:layout_marginLeft="@dimen/_20sdp" />
     <RelativeLayout
         android:layout_below="@+id/tvSup"
@@ -70,6 +73,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
+            android:fontFamily="@font/robotoregular"
             android:layout_toRightOf="@id/imgSto" />
         <ImageView
             android:id="@+id/imgTurnStorage"
@@ -101,6 +105,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
+            android:fontFamily="@font/robotoregular"
             android:layout_toRightOf="@id/imgScreen" />
         <ImageView
             android:layout_width="@dimen/_24sdp"

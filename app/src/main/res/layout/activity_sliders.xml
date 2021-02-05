@@ -24,6 +24,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             android:id="@+id/tvTitle"
@@ -67,6 +68,7 @@
             android:id="@+id/tvBrigDes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoregular"
             android:text="Brightness"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
@@ -94,6 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/line1"
+        android:fontFamily="@font/robotomedi"
         android:text="Volume"
         android:textSize="@dimen/_14sdp"
         android:textColor="@color/text_primary"
@@ -120,6 +123,7 @@
             android:text="@string/media_volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
@@ -153,6 +157,7 @@
             android:text="@string/alarm_volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
@@ -186,6 +191,7 @@
             android:text="Ring volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
@@ -219,6 +225,7 @@
             android:text="Notification volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
@@ -252,6 +259,7 @@
             android:text="Voice call volume"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView

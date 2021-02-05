@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/content_request"
                 android:textColor="@color/white"
+                android:fontFamily="@font/robotoregular"
                 android:textSize="@dimen/_13sdp" />
 
             <ImageView
@@ -46,6 +47,7 @@
         android:layout_marginLeft="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginRight="@dimen/_30sdp"
+        android:fontFamily="@font/robotoregular"
         android:gravity="center"
         android:text="@string/title_accessibility_1"
         android:textColor="@color/white"

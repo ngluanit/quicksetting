@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_title_four_fragment"
-        android:fontFamily="@font/robotolight"
+        android:fontFamily="@font/robotoregular"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_40sdp"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/left"
-            android:fontFamily="@font/robotolight"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"/>
     </RelativeLayout>
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/right"
-            android:fontFamily="@font/robotolight"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"/>
     </RelativeLayout>
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/bottom"
-            android:fontFamily="@font/robotolight"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"/>
     </RelativeLayout>

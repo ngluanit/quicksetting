@@ -37,6 +37,7 @@
                 android:textSize="@dimen/_14sdp"
                 android:id="@+id/tvDisableHandle"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotoregular"
                 android:text="@string/disable_handle"
                 android:layout_toRightOf="@id/imgDisableHandle"
                 android:layout_marginLeft="@dimen/_20sdp" />
@@ -68,6 +69,7 @@
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
+                android:fontFamily="@font/robotoregular"
                 android:text="Handle length"/>
             <SeekBar
                 android:id="@+id/seekbar_handles"
@@ -111,6 +113,7 @@
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
+                android:fontFamily="@font/robotoregular"
                 android:text="Handle size"/>
             <SeekBar
                 android:id="@+id/seekbar_handlesize"
@@ -154,6 +157,7 @@
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
+                android:fontFamily="@font/robotoregular"
                 android:text="Handle p"/>
             <SeekBar
                 android:id="@+id/seekbar_handleposition"
@@ -219,6 +223,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/disable_handle"
                 android:layout_toRightOf="@id/imgDisableLeftHandle"
+                android:fontFamily="@font/robotoregular"
                 android:layout_marginLeft="@dimen/_20sdp" />
             <ImageView
                 android:id="@+id/imgTurnDisableleftHandle"
@@ -248,6 +253,7 @@
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
+                android:fontFamily="@font/robotoregular"
                 android:text="Handle length"/>
             <SeekBar
                 android:id="@+id/seekbar_handles_left_length"
@@ -291,6 +297,7 @@
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
+                android:fontFamily="@font/robotoregular"
                 android:text="Handle size"/>
             <SeekBar
                 android:id="@+id/seekbar_handlesize_left"
@@ -331,6 +338,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"
+                android:fontFamily="@font/robotoregular"
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
@@ -373,6 +381,7 @@
             android:layout_below="@id/line9"
             android:layout_marginStart="@dimen/_60sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/robotoregular"
             android:text="Right handle"
             android:layout_marginLeft="@dimen/_60sdp" />
 
@@ -429,6 +438,7 @@
                 android:layout_marginStart="@dimen/_60sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_60sdp"
+                android:fontFamily="@font/robotoregular"
                 android:text="Handle length"/>
             <SeekBar
                 android:id="@+id/seekbar_handles_right_length"

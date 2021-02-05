@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:text="Colors"
             android:layout_toRightOf="@id/imgBack"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginLeft="@dimen/_20sdp" />
 
     </RelativeLayout>
@@ -49,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/robotoregular"
             android:text="@string/these_settings_are_premium_features"/>
         <TextView
             android:id="@+id/tvpurchasedes2"
@@ -57,6 +59,7 @@
             android:textSize="@dimen/_13sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoregular"
             android:text="@string/to_unlock_them_buy_premium"/>
         <TextView
             android:layout_width="wrap_content"
@@ -66,6 +69,7 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/tvpurchasedes"
             android:padding="@dimen/_20sdp"
+            android:fontFamily="@font/robotomedi"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
@@ -93,6 +97,7 @@
             android:textSize="@dimen/_12sdp"
             android:id="@+id/tvCustom"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotoregular"
             android:text="@string/customise_individual_colors_and_transparency"
             android:layout_toRightOf="@id/imgCustom"
             android:layout_marginLeft="@dimen/_20sdp" />
@@ -141,6 +146,7 @@
             android:layout_height="wrap_content"
             android:text="Tiles Styles"
             android:layout_toRightOf="@id/imgStyles"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
     <RelativeLayout
@@ -169,6 +175,7 @@
             android:layout_toRightOf="@id/imgPanel"
             android:text="Set Panel Image"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:textSize="@dimen/_12sdp" />
     </RelativeLayout>
     <RelativeLayout
@@ -197,6 +204,7 @@
             android:layout_height="wrap_content"
             android:text="Tap on theme to apply it."
             android:layout_toRightOf="@id/imgTapOnTheme"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView

@@ -25,6 +25,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/robotoregular"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             android:id="@+id/tvTitle"
@@ -47,6 +48,7 @@
             android:id="@+id/tvpurchasedes"
             android:textColor="@color/white"
             android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/robotolight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
@@ -57,6 +59,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_13sdp"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/robotolight"
             android:layout_height="wrap_content"
             android:text="Permanently unlock everything by buying"/>
         <TextView
@@ -65,6 +68,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_13sdp"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/robotolight"
             android:layout_height="wrap_content"
             android:text="Premium."/>
         <TextView
@@ -74,6 +78,7 @@
             android:textSize="@dimen/_13sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotolight"
             android:text="Your free trial will expire in 0 hours."/>
         <TextView
             android:layout_width="wrap_content"
@@ -82,6 +87,7 @@
             android:textColor="@color/white"
             android:layout_alignParentEnd="true"
             android:layout_below="@id/tvpurchasedes4"
+            android:fontFamily="@font/robotomedi"
             android:padding="@dimen/_20sdp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true" />
@@ -115,6 +121,7 @@
                     android:layout_marginHorizontal="@dimen/_50sdp"
                     android:textSize="@dimen/_16sdp"
                     android:layout_centerVertical="true"
+                    android:fontFamily="@font/robotoregular"
                     android:textColor="@color/black"/>
                 <ImageView
                     android:id="@+id/switch_lockscreen"
@@ -135,6 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MIUI notification fix"
+                    android:fontFamily="@font/robotoregular"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -146,6 +154,7 @@
                     android:text="Attempt to fix notification layout on MIUI"
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/robotolight"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
@@ -186,6 +195,7 @@
                     android:layout_marginHorizontal="@dimen/_50sdp"
                     android:textSize="@dimen/_16sdp"
                     android:layout_centerVertical="true"
+                    android:fontFamily="@font/robotoregular"
                     android:textColor="@color/black"/>
                 <ImageView
                     android:id="@+id/swich_background"
@@ -208,6 +218,7 @@
                     android:text="@string/dynamic_notification_colors"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <TextView
                     android:id="@+id/tvdesc_notification_dynamic"
@@ -217,6 +228,7 @@
                     android:text="@string/notification_colors_will_match_the_app_icon_colors"
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/robotolight"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
@@ -250,6 +262,7 @@
                     android:text="@string/blacklist"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <TextView
                     android:id="@+id/tvdesc_blacklist"
@@ -260,6 +273,7 @@
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="#7f7f7f"
+                    android:fontFamily="@font/robotolight"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
@@ -290,6 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hide_persistent_notifications"
+                    android:fontFamily="@font/robotoregular"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -324,6 +339,7 @@
                     android:text="Only show music notifications"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
@@ -356,6 +372,7 @@
                     android:text="Remove spacing between notifications"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
@@ -386,6 +403,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Auto expand notifications"
+                    android:fontFamily="@font/robotoregular"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -417,6 +435,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/quick_clear_all_notifications"
+                    android:fontFamily="@font/robotoregular"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -428,6 +447,7 @@
                     android:text="Show a button in panel footer to clear all notications"
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/robotolight"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
@@ -460,6 +480,7 @@
                     android:text="Auto close after clearing notifications"
                     android:textSize="@dimen/_16sdp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/robotoregular"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"

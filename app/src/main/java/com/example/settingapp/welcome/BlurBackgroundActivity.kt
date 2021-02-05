@@ -29,8 +29,9 @@ class BlurBackgroundActivity : AppCompatActivity() {
             requestPermission()
         }
         imgBack.setOnClickListener {
-            val intent = Intent(this, WelcomeActivity::class.java);
+            val intent = Intent(this, ThreeFragment::class.java);
             startActivity(intent)
+            finish()
         }
     }
     private fun requestPermission() {

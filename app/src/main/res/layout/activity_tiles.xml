@@ -63,6 +63,7 @@
             android:layout_marginStart="@dimen/_60sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotolight"
             android:text="@string/drag_and_drop_tiles_to_reposition_them_in_the_nactive_area"
             android:layout_marginLeft="@dimen/_60sdp" />
     </RelativeLayout>
@@ -89,6 +90,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_toRightOf="@id/imgOption"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotoregular"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
     <RelativeLayout
@@ -114,6 +117,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_toRightOf="@id/imgToggle"
+            android:fontFamily="@font/robotoregular"
+            android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
     <RelativeLayout
@@ -139,6 +144,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_toRightOf="@id/imgSelect"
+            android:fontFamily="@font/robotoregular"
+            android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
 
