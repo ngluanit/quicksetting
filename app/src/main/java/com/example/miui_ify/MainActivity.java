@@ -53,7 +53,7 @@ import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
 import com.google.android.material.navigation.NavigationView;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+
             }
         });
 
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BottomStatusActivity.class));
+
             }
         });
 
@@ -120,24 +122,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ExtraActivity.class));
+                finish();
             }
         });
         lnLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Layout_Activity.class));
+
             }
         });
         lnTileStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, TileStylesActivity.class));
+
             }
         });
         lnHandles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HandlesActivity.class));
+
             }
         });
         rlConnect.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SlidersActivity.class);
                 startActivity(intent);
+
             }
         });
         lnColors.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
                 startActivity(intent);
+
             }
         });
         lnTiles.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TilesActivity.class);
                 startActivity(intent);
+
             }
         });
         drawerLayout = findViewById(R.id.drawer);

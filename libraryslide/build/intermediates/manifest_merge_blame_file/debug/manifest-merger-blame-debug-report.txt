@@ -5,10 +5,10 @@
 5    android:versionName="3.4.0" >
 6
 7    <uses-sdk android:minSdkVersion="1" />
-7-->D:\SettingApp\libraryslide\src\main\AndroidManifest.xml:7:5-8:38
-7-->D:\SettingApp\libraryslide\src\main\AndroidManifest.xml:8:9-35
+7-->D:\bravo\MIUI\quicksetting\libraryslide\src\main\AndroidManifest.xml:7:5-8:38
+7-->D:\bravo\MIUI\quicksetting\libraryslide\src\main\AndroidManifest.xml:8:9-35
 8
 9    <application />
-9-->D:\SettingApp\libraryslide\src\main\AndroidManifest.xml:10:5-20
+9-->D:\bravo\MIUI\quicksetting\libraryslide\src\main\AndroidManifest.xml:10:5-20
 10
 11</manifest>

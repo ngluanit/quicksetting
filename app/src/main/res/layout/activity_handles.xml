@@ -137,8 +137,8 @@
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
                    android:id="@+id/imgTurnFullleght"
-                   android:layout_width="@dimen/_30sdp"
-                   android:layout_height="@dimen/_30sdp"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
                    android:layout_centerVertical="true"
                    android:layout_alignParentEnd="true"
                    android:src="@drawable/ic_switch_off" />
@@ -172,8 +172,8 @@
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
                    android:id="@+id/imgTurnHideHandle"
-                   android:layout_width="@dimen/_30sdp"
-                   android:layout_height="@dimen/_30sdp"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
                    android:layout_alignParentEnd="true"
                    android:src="@drawable/ic_switch_off" />
            </RelativeLayout>
@@ -204,9 +204,9 @@
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
                    android:id="@+id/imgTurnHideFullScreen"
-                   android:layout_width="@dimen/_30sdp"
-                   android:layout_height="@dimen/_30sdp"
-                   android:layout_alignParentEnd="true"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
+                   android:layout_alignParentRight="true"
                    android:src="@drawable/ic_switch_off"/>
            </RelativeLayout>
            <RelativeLayout
@@ -237,9 +237,9 @@
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
                    android:id="@+id/imgTurnHidelandscape"
-                   android:layout_width="@dimen/_30sdp"
-                   android:layout_height="@dimen/_30sdp"
-                   android:layout_alignParentEnd="true"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
+                   android:layout_alignParentRight="true"
                    android:src="@drawable/ic_switch_off" />
            </RelativeLayout>
            <RelativeLayout
@@ -269,9 +269,9 @@
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
                    android:id="@+id/imgTurnHideKeyboardOpen"
-                   android:layout_width="@dimen/_30sdp"
-                   android:layout_height="@dimen/_30sdp"
-                   android:layout_alignParentEnd="true"
+                   android:layout_width="@dimen/_35sdp"
+                   android:layout_height="@dimen/_35sdp"
+                   android:layout_alignParentRight="true"
                    android:src="@drawable/ic_switch_off" />
            </RelativeLayout>
            <View

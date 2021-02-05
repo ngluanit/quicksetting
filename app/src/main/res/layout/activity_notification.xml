@@ -117,9 +117,10 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/black"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_switch_on"
+                    android:id="@+id/switch_lockscreen"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/ic_switch_off"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
@@ -156,8 +157,9 @@
                     android:src="@drawable/ic_xiaomi"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_MIUI"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -186,9 +188,10 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/black"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_switch_on"
+                    android:id="@+id/swich_background"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/ic_switch_off"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
@@ -225,8 +228,9 @@
                     android:src="@drawable/ic_color"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_dynamic"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -266,8 +270,9 @@
                     android:src="@drawable/ic_blacklist"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_blacklist"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -297,8 +302,9 @@
                     android:src="@drawable/ic_eyedisab"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_hide_presi"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -328,8 +334,9 @@
                     android:src="@drawable/ic_music"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_music"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -359,8 +366,9 @@
                     android:src="@drawable/ic_between"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_remove"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -389,8 +397,9 @@
                     android:src="@drawable/ic_up_arrow"
                     android:tint="#737373"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_expand"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
@@ -429,8 +438,9 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/ic_clear_notification"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_clear"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_on"
                     android:layout_centerVertical="true"
@@ -458,8 +468,9 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/ic_down_arrow"/>
                 <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:id="@+id/switch_auto_close"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"

@@ -42,10 +42,8 @@
                 android:layout_marginLeft="@dimen/_20sdp" />
             <ImageView
                 android:id="@+id/imgTurnDisableHandle"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:src="@drawable/ic_switch_off"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
@@ -224,10 +222,8 @@
                 android:layout_marginLeft="@dimen/_20sdp" />
             <ImageView
                 android:id="@+id/imgTurnDisableleftHandle"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:src="@drawable/ic_switch_off"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
@@ -407,10 +403,8 @@
                 android:layout_marginLeft="@dimen/_20sdp" />
             <ImageView
                 android:id="@+id/imgTurnDisableRightHandle"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:src="@drawable/ic_switch_off"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
