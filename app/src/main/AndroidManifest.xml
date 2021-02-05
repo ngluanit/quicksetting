@@ -24,11 +24,11 @@
         <activity android:name=".welcome.BlurBackgroundActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".welcome.WelcomeActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".tilestyle.TileStylesActivity" />
         <activity android:name=".colors.ColorsActivity" />
@@ -36,11 +36,11 @@
         <activity
             android:name="com.example.miui_ify.MainActivity"
             android:theme="@style/Theme.Navigation_Drawer">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
 
