@@ -15,15 +15,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="@dimen/_200sdp">
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/dragView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
+        android:clickable="false"
         android:focusable="false"
         android:orientation="vertical">
 

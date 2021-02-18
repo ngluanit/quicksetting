@@ -27,6 +27,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -68,6 +69,7 @@ public class FloatingWindow extends Service {
     public void onCreate() {
         super.onCreate();
         mContext = this;
+
     }
 
     @Override
@@ -86,7 +88,6 @@ public class FloatingWindow extends Service {
         }
         super.onDestroy();
     }
-
     WindowManager.LayoutParams mWindowsParams;
     private void moveView() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
@@ -100,16 +101,14 @@ public class FloatingWindow extends Service {
                 (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
                 ,
                //WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH, // Not displaying keyboard on bg activity's EditText
-                //WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, //Not work with EditText on keyboard
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, // Not displaying keyboard on bg activity's EditText
+               // WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, //Not work with EditText on keyboard
                 PixelFormat.TRANSLUCENT);
-
-
         mWindowsParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         //params.x = 0;
     //        mWindowsParams.y = 100;
-        mWindowManager.addView(mView, mWindowsParams);
 
+        mWindowManager.addView(mView, mWindowsParams);
     }
 
     private boolean isViewInBounds(View view, int x, int y) {
@@ -143,6 +142,8 @@ public class FloatingWindow extends Service {
     private void allAboutLayout(Intent intent) {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.ovelay_window, null);
+        final PopupWindow popupWindow = new PopupWindow(mView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        popupWindow.setOutsideTouchable(false);
         Button btnClose = (Button) mView.findViewById(R.id.btnClose);
         seekBar = (SeekBar) mView.findViewById(R.id.BrightBar);
         cResolver =  getContentResolver();

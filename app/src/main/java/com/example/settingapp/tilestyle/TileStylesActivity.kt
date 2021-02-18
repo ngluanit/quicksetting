@@ -48,7 +48,8 @@ class TileStylesActivity : AppCompatActivity() {
         val posts = listOf(R.drawable.ic_gradient1,R.drawable.ic_gradient2,R.drawable.ic_gradient3,R.drawable.ic_gradient3,R.drawable.ic_gradient4,R.drawable.ic_gradient5,R.drawable.ic_gradient1,R.drawable.ic_gradient1,R.drawable.ic_gradient1)
         rcvColor.apply {
             layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
-            adapter = TileStyleAdapter(posts)
+           // adapter = TileStyleAdapter(posts)
+            rcvColor.adapter=TileStyleAdapter(posts)
         }
     }
 
