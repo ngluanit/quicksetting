@@ -161,7 +161,8 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_handles"
-                    android:layout_margin="20dp"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -169,6 +170,7 @@
                     android:text="@string/handles"
                     android:textSize="16sp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -219,13 +221,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_notification"
+                    android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/_15sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:tint="@color/text_primary"/>
+                    android:src="@drawable/ic_notification"
+                    android:tint="@color/text_primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -288,18 +291,17 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_nen"
+                    android:src="@drawable/ic_icon_system"
                     android:layout_marginVertical="@dimen/_15sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:tint="@color/text_primary"/>
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="@dimen/_110sdp"
                     android:layout_height="wrap_content"
                     android:text="Bottom Status Bar"
                     android:textAlignment="center"
                     android:layout_gravity="center"
                     android:textSize="16sp"
-                    android:layout_marginLeft="@dimen/_8sdp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -321,7 +323,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_nen"
+                    android:src="@drawable/ic_extra"
                     android:layout_margin="20dp"
                     android:tint="@color/text_primary"/>
 

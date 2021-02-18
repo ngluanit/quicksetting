@@ -33,7 +33,7 @@ class HandlesActivity : AppCompatActivity() {
         getWindow().decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR //  set status text dark
 
-        getWindow().statusBarColor = Color.parseColor("#f0f0f0") // set status background white
+        getWindow().statusBarColor = Color.parseColor("#fff") // set status background white
 
         imgTurnFullleght.setOnClickListener {
             if ((imgTurnFullleght != null) && (imgTurnFullleghtShown)){

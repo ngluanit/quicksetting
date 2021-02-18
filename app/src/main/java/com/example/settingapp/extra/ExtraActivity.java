@@ -37,7 +37,7 @@ public class ExtraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_extra);
         Window window = getWindow();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
-        getWindow().setStatusBarColor(Color.parseColor("#f0f0f0"));// set status background white
+        getWindow().setStatusBarColor(Color.parseColor("#ffffff"));// set status background white
 
         imgBack = findViewById(R.id.imgBack);
 
