@@ -16,7 +16,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,10 +26,15 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ColorStateListDrawable;
+import android.media.AudioManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -67,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int REQUEST_ACCESSIBILITY = 777;
     SharedPreferences pref;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,48 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getWindow().setStatusBarColor(Color.parseColor("#f0f0f0"));// set status background white
         editor.putBoolean("first", true);
         editor.commit();
+        TelephonyManager manager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        String countryiso=manager.getSimCountryIso();
+        String simOperator=manager.getSimOperator();
+        String  simOperatorName=manager.getSimOperatorName();
+        int     simState=manager.getSimState();
+        System.out.println("mzmaqmwk3m21112////"+simOperator+"///"+simOperatorName+"///"+simState+"///"+countryiso);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
+                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        }
+        AudioManager audiomanage = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+        AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        switch (am.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                Log.i("MyApp","Silent mode");
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                Log.i("MyApp","Vibrate mode");
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                Log.i("MyApp","Normal mode");
+                break;
+        }
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        boolean wifiEnabled = wifiManager.isWifiEnabled();
+        System.out.println("122111111//"+wifiEnabled);
+        WifiManager manager1 = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (manager1.isWifiEnabled()) {
+            WifiInfo wifiInfo = manager1.getConnectionInfo();
+            if (wifiInfo != null) {
+                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
+                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
+                    System.out.println("11112222///"+wifiInfo.getSSID());
+                }
+            }
+        }
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        System.out.println("111222223/"+mBluetoothAdapter.isEnabled());
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
@@ -111,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(MainActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setContentView(R.layout.dialog_backgroundtype);
                 dialog.show();
             }
@@ -147,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 acesspermission(getBaseContext());
             }
         });
-        btnTest = findViewById(R.id.btnTest);
         lnSlides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -351,12 +398,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             context.startService(intent);
         } else {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-//                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-//                intent.setData(Uri.parse("package:" + context.getPackageName()));
-//                context.startActivityForResult(intent, 123);
-                Intent intent = new Intent(context, FloatingWindow.class);
-                context.stopService(intent);
-                context.startService(intent);
+                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                intent.setData(Uri.parse("package:" + context.getPackageName()));
+                context.startActivityForResult(intent, 123);
+//                Intent intent = new Intent(context, FloatingWindow.class);
+//                context.stopService(intent);
+//                context.startService(intent);
             } else {
                 ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.WRITE_SETTINGS}, 123);
             }

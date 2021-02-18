@@ -8,8 +8,8 @@
     android:gravity="bottom"
     sothree:umanoDragView="@+id/dragView"
     sothree:umanoOverlay="true"
-    sothree:umanoPanelHeight="68dp"
-    sothree:umanoParallaxOffset="100dp"
+    sothree:umanoPanelHeight="@dimen/_68sdp"
+    sothree:umanoParallaxOffset="@dimen/_10sdp"
     sothree:umanoScrollableView="@+id/activity_main"
     sothree:umanoShadowHeight="4dp">
 
@@ -22,7 +22,7 @@
     <LinearLayout
         android:id="@+id/dragView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="false"
         android:orientation="vertical">
@@ -30,9 +30,7 @@
         <RelativeLayout
             android:id="@+id/activity_main"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_horizontal_margin">
@@ -44,40 +42,42 @@
                 android:layout_alignParentBottom="true"
                 android:text="Close"
                 android:visibility="gone" />
-
             <SeekBar
                 android:id="@+id/BrightBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="left|bottom"
                 android:background="#87CEEB" />
-
-            <TextView
-                android:id="@+id/tvHour"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvIconSetting"
+                android:layout_centerHorizontal="true"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:fontFamily="@font/robotolight"
-                android:text="16:10"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_24sdp" />
-
+                android:layout_below="@+id/BrightBar"/>
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/tvHour"
+                android:layout_below="@id/rcvIconSetting"
                 android:fontFamily="@font/robotolight"
                 android:text="Fri,Feb 5"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp" />
-
+            <TextView
+                android:id="@+id/tvHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDate"
+                android:fontFamily="@font/robotolight"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:text="16:10"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_24sdp" />
             <RelativeLayout
                 android:id="@+id/rlIconSetting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/tvHour"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_below="@id/rcvIconSetting"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true">
 
@@ -107,7 +107,6 @@
                     android:layout_toRightOf="@id/imgProfile"
                     android:src="@drawable/ic_launcher_background" />
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,32 +129,66 @@
                     android:id="@+id/imgPin"
                     android:layout_width="@dimen/_10sdp"
                     android:layout_height="@dimen/_10sdp"
+                    android:layout_toEndOf="@id/tvMang"
+                    android:layout_toRightOf="@id/tvMang"
                     android:src="@drawable/ic_launcher_background" />
                 <TextView
                     android:id="@+id/tvMang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/imgPin"
-                    android:layout_toRightOf="@id/imgPin"
                     android:fontFamily="@font/robotolight"
-                    android:text="100%"
+                    android:text="Mobifone"
+                    android:layout_marginEnd="@dimen/_4sdp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_6sdp" />
+                    android:textSize="@dimen/_6sdp"
+                    android:layout_toEndOf="@id/imgMang"
+                    android:layout_toRightOf="@id/imgMang"
+                    android:layout_marginRight="@dimen/_4sdp" />
+                <ImageView
+                    android:id="@+id/imgMang"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:layout_toEndOf="@id/imgWifi"
+                    android:layout_toRightOf="@id/imgWifi"
+                    android:src="@drawable/ic_launcher_background" />
+                <ImageView
+                    android:id="@+id/imgWifi"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:layout_toEndOf="@id/imgBluetooth"
+                    android:layout_toRightOf="@id/imgBluetooth"
+                    android:src="@drawable/ic_launcher_background" />
+                <ImageView
+                    android:id="@+id/imgBluetooth"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:layout_toEndOf="@id/imgLoca"
+                    android:layout_toRightOf="@id/imgLoca"
+                    android:src="@drawable/ic_launcher_background" />
+                <ImageView
+                    android:id="@+id/imgLoca"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:layout_toEndOf="@id/imgSound"
+                    android:layout_toRightOf="@id/imgSound"
+                    android:src="@drawable/ic_launcher_background" />
+                <ImageView
+                    android:id="@+id/imgSound"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:src="@drawable/ic_launcher_background" />
             </RelativeLayout>
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_20sdp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnTest"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_alignParentBottom="true"
-                android:visibility="visible" />
-        </LinearLayout>
     </LinearLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 

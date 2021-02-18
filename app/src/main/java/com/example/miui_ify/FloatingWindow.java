@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -31,12 +32,16 @@ import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.settingapp.R;
+import com.example.settingapp.tiles.ItemNotification;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -70,7 +75,6 @@ public class FloatingWindow extends Service {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         allAboutLayout(intent);
         moveView();
-
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -86,17 +90,16 @@ public class FloatingWindow extends Service {
     WindowManager.LayoutParams mWindowsParams;
     private void moveView() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
-        int width = (int) (metrics.widthPixels * 1f);
-        int height = (int) (metrics.heightPixels * 1f);
+        int width = (int) (metrics.widthPixels *1f);
+        int height = (int) (metrics.heightPixels *1f);
         mWindowsParams = new WindowManager.LayoutParams(
-                width,//WindowManager.LayoutParams.WRAP_CONTENT,
-                height,//WindowManager.LayoutParams.WRAP_CONTENT,
-                //WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
-
+              width,
+                height,
+                //WindowManager.LayoutParams.WRAP_CONTENT,
+              //WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
                 (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
                 ,
-
-                //WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+               //WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH, // Not displaying keyboard on bg activity's EditText
                 //WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, //Not work with EditText on keyboard
                 PixelFormat.TRANSLUCENT);
@@ -138,7 +141,6 @@ public class FloatingWindow extends Service {
     private boolean wasInFocus = true;
     private EditText edt1;
     private void allAboutLayout(Intent intent) {
-
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.ovelay_window, null);
         Button btnClose = (Button) mView.findViewById(R.id.btnClose);
@@ -147,6 +149,17 @@ public class FloatingWindow extends Service {
         BrightnessControl(seekBar);
         mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
         TextView tvDate,tvHour;
+        ArrayList<ItemNotification> list=new ArrayList<>();
+        RecyclerView rcvIconSetting=mView.findViewById(R.id.rcvIconSetting);
+        rcvIconSetting.setLayoutManager(new GridLayoutManager(this,4));
+        for (int i=0;i<12;i++){
+            ItemNotification itemNotification=new ItemNotification();
+            itemNotification.setImg(R.drawable.ic_launcher_background);
+            itemNotification.setName("Test");
+            list.add(itemNotification);
+        }
+        IconSettingAdapter iconSettingAdapter=new IconSettingAdapter(list);
+        rcvIconSetting.setAdapter(iconSettingAdapter);
         ImageView imgEdit,imgSetting,imgProfile;
         tvDate=(TextView) mView.findViewById(R.id.tvDate);
         tvHour=(TextView) mView.findViewById(R.id.tvHour);
@@ -166,6 +179,7 @@ public class FloatingWindow extends Service {
                 startActivity(new Intent(Settings.ACTION_SETTINGS));
             }
         });
+
         DateFormat df = new SimpleDateFormat("EEE,MMM d");
         String date = df.format(Calendar.getInstance().getTime());
         tvDate.setText(date);
