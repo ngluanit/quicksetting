@@ -14,8 +14,13 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.settingapp.R
+import com.example.settingapp.tilestyle.TileStyleAdapter
+import kotlinx.android.synthetic.main.activity_tile_styles.*
 import kotlinx.android.synthetic.main.activity_tiles.*
+import kotlinx.android.synthetic.main.activity_tiles.imgBack
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
 
 
@@ -34,7 +39,7 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         getWindow().decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR //  set status text dark
 
-        window.statusBarColor = ContextCompat.getColor(this,R.color.statusbar)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.statusbar)
 
 
         imgBack.setOnClickListener {
@@ -52,13 +57,15 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         rlSelectIcon.setOnClickListener {
             showDialog1(this)
         }
+        val posts = listOf(R.drawable.ic_wifi_icon,R.drawable.ic_mobile_data,R.drawable.ic_bluetooth_activity,R.drawable.ic_sync,R.drawable.ic_location_icon,R.drawable.ic_auto_rotate,R.drawable.ic_disturb,R.drawable.ic_torch_icon)
+        val text1= listOf("Wi-Fi","Mobile data","Bluetooth","Sync","Location","Auto-rotate","Do not disturb","Torch")
         rcvInActive.setLayoutManager(GridLayoutManager(this, 4))
         rcvActive.setLayoutManager(GridLayoutManager(this, 4))
-        for (i in 0..12){
+        for (i in 0..7){
             var itemNotification:ItemNotification
             itemNotification=ItemNotification()
-            itemNotification.img=R.drawable.ic_launcher_background
-            itemNotification.name="test"
+            itemNotification.img= posts[i]
+            itemNotification.name= text1[i]
             list!!.add(itemNotification)
         }
         iconNotiAdapter=IconNotiAdapter(list, this)

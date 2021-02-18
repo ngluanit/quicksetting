@@ -249,10 +249,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20sdp"
         android:layout_below="@+id/tvActive"
-        android:id="@+id/rcvActive"
-        android:layout_marginLeft="@dimen/_20sdp" />
+        android:id="@+id/rcvActive" />
         <TextView
             android:id="@+id/tvInActive"
             android:layout_width="wrap_content"
@@ -265,8 +263,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
             android:layout_below="@+id/tvInActive"
             android:id="@+id/rcvInActive"/>
     </RelativeLayout>
