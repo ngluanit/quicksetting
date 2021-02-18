@@ -50,6 +50,10 @@ class TileStylesActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
             adapter = TileStyleAdapter(posts)
         }
+        rcvColor2.apply {
+            layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+            adapter = TileStyleAdapter(posts)
+        }
     }
 
 

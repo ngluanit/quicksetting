@@ -15,7 +15,7 @@ class TileStyleAdapter(val posts: List<Int>) : RecyclerView.Adapter<TileStyleAda
     }
 
     override fun onBindViewHolder(holder: TileStyleAdapter.ViewHolder, position: Int) {
-        holder.img_gradient.imageAlpha = posts[position]
+        holder.img_gradient.setImageResource(posts[position])
     }
 
     override fun getItemCount() = posts.size
