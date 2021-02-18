@@ -281,7 +281,7 @@
                         android:id="@+id/imgMedia"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
-                        android:src="@drawable/ic_launcher_background"/>
+                        android:src="@drawable/ic_icon_system"/>
                     <TextView
                         android:id="@+id/tvMedia"
                         android:layout_width="wrap_content"
