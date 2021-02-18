@@ -146,6 +146,13 @@ public class FloatingWindow extends Service {
         popupWindow.setOutsideTouchable(false);
         Button btnClose = (Button) mView.findViewById(R.id.btnClose);
         seekBar = (SeekBar) mView.findViewById(R.id.BrightBar);
+         SlidingUpPanelLayout slidingUpPanelLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
+        slidingUpPanelLayout.setFadeOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            }
+        });
         cResolver =  getContentResolver();
         BrightnessControl(seekBar);
         mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
