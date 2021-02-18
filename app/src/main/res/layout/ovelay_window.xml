@@ -111,18 +111,36 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_above="@id/rlIconSetting"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true">
 
                 <TextView
                     android:id="@+id/tvPin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100%"
+                    android:layout_toEndOf="@id/imgPin"
+                    android:layout_toRightOf="@id/imgPin"
                     android:fontFamily="@font/robotolight"
+                    android:text="100%"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_6sdp" />
+
+                <ImageView
+                    android:id="@+id/imgPin"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:src="@drawable/ic_launcher_background" />
+                <TextView
+                    android:id="@+id/tvMang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgPin"
+                    android:layout_toRightOf="@id/imgPin"
+                    android:fontFamily="@font/robotolight"
+                    android:text="100%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_6sdp" />
             </RelativeLayout>
         </RelativeLayout>
 
