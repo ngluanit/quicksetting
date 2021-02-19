@@ -7,13 +7,14 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -22,24 +23,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
+        <activity android:name="com.example.systemIcons.SystemIcons"></activity>
+
         <service
             android:name=".util.NotifyListener"
             android:label="NotificationService"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
-                <action android:name="android.service.
-                 notification.NotificationListenerService" />
+                <action android:name="android.service.                  notification.NotificationListenerService" />
             </intent-filter>
         </service>
-        <activity android:name=".BottomStatusBar.BottomStatusActivity"></activity>
+
+        <activity android:name=".BottomStatusBar.BottomStatusActivity" />
         <activity android:name=".notifications.NotificationActivity" />
         <activity android:name=".extra.ExtraActivity" />
         <activity android:name=".layout.Layout_Activity" />
         <activity android:name=".handles.HandlesActivity" />
         <activity android:name=".tiles.TileOptionsActivity" />
         <activity android:name=".tiles.TilesActivity" />
-        <activity android:name=".welcome.BlurBackgroundActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".welcome.BlurBackgroundActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,13 +57,14 @@
         <activity
             android:name="com.example.miui_ify.MainActivity"
             android:theme="@style/Theme.Navigation_Drawer">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-
 
         <service android:name="com.example.miui_ify.FloatingWindow" />
         <service
