@@ -13,19 +13,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ColorStateListDrawable;
+import android.hardware.Camera;
 import android.media.AudioManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -34,6 +39,8 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.provider.SyncStateContract;
+import android.provider.UserDictionary;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -60,6 +67,13 @@ import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
+
+import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
+import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
+import static android.hardware.camera2.CameraMetadata.FLASH_MODE_TORCH;
+import static android.provider.SyncStateContract.Columns.ACCOUNT_TYPE;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -112,21 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.i("MyApp","Normal mode");
                 break;
         }
-        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        boolean wifiEnabled = wifiManager.isWifiEnabled();
-        System.out.println("122111111//"+wifiEnabled);
-        WifiManager manager1 = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (manager1.isWifiEnabled()) {
-            WifiInfo wifiInfo = manager1.getConnectionInfo();
-            if (wifiInfo != null) {
-                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
-                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
-                    System.out.println("11112222///"+wifiInfo.getSSID());
-                }
-            }
-        }
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        System.out.println("111222223/"+mBluetoothAdapter.isEnabled());
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
@@ -483,4 +482,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
     }
+
 }

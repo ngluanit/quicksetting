@@ -11,6 +11,7 @@ import com.example.settingapp.tiles.ItemNotification
 
 public class IconSettingAdapter(private var list: List<ItemNotification>?) :
     RecyclerView.Adapter<IconSettingAdapter.MyviewHolder>() {
+    lateinit var itemClick : ItemClick
     inner class MyviewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgIcon: ImageView? = null
         var tvIcon: TextView? = null
@@ -18,6 +19,9 @@ public class IconSettingAdapter(private var list: List<ItemNotification>?) :
             imgIcon = itemView.findViewById(R.id.icon)
             tvIcon = itemView.findViewById(R.id.tvIcon)
         }
+    }
+    fun setIClick(itemClick1: ItemClick){
+        itemClick=itemClick1;
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyviewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_icon, parent, false)
@@ -31,6 +35,7 @@ public class IconSettingAdapter(private var list: List<ItemNotification>?) :
         myviewHolder.tvIcon!!.text = list!!.get(position).name
         myviewHolder.imgIcon!!.setImageResource(list!!.get(position).img!!)
         myviewHolder.itemView.setOnClickListener {
+            itemClick.onItemclick1(position)
         }
     }
     interface ItemClick{
