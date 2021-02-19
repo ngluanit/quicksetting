@@ -204,9 +204,10 @@ public class PermissionRequired extends AppCompatActivity {
             permission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
         }
         if (permission) {
-            Intent intent = new Intent(context, FloatingWindow.class);
-            context.stopService(intent);
-            context.startService(intent);
+           context.startActivity(new Intent(context, MainActivity.class));
+//            Intent intent = new Intent(context, FloatingWindow.class);
+//            context.stopService(intent);
+//            context.startService(intent);
         } else {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);

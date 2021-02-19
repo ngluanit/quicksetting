@@ -940,6 +940,11 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN &&
+                (getPanelState() == PanelState.EXPANDED || getPanelState() == PanelState.ANCHORED) &&
+                isMainViewTarget(ev)) {
+            setPanelState(PanelState.COLLAPSED);
+        }
         if (!isEnabled() || !isTouchEnabled()) {
             return super.onTouchEvent(ev);
         }
@@ -951,7 +956,20 @@ public class SlidingUpPanelLayout extends ViewGroup {
             return false;
         }
     }
-
+    private boolean isMainViewTarget(MotionEvent ev) {
+        int[] mainViewCoords = new int[2];
+        mMainView.getLocationOnScreen(mainViewCoords);
+        int llX = mainViewCoords[0];
+        int ulX = llX + mMainView.getMeasuredWidth();
+        int llY = mainViewCoords[1];      //Check if adding mParallaxOffset/2 makes any perf improvements
+        int ulY = llY + mMainView.getMeasuredHeight() ;
+        int touchX = (int)ev.getRawX();
+        int touchY = (int)ev.getRawY();
+        if (touchX > llX && touchX < ulX && touchY > llY && touchY < ulY)
+            return true;
+        else
+            return false;
+    }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         final int action = MotionEventCompat.getActionMasked(ev);

@@ -82,18 +82,19 @@ import static android.provider.SyncStateContract.Columns.ACCOUNT_TYPE;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView menu_nav,img_turnservice;
+    ImageView menu_nav, img_turnservice;
     LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles, lnLayout, lnExtra, lnBackgroundType, lnNotification, lnStatusbar;
-    RelativeLayout rlConnect,status_service;
+    RelativeLayout status_service;
     TextView tv_service;
     Button btnTest, btn_ok;
     Context context;
     LinearLayout dragView;
-    private int REQUEST_ACCESSIBILITY = 777;
+    private final int REQUEST_ACCESSIBILITY = 777;
     SharedPreferences pref;
-
     private boolean img_turnserviceShown = true;
+    int check = 0;
 
+    @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,11 +108,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putBoolean("first", true);
         editor.commit();
         TelephonyManager manager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-        String countryiso=manager.getSimCountryIso();
-        String simOperator=manager.getSimOperator();
-        String  simOperatorName=manager.getSimOperatorName();
-        int     simState=manager.getSimState();
-        System.out.println("mzmaqmwk3m21112////"+simOperator+"///"+simOperatorName+"///"+simState+"///"+countryiso);
+        String countryiso = manager.getSimCountryIso();
+        String simOperator = manager.getSimOperator();
+        String simOperatorName = manager.getSimOperatorName();
+        int simState = manager.getSimState();
+        System.out.println("mzmaqmwk3m21112////" + simOperator + "///" + simOperatorName + "///" + simState + "///" + countryiso);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
@@ -119,18 +120,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         }
-        AudioManager audiomanage = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         switch (am.getRingerMode()) {
             case AudioManager.RINGER_MODE_SILENT:
-                Log.i("MyApp","Silent mode");
+                Log.i("MyApp", "Silent mode");
                 break;
             case AudioManager.RINGER_MODE_VIBRATE:
-                Log.i("MyApp","Vibrate mode");
+                Log.i("MyApp", "Vibrate mode");
                 break;
             case AudioManager.RINGER_MODE_NORMAL:
-                Log.i("MyApp","Normal mode");
+                Log.i("MyApp", "Normal mode");
                 break;
         }
         lnTiles = findViewById(R.id.lnTiles);
@@ -138,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lnColors = findViewById(R.id.lnColors);
         btn_ok = findViewById(R.id.btn_ok);
         dragView = findViewById(R.id.dragView);
-        rlConnect = findViewById(R.id.status_service);
         lnTileStyle = findViewById(R.id.lnTileStyles);
         lnHandles = findViewById(R.id.lnHandler);
         lnLayout = findViewById(R.id.lnLayout);
@@ -149,21 +149,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         img_turnservice = findViewById(R.id.img_turnservice);
         status_service = findViewById(R.id.status_service);
         tv_service = findViewById(R.id.tv_service);
+        if (isAccessibilitySettingsOn(this) && Settings.canDrawOverlays(this)) {
+            img_turnservice.setImageResource(R.drawable.ic_switch_on);
+            img_turnserviceShown = false;
+            status_service.setBackgroundResource(R.drawable.bg_service);
+        } else {
+            img_turnserviceShown = true;
+            status_service.setBackgroundResource(R.drawable.bg_cardview1);
+            tv_service.setTextColor(getColor(R.color.black));
+        }
 
         img_turnservice.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @SuppressLint({"ResourceAsColor", "Range"})
             @Override
             public void onClick(View v) {
-                if ((img_turnservice != null) && (img_turnserviceShown)){
+                if ((img_turnservice != null) && (img_turnserviceShown)) {
                     img_turnservice.setImageResource(R.drawable.ic_switch_on);
                     img_turnserviceShown = false;
                     status_service.setBackgroundResource(R.drawable.bg_service);
                     tv_service.setTextColor(getColor(R.color.white));
-                    startActivity(new Intent(MainActivity.this, PermissionRequired.class));
-                }
-                else {
-                    if (img_turnservice != null) img_turnservice.setImageResource(R.drawable.ic_switch_off);
+                    if (isAccessibilitySettingsOn(MainActivity.this) && Settings.canDrawOverlays(MainActivity.this)) {
+                        Intent intent = new Intent(MainActivity.this, FloatingWindow.class);
+                        stopService(intent);
+                        startService(intent);
+                    } else {
+                        startActivity(new Intent(MainActivity.this, PermissionRequired.class));
+                    }
+                } else {
+                    if (img_turnservice != null)
+                        img_turnservice.setImageResource(R.drawable.ic_switch_off);
                     img_turnserviceShown = true;
                     status_service.setBackgroundResource(R.drawable.bg_cardview1);
                     tv_service.setTextColor(getColor(R.color.black));
@@ -219,12 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, HandlesActivity.class));
             }
         });
-        rlConnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                acesspermission(getBaseContext());
-            }
-        });
+
         lnSlides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -255,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu_nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               drawerLayout.openDrawer(GravityCompat.START);
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
         navigationView.setNavigationItemSelectedListener(this);
@@ -458,6 +468,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -481,7 +492,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        System.out.println("121123"+item.getItemId()+".....zzzz");
+        System.out.println("121123" + item.getItemId() + ".....zzzz");
         switch (item.getItemId()) {
             case R.id.theme_aplica:
                 Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();

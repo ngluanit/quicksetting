@@ -147,7 +147,11 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
                 ,
                 //WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, // Not displaying keyboard on bg activity's EditText
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, // Not displaying keyboard on bg activity's EditText
                 // WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, //Not work with EditText on keyboard
                 PixelFormat.TRANSLUCENT);
         mWindowsParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
@@ -177,6 +181,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         cResolver = getContentResolver();
         BrightnessControl(seekBar);
         mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
+
         TextView tvDate, tvHour;
         rcvIconSetting = mView.findViewById(R.id.rcvIconSetting);
         rcvIconSetting.setLayoutManager(new GridLayoutManager(this, 4));
@@ -278,12 +283,19 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 
 
         });
+        mLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+            }
+        });
         mLayout.setFadeOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
             }
         });
+
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -320,12 +332,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //Set the system brightness using the brightness variable value
                 Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
-                //Get the current window attributes
-                // WindowManager.LayoutParams layoutpars = window.getAttributes();
-                //Set the brightness of this window
-                //layoutpars.screenBrightness = brightness / (float)255;
-                //Apply attribute changes to this window
-                //window.setAttributes(layoutpars);
+
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
