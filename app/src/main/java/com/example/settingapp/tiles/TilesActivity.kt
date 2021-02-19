@@ -57,8 +57,16 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         rlSelectIcon.setOnClickListener {
             showDialog1(this)
         }
-        val posts = listOf(R.drawable.ic_wifi_icon,R.drawable.ic_mobile_data,R.drawable.ic_bluetooth_activity,R.drawable.ic_sync,R.drawable.ic_location_icon,R.drawable.ic_auto_rotate,R.drawable.ic_disturb,R.drawable.ic_torch_icon)
-        val text1= listOf("Wi-Fi","Mobile data","Bluetooth","Sync","Location","Auto-rotate","Do not disturb","Torch")
+        val posts = listOf(R.drawable.ic_wifi_icon,
+            R.drawable.ic_mobile_data,
+            R.drawable.ic_bluetooth_activity,
+            R.drawable.ic_sync,
+            R.drawable.ic_location_icon,
+            R.drawable.ic_auto_rotate,
+            R.drawable.ic_disturb,
+            R.drawable.ic_torch_icon,
+            R.drawable.ic_nfc)
+        val text1= listOf("Wi-Fi","Mobile data","Bluetooth","Sync","Location","Auto-rotate","Do not disturb","Torch","NFC")
         rcvInActive.setLayoutManager(GridLayoutManager(this, 4))
         rcvActive.setLayoutManager(GridLayoutManager(this, 4))
         for (i in 0..7){

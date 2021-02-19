@@ -270,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_tile_size">
                 <RelativeLayout
-                    android:id="@+id/rlMedia"
+                    android:id="@+id/rlsystemicon"
                     android:layout_below="@+id/tvVolume"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/_20sdp"
@@ -278,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_20sdp">
                     <ImageView
-                        android:id="@+id/imgMedia"
+                        android:id="@+id/imgsystemicon"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
                         android:src="@drawable/ic_icon_system"/>
@@ -303,7 +303,7 @@
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rlshowpanel"
-                    android:layout_below="@+id/rlMedia"
+                    android:layout_below="@+id/rlsystemicon"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_width="match_parent"

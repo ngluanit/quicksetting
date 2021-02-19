@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3f3f3"
+    tools:context=".required.PermissionRequired">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+            android:text="System permission required"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/_10sdp">
+        <TextView
+            android:id="@+id/footer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If you are having issues, tap here to read the FAQ"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotolight"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/footer2"
+            android:layout_below="@+id/footer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy policy"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/_15sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="@dimen/_40sdp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTop">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The following permissions are required to enable MIUI-ify"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:textColor="@color/black" />
+
+            <RelativeLayout
+                android:id="@+id/rlService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv1"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/bg_cardview1"
+                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_2sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accessibility Service"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_below="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MIUI-ify uses the Accessibility Service to perform some system functions, allowing the toggling of some quick setting."
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="#737373"/>
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_below="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MIUI-ify doesn't watch or perform any accessibility actions unrelated to the app."
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="#737373"/>
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_below="@+id/title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="This service is required enable MIUI-ify"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="#737373"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/ic_people"
+                    android:tint="@color/text_primary"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/img_turnService"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_switch_off"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlDraw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlService"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/bg_cardview1"
+                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_2sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Draw Overlays"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/tit2"
+                    android:layout_below="@+id/tit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="For the quick settings panel to be displayed"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textColor="#737373"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:src="@drawable/ic_draw"
+                    android:tint="@color/text_primary"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/img_turnDraw"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_switch_off"/>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

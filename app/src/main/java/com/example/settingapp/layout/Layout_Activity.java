@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.miui_ify.MainActivity;
-import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
 import com.example.settingapp.R;
+import com.example.settingapp.systemIcons.SystemIcons;
 
 public class Layout_Activity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class Layout_Activity extends AppCompatActivity {
     SeekBar seekbar_number_rows,seekbar_number_columns,seekbar_number_small_columns,seekbar_panel_radius,seekbar_panel_padding,seekbar_tilesize;
     TextView tvnumber_row,tv_number_columns,tv_number_small_columns,tv_panel_radius,tv_panel_padding,tv_tilesize;
     ImageView imgshow_footer,imgHideText,imgAlarm_footer,imgturncrop,img_24_clock;
-
+    RelativeLayout rlsystemicon;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +57,21 @@ public class Layout_Activity extends AppCompatActivity {
         tv_panel_padding = findViewById(R.id.tv_panel_padding);
         tv_tilesize = findViewById(R.id.tv_tilesize);
 
+        rlsystemicon = findViewById(R.id.rlsystemicon);
+
         imgshow_footer = findViewById(R.id.imgshow_footer);
         imgHideText = findViewById(R.id.imgHideText);
         imgAlarm_footer = findViewById(R.id.imgAlarm_footer);
         imgturncrop = findViewById(R.id.imgturncrop);
         img_24_clock = findViewById(R.id.img_24_clock);
+
+        rlsystemicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Layout_Activity.this, SystemIcons.class));
+                finish();
+            }
+        });
 
         imgshow_footer.setOnClickListener(new View.OnClickListener() {
             @Override

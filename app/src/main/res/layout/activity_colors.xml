@@ -18,7 +18,6 @@
             android:padding="@dimen/_2sdp"
             android:src="@drawable/ic_back"
             android:tint="@color/black"/>
-
         <TextView
             android:layout_toEndOf="@id/imgBack"
             android:layout_marginStart="@dimen/_20sdp"
@@ -31,7 +30,6 @@
             android:text="Colors"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
-
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

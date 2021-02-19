@@ -118,9 +118,16 @@
                     android:textColor="@color/black"/>
                 <ImageView
                     android:id="@+id/switch_lockscreen"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:src="@drawable/ic_switch_off"
+                    android:layout_alignParentRight="true"/>
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:src="@drawable/ic_crown"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
@@ -158,12 +165,20 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_MIUI"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -189,9 +204,15 @@
                     android:textColor="@color/black"/>
                 <ImageView
                     android:id="@+id/swich_background"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:src="@drawable/ic_switch_off"
+                    android:layout_alignParentRight="true"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
@@ -229,12 +250,19 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_dynamic"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -271,12 +299,20 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_blacklist"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -303,12 +339,19 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_hide_presi"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -335,12 +378,19 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_music"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -367,12 +417,19 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_remove"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -398,12 +455,19 @@
                     android:tint="#737373"/>
                 <ImageView
                     android:id="@+id/switch_expand"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -439,12 +503,19 @@
                     android:src="@drawable/ic_clear_notification"/>
                 <ImageView
                     android:id="@+id/switch_clear"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_on"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -469,12 +540,20 @@
                     android:src="@drawable/ic_down_arrow"/>
                 <ImageView
                     android:id="@+id/switch_auto_close"
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_switch_off"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_crown"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
