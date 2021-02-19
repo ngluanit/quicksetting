@@ -55,14 +55,24 @@
             android:layout_margin="20dp"
             android:layout_below="@+id/toolbar"
             android:paddingVertical="10dp"
-            android:background="@drawable/bg_service">
+            android:background="@drawable/bg_cardview1">
             <TextView
+                android:id="@+id/tv_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/service_running"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 android:layout_centerInParent="true"/>
+            <ImageView
+                android:id="@+id/img_turnservice"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_switch_off"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:layout_centerVertical="true"/>
 
         </RelativeLayout>
         <include

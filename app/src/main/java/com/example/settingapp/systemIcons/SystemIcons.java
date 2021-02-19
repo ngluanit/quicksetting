@@ -1,4 +1,4 @@
-package com.example.systemIcons;
+package com.example.settingapp.systemIcons;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;

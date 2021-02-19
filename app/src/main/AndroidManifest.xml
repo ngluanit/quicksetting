@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
-        <activity android:name="com.example.systemIcons.SystemIcons"></activity>
+        <activity android:name=".required.PermissionRequired"></activity>
+        <activity android:name=".systemIcons.SystemIcons" />
 
         <service
             android:name=".util.NotifyListener"

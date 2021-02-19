@@ -16,9 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.miui_ify.MainActivity;
-import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
 import com.example.settingapp.R;
-import com.example.systemIcons.SystemIcons;
+import com.example.settingapp.systemIcons.SystemIcons;
 
 public class Layout_Activity extends AppCompatActivity {
 

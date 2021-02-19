@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -45,6 +46,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
@@ -53,6 +55,7 @@ import com.example.settingapp.extra.ExtraActivity;
 import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.layout.Layout_Activity;
 import com.example.settingapp.notifications.NotificationActivity;
+import com.example.settingapp.required.PermissionRequired;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
@@ -65,15 +68,19 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageView menu_nav;
+    ImageView menu_nav,img_turnservice;
     LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles, lnLayout, lnExtra, lnBackgroundType, lnNotification, lnStatusbar;
-    RelativeLayout rlConnect;
+    RelativeLayout rlConnect,status_service;
+    TextView tv_service;
     Button btnTest, btn_ok;
     Context context;
     LinearLayout dragView;
     private int REQUEST_ACCESSIBILITY = 777;
     SharedPreferences pref;
 
+    private boolean img_turnserviceShown = true;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +147,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lnNotification = findViewById(R.id.lnNotification);
         lnStatusbar = findViewById(R.id.lnStatusbar);
         lnBackgroundType = findViewById(R.id.lnBackgroundType);
+        img_turnservice = findViewById(R.id.img_turnservice);
+        status_service = findViewById(R.id.status_service);
+        tv_service = findViewById(R.id.tv_service);
+
+        img_turnservice.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @SuppressLint({"ResourceAsColor", "Range"})
+            @Override
+            public void onClick(View v) {
+                if ((img_turnservice != null) && (img_turnserviceShown)){
+                    img_turnservice.setImageResource(R.drawable.ic_switch_on);
+                    img_turnserviceShown = false;
+                    status_service.setBackgroundResource(R.drawable.bg_service);
+                    tv_service.setTextColor(getColor(R.color.white));
+                    startActivity(new Intent(MainActivity.this, PermissionRequired.class));
+                }
+                else {
+                    if (img_turnservice != null) img_turnservice.setImageResource(R.drawable.ic_switch_off);
+                    img_turnserviceShown = true;
+                    status_service.setBackgroundResource(R.drawable.bg_cardview1);
+                    tv_service.setTextColor(getColor(R.color.black));
+                }
+            }
+        });
         lnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -369,7 +400,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             askForPermission(android.Manifest.permission.WRITE_SETTINGS, 1);
         }
-
     }
 
     private void askForPermission(String permission, Integer requestCode) {
