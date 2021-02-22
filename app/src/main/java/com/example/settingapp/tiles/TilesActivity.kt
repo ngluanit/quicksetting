@@ -63,7 +63,7 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
             R.drawable.ic_sync,
             R.drawable.ic_location_icon,
             R.drawable.ic_auto_rotate,
-            R.drawable.ic_disturb,
+            R.drawable.ic_minus_circle_outline,
             R.drawable.ic_torch_icon,
             R.drawable.ic_nfc)
         val text1= listOf("Wi-Fi","Mobile data","Bluetooth","Sync","Location","Auto-rotate","Do not disturb","Torch","NFC")

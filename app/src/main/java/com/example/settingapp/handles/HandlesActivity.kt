@@ -5,8 +5,10 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.miui_ify.MainActivity
 import com.example.settingapp.R
 import kotlinx.android.synthetic.main.activity_colors.*
@@ -29,11 +31,11 @@ class HandlesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_handles)
-        val window = window
+        val window: Window = this.getWindow()
         getWindow().decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR //  set status text dark
 
-//        getWindow().statusBarColor = Color.parseColor("#fff") // set status background white
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
 
         imgTurnFullleght.setOnClickListener {
             if ((imgTurnFullleght != null) && (imgTurnFullleghtShown)){

@@ -14,20 +14,13 @@
         android:layout_height="wrap_content"
         android:textColor="#FF3333"
         android:textSize="@dimen/_14sdp"
-        android:layout_centerHorizontal="true"
-        android:text="Image method"/>
-    <TextView
-        android:id="@+id/tvDes"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:textSize="@dimen/_12sdp"
-        android:text="@string/select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data"/>
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="Quick expand panel"/>
+
     <RelativeLayout
         android:id="@+id/rlNormal"
-        android:layout_below="@+id/tvDes"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -36,64 +29,77 @@
             android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_on"/>
         <TextView
-            android:text="@string/normal"
+            android:text="None"
             android:id="@+id/tvNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/radio_normal"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rladb"
-        android:layout_below="@+id/rlNormal"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/radio_ADB"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_radio_off"/>
-        <TextView
-            android:id="@+id/tvadb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/radio_ADB"
-            android:text="@string/adb_root"
-            android:textSize="14sp"
+            android:textSize="@dimen/_12sdp"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_below="@+id/rladb"
+        android:id="@+id/rlLeft"
+        android:layout_below="@+id/rlNormal"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/radio_left"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_radio_off"/>
+        <TextView
+            android:id="@+id/tvleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/radio_left"
+            android:text="Left"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rlright"
+        android:layout_below="@+id/rlLeft"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/radio_right"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_radio_off"/>
+        <TextView
+            android:id="@+id/tvright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/radio_right"
+            android:text="Right"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/rlright"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_10sdp">
 
         <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn_line"
-            android:text="Cancel"
-            android:textSize="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_15sdp"
-            android:textColor="@color/text_primary"/>
-        <Button
             android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:background="@drawable/bg_primary"
-            android:text="OK"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:text="cancel"
+            android:fontFamily="@font/robotolight"
             android:textSize="@dimen/_10sdp"
-            android:layout_toRightOf="@+id/btn_cancel"
-            android:layout_marginLeft="@dimen/_15sdp"
             android:textColor="@color/white"/>
 
     </RelativeLayout>

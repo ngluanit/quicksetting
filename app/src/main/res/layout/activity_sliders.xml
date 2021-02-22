@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlTop"
-        android:text=""
+        android:text="Brightness"
         android:textSize="@dimen/_14sdp"
         android:textColor="@color/red"
         android:layout_marginStart="@dimen/_70sdp"
@@ -96,7 +96,7 @@
         android:layout_below="@id/line1"
         android:text="Volume"
         android:textSize="@dimen/_14sdp"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/red"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginLeft="@dimen/_70sdp"/>
     <RelativeLayout
@@ -178,7 +178,7 @@
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:padding="@dimen/_2sdp"
-            android:src="@drawable/ic_phone"/>
+            android:src="@drawable/ic_ring_volume"/>
         <TextView
             android:id="@+id/tvRing"
             android:layout_width="wrap_content"

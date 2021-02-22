@@ -3,9 +3,7 @@ package com.example.miui_ify;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -13,35 +11,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import android.Manifest;
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.ColorStateListDrawable;
-import android.hardware.Camera;
 import android.media.AudioManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.provider.SyncStateContract;
-import android.provider.UserDictionary;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -66,17 +50,9 @@ import com.example.settingapp.required.PermissionRequired;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
-import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
-
-import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
-import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
-import static android.hardware.camera2.CameraMetadata.FLASH_MODE_TORCH;
-import static android.provider.SyncStateContract.Columns.ACCOUNT_TYPE;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
