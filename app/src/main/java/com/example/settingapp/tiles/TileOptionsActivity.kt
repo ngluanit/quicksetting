@@ -1,6 +1,5 @@
 package com.example.settingapp.tiles
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
@@ -33,30 +32,47 @@ class TileOptionsActivity : AppCompatActivity() {
         rlScreen.setOnClickListener {
             showDialog(this)
         }
-//        val items = arrayOf("1", "2", "three")
-//        val items2 = arrayOf("1", "2", "three","4")
-//        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-//            this, android.R.layout.simple_spinner_dropdown_item, items)
-//        val adapter2: ArrayAdapter<String> = ArrayAdapter<String>(
-//            this, android.R.layout.simple_spinner_dropdown_item, items2)
+        rlNightmode.setOnClickListener {
+            showDialog1(this)
+        }
+
     }
+
+    private fun showDialog1(tileOptionsActivity: TileOptionsActivity) {
+        val dialog = Dialog(tileOptionsActivity!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_nightmode)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//        dialog.btn_cancel.setOnClickListener {
+//            dialog.dismiss()
+//        }
+        dialog.show()
+
+    }
+
+    @Suppress("LocalVariableName")
     fun showDialog(activity: Activity?) {
         val dialog = Dialog(activity!!)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_tile_timeout)
+        val spinner_timeout: Spinner = dialog.findViewById<View>(R.id.spinner_timeout) as Spinner
+        val spinner_second: Spinner = dialog.findViewById<View>(R.id.spinner_second) as Spinner
+        val spinner_third: Spinner = dialog.findViewById<View>(R.id.spinner_third) as Spinner
 
-        val items = arrayOf("1", "2", "three")
-        var spinner_timeout: Spinner
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            items
-        )
+        val items = arrayOf("15 seconds", "30 seconds", "1 minute","2 minutes","5 minutes","10 minutes","30 minutes")
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items)
+        val adapter2: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items)
+        val adapter3: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items)
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner_timeout = findViewById(R.id.spinner_timeout)
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
         spinner_timeout.adapter = adapter
+        spinner_second.adapter = adapter
+        spinner_third.adapter = adapter
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 //        dialog.btn_cancel.setOnClickListener {
 //            dialog.dismiss()

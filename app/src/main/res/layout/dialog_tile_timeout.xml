@@ -37,12 +37,11 @@
         android:layout_below="@+id/rl_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginVertical="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_50sdp" >
+        android:layout_marginHorizontal="@dimen/_20sdp" >
         <TextView
             android:id="@+id/tv1"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
             android:text="First:"
             android:textColor="@color/black"
@@ -54,7 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv1"
             android:spinnerMode="dropdown"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
     </RelativeLayout>
@@ -64,12 +62,11 @@
         android:layout_below="@+id/rl_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginVertical="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_50sdp" >
+        android:layout_marginHorizontal="@dimen/_20sdp" >
         <TextView
             android:id="@+id/tv2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
             android:text="Second:"
             android:textColor="@color/black"
@@ -81,8 +78,54 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tv2"
             android:spinnerMode="dropdown"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_third"
+        android:layout_below="@+id/rl_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp" >
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="wrap_content"
+            android:text="Third:"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"/>
+
+        <Spinner
+            android:id="@+id/spinner_third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv3"
+            android:spinnerMode="dropdown"
+            android:layout_marginLeft="@dimen/_10sdp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_15sdp">
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_line"
+                android:text="ok"
+                android:textSize="14sp"
+                android:paddingHorizontal="@dimen/_40sdp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/text_primary"/>
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
