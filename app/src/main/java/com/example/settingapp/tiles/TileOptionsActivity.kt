@@ -17,6 +17,7 @@ import com.example.settingapp.R
 import kotlinx.android.synthetic.main.activity_tile_options.*
 import kotlinx.android.synthetic.main.dialog_tile_timeout.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
+import kotlinx.android.synthetic.main.dialog_tile_timeout.btn_ok as btn_ok1
 
 class TileOptionsActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -35,6 +36,22 @@ class TileOptionsActivity : AppCompatActivity() {
         rlNightmode.setOnClickListener {
             showDialog1(this)
         }
+        rlMusic_player.setOnClickListener {
+            showDialogMusic(this)
+        }
+
+    }
+
+    private fun showDialogMusic(tileOptionsActivity: TileOptionsActivity) {
+        val dialog = Dialog(tileOptionsActivity!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_music_player)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.btn_cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
 
     }
 
@@ -44,9 +61,9 @@ class TileOptionsActivity : AppCompatActivity() {
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_nightmode)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog.btn_cancel.setOnClickListener {
-//            dialog.dismiss()
-//        }
+        dialog.btn_ok.setOnClickListener {
+            dialog.dismiss()
+        }
         dialog.show()
 
     }

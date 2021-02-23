@@ -36,6 +36,7 @@
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
             android:text="Tiles"
+            android:fontFamily="@font/robotolight"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
         <ImageView
@@ -176,6 +177,7 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <RelativeLayout
+                android:id="@+id/rl_Url"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_text"
@@ -193,6 +195,7 @@
                     android:text="@string/url"/>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/rl_app"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_text"

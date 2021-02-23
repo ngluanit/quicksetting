@@ -7,17 +7,17 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.settingapp.R
-import com.example.settingapp.tilestyle.TileStyleAdapter
 import kotlinx.android.synthetic.main.activity_tile_styles.*
 import kotlinx.android.synthetic.main.activity_tiles.*
 import kotlinx.android.synthetic.main.activity_tiles.imgBack
@@ -57,7 +57,14 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         rlSelectIcon.setOnClickListener {
             showDialog1(this)
         }
-        val posts = listOf(R.drawable.ic_wifi_icon,
+        rl_Url.setOnClickListener {
+            showDialogURL(this)
+        }
+        rl_app.setOnClickListener {
+            showDialogApp(this)
+        }
+        val posts = listOf(
+            R.drawable.ic_wifi_icon,
             R.drawable.ic_mobile_data,
             R.drawable.ic_bluetooth_activity,
             R.drawable.ic_sync,
@@ -65,8 +72,19 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
             R.drawable.ic_auto_rotate,
             R.drawable.ic_minus_circle_outline,
             R.drawable.ic_torch_icon,
-            R.drawable.ic_nfc)
-        val text1= listOf("Wi-Fi","Mobile data","Bluetooth","Sync","Location","Auto-rotate","Do not disturb","Torch","NFC")
+            R.drawable.ic_nfc
+        )
+        val text1= listOf(
+            "Wi-Fi",
+            "Mobile data",
+            "Bluetooth",
+            "Sync",
+            "Location",
+            "Auto-rotate",
+            "Do not disturb",
+            "Torch",
+            "NFC"
+        )
         rcvInActive.setLayoutManager(GridLayoutManager(this, 4))
         rcvActive.setLayoutManager(GridLayoutManager(this, 4))
         for (i in 0..7){
@@ -86,6 +104,41 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_img_tiles)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.btn_cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
+    }
+    private fun showDialogURL(tilesActivity: TilesActivity) {
+        val dialog = Dialog(tilesActivity!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_url)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.btn_cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
+    }
+    private fun showDialogApp(tilesActivity: TilesActivity) {
+        val dialog = Dialog(tilesActivity!!)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_app_tiles)
+        val rcv_app: RecyclerView = dialog.findViewById<View>(R.id.rcv_app) as RecyclerView
+        var adapter: ItemAppAdapter
+        var itemarraylist: ArrayList<ItemApp> = ArrayList()
+        adapter = ItemAppAdapter(this, ArrayList(itemarraylist))
+        itemarraylist.add(ItemApp("album", R.drawable.ic_gradient1))
+        itemarraylist.add(ItemApp("e an com chua", R.drawable.ic_gradient1))
+        itemarraylist.add(ItemApp("ahihi", R.drawable.ic_gradient1))
+        itemarraylist.add(ItemApp("aaaaa", R.drawable.ic_gradient1))
+        itemarraylist.add(ItemApp("bbbbbbbb", R.drawable.ic_gradient1))
+        rcv_app.adapter = adapter;
+        adapter!!.notifyDataSetChanged()
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.btn_cancel.setOnClickListener {
             dialog.dismiss()
@@ -130,3 +183,5 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         iconNotiAdapter!!.notifyDataSetChanged()
     }
 }
+
+

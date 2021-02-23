@@ -12,100 +12,75 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FF3333"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/_16sdp"
-        android:layout_marginHorizontal="@dimen/_20sdp"
         android:fontFamily="@font/robotolight"
-        android:text="Quick expand panel"/>
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="Select music player"/>
 
     <RelativeLayout
-        android:id="@+id/rlNormal"
+        android:id="@+id/rlDefault"
         android:layout_below="@+id/tvTitle"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/radio_normal"
+            android:id="@+id/radio_Default"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_on"/>
-
         <TextView
-            android:id="@+id/tvNormal"
+            android:text="Default / Other"
+            android:id="@+id/tv_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_toRightOf="@id/radio_normal"
-            android:text="None"
-            android:textColor="@color/black"
+            android:layout_toRightOf="@id/radio_Default"
             android:textSize="@dimen/_14sdp"
-            android:fontFamily="@font/robotolight"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rlLeft"
-        android:layout_below="@+id/rlNormal"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/radio_left"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_radio_off"/>
-        <TextView
-            android:id="@+id/tvleft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/radio_left"
-            android:text="Left"
-            android:textSize="@dimen/_14sdp"
-            android:fontFamily="@font/robotolight"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rlright"
-        android:layout_below="@+id/rlLeft"
+        android:id="@+id/rlSpotify"
+        android:layout_below="@+id/rlDefault"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/radio_right"
+            android:id="@+id/radio_spotify"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_off"/>
         <TextView
-            android:id="@+id/tvright"
+            android:id="@+id/tvspotify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/radio_right"
-            android:text="Right"
+            android:layout_toRightOf="@id/radio_spotify"
+            android:text="Spotify"
             android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_15sdp"
-            android:fontFamily="@font/robotolight"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_below="@+id/rlright"
+        android:layout_below="@+id/rlSpotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_10sdp">
 
         <Button
-            android:id="@+id/btn_ok"
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/bg_primary"
+            android:background="@drawable/bg_btn_line"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_20sdp"
             android:text="cancel"
+            android:paddingHorizontal="@dimen/_20sdp"
             android:fontFamily="@font/robotolight"
             android:textSize="@dimen/_15sdp"
-            android:paddingHorizontal="@dimen/_20sdp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/text_primary"/>
 
     </RelativeLayout>
 </RelativeLayout>
