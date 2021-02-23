@@ -40,10 +40,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     testImplementation 'junit:junit:4.+'
-   // implementation project(':libraryslide')
-    implementation 'com.sothree.slidinguppanel:library:3.4.0'
-
+    implementation project(':libraryslide')
+    implementation "com.github.mancj:SlideUp-Android:2.2.8"
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'ru.ztrap:RxSlideUp2:2.0.1' //optional, for reactive listeners based on RxJava-2
+    //implementation 'com.sothree.slidinguppanel:library:3.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'

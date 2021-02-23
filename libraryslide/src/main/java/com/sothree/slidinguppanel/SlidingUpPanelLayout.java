@@ -739,15 +739,25 @@ public class SlidingUpPanelLayout extends ViewGroup {
         }
 
         mMainView = getChildAt(0);
+//        mMainView.setFocusable(false);
+//        mMainView.setClickable(false);
+//        mMainView.setOnClickListener(null);
+     //   mMainView.setEnabled(false);
+        mMainView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("111122224323/");
+            }
+        });
         mSlideableView = getChildAt(1);
         if (mDragView == null) {
             setDragView(mSlideableView);
         }
-
         // If the sliding panel is not visible, then put the whole view in the hidden state
         if (mSlideableView.getVisibility() != VISIBLE) {
             mSlideState = PanelState.HIDDEN;
         }
+
 
         int layoutHeight = heightSize - getPaddingTop() - getPaddingBottom();
         int layoutWidth = widthSize - getPaddingLeft() - getPaddingRight();
@@ -768,11 +778,8 @@ public class SlidingUpPanelLayout extends ViewGroup {
                 if (!mOverlayContent && mSlideState != PanelState.HIDDEN) {
                     height -= mPanelHeight;
                 }
-
                 width -= lp.leftMargin + lp.rightMargin;
             } else if (child == mSlideableView) {
-                // The slideable view should be aware of its top margin.
-                // See https://github.com/umano/AndroidSlidingUpPanel/issues/412.
                 height -= lp.topMargin;
             }
 
@@ -784,7 +791,6 @@ public class SlidingUpPanelLayout extends ViewGroup {
             } else {
                 childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, MeasureSpec.EXACTLY);
             }
-
             int childHeightSpec;
             if (lp.height == LayoutParams.WRAP_CONTENT) {
                 childHeightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.AT_MOST);
@@ -908,10 +914,18 @@ public class SlidingUpPanelLayout extends ViewGroup {
             }
 
             case MotionEvent.ACTION_MOVE: {
+
                 if (ady > dragSlop && adx > ady) {
                     mDragHelper.cancel();
                     mIsUnableToDrag = true;
                     return false;
+                }
+                if (ady <= dragSlop
+                        && adx <= dragSlop
+                        && mSlideOffset >=0 && !isViewUnder(mSlideableView, (int) mInitialMotionX, (int) mInitialMotionY) && mFadeOnClickListener != null) {
+                    playSoundEffect(android.view.SoundEffectConstants.CLICK);
+                    mFadeOnClickListener.onClick(this);
+                    return true;
                 }
                 break;
             }
@@ -921,17 +935,21 @@ public class SlidingUpPanelLayout extends ViewGroup {
                 // If the dragView is still dragging when we get here, we need to call processTouchEvent
                 // so that the view is settled
                 // Added to make scrollable views work (tokudu)
-                if (mDragHelper.isDragging()) {
-                    mDragHelper.processTouchEvent(ev);
-                    return true;
-                }
-                // Check if this was a click on the faded part of the screen, and fire off the listener if there is one.
-                if (ady <= dragSlop
-                        && adx <= dragSlop
-                        && mSlideOffset > 0 && !isViewUnder(mSlideableView, (int) mInitialMotionX, (int) mInitialMotionY) && mFadeOnClickListener != null) {
-                    playSoundEffect(android.view.SoundEffectConstants.CLICK);
-                    mFadeOnClickListener.onClick(this);
-                    return true;
+//                if (mDragHelper.isDragging()) {
+//                    mDragHelper.processTouchEvent(ev);
+//                    return true;
+//                }
+//                // Check if this was a click on the faded part of the screen, and fire off the listener if there is one.
+//                if (ady <= dragSlop
+//                        && adx <= dragSlop
+//                        && mSlideOffset > 0 && !isViewUnder(mSlideableView, (int) mInitialMotionX, (int) mInitialMotionY) && mFadeOnClickListener != null) {
+//                    playSoundEffect(android.view.SoundEffectConstants.CLICK);
+//                    mFadeOnClickListener.onClick(this);
+//                    return true;
+//                }
+                mDragHelper.setDragState(ViewDragHelper.STATE_IDLE);
+                if (mIsScrollableViewHandlingTouch) {
+                    mDragHelper.setDragState(ViewDragHelper.STATE_IDLE);
                 }
                 break;
         }
@@ -940,11 +958,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN &&
-                (getPanelState() == PanelState.EXPANDED || getPanelState() == PanelState.ANCHORED) &&
-                isMainViewTarget(ev)) {
-            setPanelState(PanelState.COLLAPSED);
-        }
+
         if (!isEnabled() || !isTouchEnabled()) {
             return super.onTouchEvent(ev);
         }

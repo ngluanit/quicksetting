@@ -1,5 +1,7 @@
 package com.example.settingapp.required;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.miui_ify.FloatingWindow;
 import com.example.miui_ify.MainActivity;
@@ -219,6 +222,53 @@ public class PermissionRequired extends AppCompatActivity {
             } else {
                 ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.WRITE_SETTINGS}, 123);
             }
+        }
+    }
+    private void openFloatingWindow(Context c) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
+            c.startActivity(new Intent(c, MainActivity.class));
+        } else {
+            askForPermission(android.Manifest.permission.WRITE_SETTINGS, 1);
+        }
+    }
+    private void askForPermission(String permission, Integer requestCode) {
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+            } else {
+                Log.d("TAG", "askForPermission: " + permission);
+                ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+            }
+        } else {
+            Toast.makeText(this, "" + permission + " is already granted.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_ACCESSIBILITY && resultCode == RESULT_OK) {
+            checkDrawOverlayPermission(this);
+        } else if (requestCode == Overlay_REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (Settings.canDrawOverlays(this)) {
+                    openFloatingWindow(this);
+                }
+            } else {
+                openFloatingWindow(this);
+            }
+        } else if (requestCode == 123 && Settings.System.canWrite(this)) {
+            Intent intent = new Intent(this, FloatingWindow.class);
+            this.stopService(intent);
+            this.startService(intent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startActivity(new Intent(this, MainActivity.class));
         }
     }
 }

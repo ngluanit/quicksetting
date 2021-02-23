@@ -10,12 +10,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -33,15 +36,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -51,6 +59,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.settingapp.R;
 import com.example.settingapp.tiles.ItemNotification;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.mancj.slideup.SlideUp;
+import com.mancj.slideup.SlideUpBuilder;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.text.DateFormat;
@@ -67,6 +85,8 @@ import static android.hardware.camera2.CameraMetadata.FLASH_MODE_TORCH;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class FloatingWindow extends Service implements IconSettingAdapter.ItemClick {
 
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 111;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
     private Context mContext;
     private WindowManager mWindowManager;
     private View mView;
@@ -82,11 +102,15 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     ArrayList<Integer> posts = new ArrayList();
     ArrayList<ItemNotification> list = new ArrayList<>();
     RecyclerView rcvIconSetting;
+    SlideUp slideUp;
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+    LocationSettingsRequest mLocationSettingsRequest;
+    LocationRequest mLocationRequest;
 
     @Override
     public void onCreate() {
@@ -119,6 +143,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        //testLayout();
         allAboutLayout(intent);
         moveView();
         return super.onStartCommand(intent, flags, startId);
@@ -140,19 +165,19 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         int width = (int) (metrics.widthPixels * 1f);
         int height = (int) (metrics.heightPixels * 1f);
         mWindowsParams = new WindowManager.LayoutParams(
-                width,
-                height,
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
                 //WindowManager.LayoutParams.WRAP_CONTENT,
                 //WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-                (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+                (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                        WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                //     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                //     | WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW
                 ,
-                //WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-                        | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                        | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, // Not displaying keyboard on bg activity's EditText
-                // WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, //Not work with EditText on keyboard
+
                 PixelFormat.TRANSLUCENT);
         mWindowsParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         //params.x = 0;
@@ -170,18 +195,94 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         return outRect.contains(x, y);
     }
 
+    private void testLayout() {
+        LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView = layoutInflater.inflate(R.layout.bottomsheetlayout, null);
+        LinearLayout lnContainer = mView.findViewById(R.id.dragView);
+        Button btnTest = mView.findViewById(R.id.btnTest);
+        slideUp = new SlideUpBuilder(lnContainer)
+                .withListeners(new SlideUp.Listener.Events() {
+                    @Override
+                    public void onSlide(float percent) {
+
+                    }
+
+                    @Override
+                    public void onVisibilityChanged(int visibility) {
+
+                    }
+                })
+                .withStartGravity(Gravity.BOTTOM)
+                .withLoggingEnabled(true)
+                .withGesturesEnabled(true)
+                .withStartState(SlideUp.State.HIDDEN)
+                .build();
+        btnTest.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                slideUp.show();
+                return false;
+            }
+        });
+        lnContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                slideUp.hide();
+                return false;
+            }
+        });
+//        btnTest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                slideUp.show();
+//            }
+//        });
+    }
 
     private void allAboutLayout(Intent intent) {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.ovelay_window, null);
-        final PopupWindow popupWindow = new PopupWindow(mView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        popupWindow.setOutsideTouchable(false);
-        Button btnClose = (Button) mView.findViewById(R.id.btnClose);
+        mView.setFocusable(false);
+        mView.setClickable(false);
         seekBar = (SeekBar) mView.findViewById(R.id.BrightBar);
         cResolver = getContentResolver();
         BrightnessControl(seekBar);
-        mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
+        View view = mView.findViewById(R.id.view);
+        LinearLayout lnSlide = mView.findViewById(R.id.dragView);
+        slideUp = new SlideUpBuilder(lnSlide)
+                .withListeners(new SlideUp.Listener.Events() {
+                    @Override
+                    public void onSlide(float percent) {
 
+                    }
+
+                    @Override
+                    public void onVisibilityChanged(int visibility) {
+
+                    }
+                })
+                .withStartGravity(Gravity.BOTTOM)
+                .withLoggingEnabled(true)
+                .withGesturesEnabled(true)
+                .withStartState(SlideUp.State.HIDDEN)
+                .build();
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                slideUp.show();
+                view.setVisibility(View.GONE);
+                return false;
+            }
+        });
+        lnSlide.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                slideUp.hide();
+                view.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+        //mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
         TextView tvDate, tvHour;
         rcvIconSetting = mView.findViewById(R.id.rcvIconSetting);
         rcvIconSetting.setLayoutManager(new GridLayoutManager(this, 4));
@@ -189,7 +290,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         int podata = -1;
         int pobluetooth = -1;
         int polocation = -1;
-        int porotetion=-1;
+        int porotetion = -1;
         for (int i = 0; i < text1.size(); i++) {
             if (text1.get(i).contains("Wifi")) {
                 powifi = i;
@@ -199,8 +300,8 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 pobluetooth = i;
             } else if (text1.get(i).contains("Location")) {
                 polocation = i;
-            }else if (text1.get(i).contains("Auto-rotate")){
-                porotetion=i;
+            } else if (text1.get(i).contains("Auto-rotate")) {
+                porotetion = i;
             }
         }
         WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -218,9 +319,9 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         } else {
             list.get(polocation).setImg(R.drawable.ic_location_n);
         }
-        if (getRotationScreenFromSettingsIsEnabled(this)){
+        if (getRotationScreenFromSettingsIsEnabled(this)) {
             list.get(porotetion).setImg(R.drawable.ic_auto_rotate_e);
-        }else {
+        } else {
             list.get(porotetion).setImg(R.drawable.ic_auto_rotate_n);
         }
         WifiManager manager1 = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -229,7 +330,6 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             if (wifiInfo != null) {
                 NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
                 if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
-                    System.out.println("11112222///" + wifiInfo.getSSID());
                     if (wifiEnabled) {
                         if (powifi != -1) {
                             list.get(powifi).setName(wifiInfo.getSSID());
@@ -263,56 +363,58 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 startActivity(new Intent(Settings.ACTION_SETTINGS));
             }
         });
-
         DateFormat df = new SimpleDateFormat("EEE,MMM d");
         String date = df.format(Calendar.getInstance().getTime());
         tvDate.setText(date);
         DateFormat dfhour = new SimpleDateFormat("HH:mm");
         String hour = dfhour.format(Calendar.getInstance().getTime());
         tvHour.setText(hour);
-        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-            @Override
-            public void onPanelSlide(View panel, float slideOffset) {
-                Log.i("TAG", "onPanelSlide, offset " + slideOffset);
-            }
+//        mLayout.setAnchorPoint(0.4f);
+//        mLayout.setClipPanel(true);
+//
+//        mLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
+//            @Override
+//            public void onPanelSlide(View panel, float slideOffset) {
+//                Log.i("TAG", "onPanelSlide, offset " + slideOffset);
+//                if (slideOffset == 0.0f) {
+////                    mView.setClickable(false);
+////                    mView.setFocusable(false);
+////                    mView.setEnabled(false);
+//                }
+//            }
+//
+//            @Override
+//            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
+//                Log.i("TAG", "onPanelSlide, offset ");
+//            }
+//        });
+//        mLayout.setFadeOnClickListener(null);
+//        mLayout.setClickable(false);
+//        mLayout.setFocusable(false);
+//        mLayout.setFadeOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(mContext, "Hello", Toast.LENGTH_SHORT).show();
+//              //  mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+//            }
+//        });
 
-            @Override
-            public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
-                Log.i("TAG", "onPanelSlide, offset ");
-            }
-
-
-        });
-        mLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-            }
-        });
-        mLayout.setFadeOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-            }
-        });
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stopSelf();
-
-                // seekBar.setVisibility(View.VISIBLE);
-            }
-        });
 
     }
 
+    public static void enableDisableView(View view, boolean enabled) {
+        view.setEnabled(enabled);
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+
+            for (int idx = 0; idx < group.getChildCount(); idx++) {
+                enableDisableView(group.getChildAt(idx), enabled);
+            }
+        }
+    }
+
     private void BrightnessControl(SeekBar seekBar) {
-        //Set the seekbar range between 0 and 255
-        //seek bar settings//
-        //sets the range between 0 and 255
         seekBar.setMax(255);
-        //set the seek bar progress to 1
         seekBar.setKeyProgressIncrement(1);
 
         try {
@@ -340,10 +442,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             }
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Set the minimal brightness level
-                //if seek bar is 20 or any value below
                 if (progress <= 20) {
-                    //Set the brightness to 20
                     brightness = 20;
                 } else //brightness is greater than 20
                 {
@@ -358,20 +457,6 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         });
     }
 
-    private void hideKeyboard(Context context, View view) {
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
-    public void showSoftKeyboard(View view) {
-        if (view.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
-        }
-    }
 
     @Override
     public void onItemclick1(int position) {
@@ -419,13 +504,42 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 list.get(position).setImg(R.drawable.ic_bluetooth_n);
                 mBluetoothAdapter.disable();
             }
-        }else if (text1.get(position).contains("Auto-rotate")){
-            if (list.get(position).getImg().equals(R.drawable.ic_auto_rotate_n)){
+        } else if (text1.get(position).contains("Auto-rotate")) {
+            if (list.get(position).getImg().equals(R.drawable.ic_auto_rotate_n)) {
                 list.get(position).setImg(R.drawable.ic_auto_rotate_e);
-                setRotationScreenFromSettings(this,true);
-            }else {
+                setRotationScreenFromSettings(this, true);
+            } else {
                 list.get(position).setImg(R.drawable.ic_auto_rotate_n);
-                setRotationScreenFromSettings(this,false);
+                setRotationScreenFromSettings(this, false);
+            }
+        } else if (text1.get(position).contains("Sync")) {
+            if (list.get(position).getImg().equals(R.drawable.ic_sync_n)) {
+                list.get(position).setImg(R.drawable.ic_sync_e);
+            } else {
+                list.get(position).setImg(R.drawable.ic_sync_n);
+            }
+        } else if (text1.get(position).contains("Do not")) {
+            if (list.get(position).getImg().equals(R.drawable.ic_sync_n)) {
+                list.get(position).setImg(R.drawable.ic_sync_e);
+            } else {
+                list.get(position).setImg(R.drawable.ic_sync_n);
+            }
+        } else if (text1.get(position).contains("Location")) {
+            if (list.get(position).getImg().equals(R.drawable.ic_location_n)) {
+                list.get(position).setImg(R.drawable.ic_location_e);
+//                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                turnGPSOn();
+            } else {
+                list.get(position).setImg(R.drawable.ic_location_n);
+                turnGPSOff();
+            }
+        } else if (text1.get(position).contains("Torch")) {
+            if (list.get(position).getImg().equals(R.drawable.ic_torch_n)) {
+                list.get(position).setImg(R.drawable.ic_torch_e);
+                turnOn();
+            } else {
+                list.get(position).setImg(R.drawable.ic_torch_n);
+                turnOn();
             }
         }
         IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list);
@@ -453,29 +567,66 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         }
     }
 
-    public static void setRotationScreenFromSettings(Context context, boolean enabled)
-    {
-        try
-        {
-            if (Settings.System.getInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION) == 1)
-            {
+    private void turnGPSOn() {
+        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (!provider.contains("gps")) { //if gps is disabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            sendBroadcast(poke);
+        }
+        mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(UPDATE_INTERVAL_IN_MILLISECONDS)
+                .setFastestInterval(UPDATE_INTERVAL_IN_MILLISECONDS / 2);
+        buildLocationSettingsRequest();
+    }
+
+    protected void buildLocationSettingsRequest() {
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+        builder.addLocationRequest(mLocationRequest);
+        mLocationSettingsRequest = builder.build();
+    }
+
+    //
+//    protected void checkLocationSettings() {
+//        PendingResult<LocationSettingsResult> result =
+//                LocationServices.SettingsApi.checkLocationSettings(
+//                        mGoogleApiClient,
+//                        mLocationSettingsRequest
+//                );
+//        result.setResultCallback(this);
+//    }
+    private void turnGPSOff() {
+        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+
+        if (provider.contains("gps")) { //if gps is enabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            sendBroadcast(poke);
+        }
+    }
+
+    public static void setRotationScreenFromSettings(Context context, boolean enabled) {
+        try {
+            if (Settings.System.getInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION) == 1) {
                 Display defaultDisplay = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
                 Settings.System.putInt(context.getContentResolver(), Settings.System.USER_ROTATION, defaultDisplay.getRotation());
                 Settings.System.putInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0);
-            }
-            else
-            {
+            } else {
                 Settings.System.putInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 1);
             }
 
             Settings.System.putInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, enabled ? 1 : 0);
 
-        }
-        catch (Settings.SettingNotFoundException e)
-        {
+        } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
     }
+
     public static boolean getRotationScreenFromSettingsIsEnabled(Context context) {
         int result = 0;
         try {
@@ -485,7 +636,8 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         }
         return result == 1;
     }
-    public void turnFlash(boolean isTurn){
+
+    public void turnFlash(boolean isTurn) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
             String cameraId = null;
@@ -498,5 +650,39 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             }
         }
     }
+
+    Camera camera;
+
+    public void turnOn() {
+        camera = Camera.open();
+        try {
+            Camera.Parameters parameters = camera.getParameters();
+            parameters.setFlashMode(getFlashOnParameter());
+            camera.setParameters(parameters);
+
+            camera.setPreviewTexture(new SurfaceTexture(0));
+
+            camera.startPreview();
+
+        } catch (Exception e) {
+            // We are expecting this to happen on devices that don't support autofocus.
+        }
+    }
+
+    private String getFlashOnParameter() {
+        List<String> flashModes = camera.getParameters().getSupportedFlashModes();
+
+        if (flashModes.contains(FLASH_MODE_TORCH)) {
+            return String.valueOf(FLASH_MODE_TORCH);
+        } else if (flashModes.contains(FLASH_MODE_ON)) {
+            return FLASH_MODE_ON;
+        } else if (flashModes.contains(FLASH_MODE_AUTO)) {
+            return FLASH_MODE_AUTO;
+        }else {
+            return "";
+        }
+    }
 }
+
+
 

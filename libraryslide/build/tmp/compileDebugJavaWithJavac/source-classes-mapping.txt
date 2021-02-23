@@ -4,6 +4,7 @@ com/sothree/slidinguppanel/SlidingUpPanelLayout.java
  com.sothree.slidinguppanel.SlidingUpPanelLayout
  com.sothree.slidinguppanel.SlidingUpPanelLayout$1
  com.sothree.slidinguppanel.SlidingUpPanelLayout$2
+ com.sothree.slidinguppanel.SlidingUpPanelLayout$3
  com.sothree.slidinguppanel.SlidingUpPanelLayout$DragHelperCallback
  com.sothree.slidinguppanel.SlidingUpPanelLayout$LayoutParams
  com.sothree.slidinguppanel.SlidingUpPanelLayout$PanelSlideListener

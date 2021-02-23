@@ -164,25 +164,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @SuppressLint({"ResourceAsColor", "Range"})
             @Override
             public void onClick(View v) {
-                if ((img_turnservice != null) && (img_turnserviceShown)) {
-                    img_turnservice.setImageResource(R.drawable.ic_switch_on);
-                    img_turnserviceShown = false;
-                    status_service.setBackgroundResource(R.drawable.bg_service);
-                    tv_service.setTextColor(getColor(R.color.white));
-                    if (isAccessibilitySettingsOn(MainActivity.this) && Settings.canDrawOverlays(MainActivity.this)) {
-                        Intent intent = new Intent(MainActivity.this, FloatingWindow.class);
-                        stopService(intent);
-                        startService(intent);
-                    } else {
-                        startActivity(new Intent(MainActivity.this, PermissionRequired.class));
-                    }
-                } else {
-                    if (img_turnservice != null)
-                        img_turnservice.setImageResource(R.drawable.ic_switch_off);
-                    img_turnserviceShown = true;
-                    status_service.setBackgroundResource(R.drawable.bg_cardview1);
-                    tv_service.setTextColor(getColor(R.color.black));
-                }
+                acesspermission(getApplicationContext());
+//                if ((img_turnservice != null) && (img_turnserviceShown)) {
+//                    img_turnservice.setImageResource(R.drawable.ic_switch_on);
+//                    img_turnserviceShown = false;
+//                    status_service.setBackgroundResource(R.drawable.bg_service);
+//                    tv_service.setTextColor(getColor(R.color.white));
+//                    if (isAccessibilitySettingsOn(MainActivity.this) && Settings.canDrawOverlays(MainActivity.this)) {
+//                        openFloatingWindow(MainActivity.this);
+//                    } else {
+//                        startActivity(new Intent(MainActivity.this, PermissionRequired.class));
+//                    }
+//
+//                } else {
+//                    if (img_turnservice != null)
+//                        img_turnservice.setImageResource(R.drawable.ic_switch_off);
+//                    img_turnserviceShown = true;
+//                    status_service.setBackgroundResource(R.drawable.bg_cardview1);
+//                    tv_service.setTextColor(getColor(R.color.black));
+//                }
             }
         });
         lnNotification.setOnClickListener(new View.OnClickListener() {
@@ -401,13 +401,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void openFloatingWindow(Context c) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(c, FloatingWindow.class);
-            c.stopService(intent);
-            c.startService(intent);
+    private void openFloatingWindow(Activity c) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            intent.setData(Uri.parse("package:" + context.getPackageName()));
+            startActivityForResult(intent, 123);
+//                Intent intent = new Intent(context, FloatingWindow.class);
+//                context.stopService(intent);
+//                context.startService(intent);
         } else {
-            askForPermission(android.Manifest.permission.WRITE_SETTINGS, 1);
+            ActivityCompat.requestPermissions(c, new String[]{Manifest.permission.WRITE_SETTINGS}, 123);
         }
     }
 
