@@ -10,7 +10,7 @@
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_15sdp">
+        android:layout_margin="@dimen/_10sdp">
 
         <ImageView
             android:id="@+id/imgBack"
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_18sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
             android:text="Advanced settings"
@@ -44,12 +44,12 @@
                android:id="@+id/rllockscreen"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_margin="@dimen/_10sdp">
+               android:layout_marginVertical="@dimen/_5sdp">
 
                <ImageView
                    android:layout_width="@dimen/_24sdp"
                    android:layout_height="@dimen/_24sdp"
-                   android:padding="@dimen/_2sdp"
+                   android:padding="@dimen/_3sdp"
                    android:src="@drawable/ic_lock1"
                    android:layout_centerVertical="true"
                    android:layout_marginLeft="@dimen/_10sdp"/>
@@ -58,8 +58,9 @@
                    android:layout_height="wrap_content"
                    android:text="Show on the lock screen"
                    android:layout_marginHorizontal="@dimen/_50sdp"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:layout_centerVertical="true"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="@color/black"/>
                <ImageView
                    android:id="@+id/img_lock_screen"
@@ -73,8 +74,8 @@
                android:id="@+id/rlVibrate"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_margin="@dimen/_10sdp"
-               android:layout_below="@+id/rllockscreen">
+               android:layout_below="@+id/rllockscreen"
+               android:layout_marginVertical="@dimen/_5sdp">
 
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -89,7 +90,8 @@
                    android:layout_height="wrap_content"
                    android:text="Vibrate on touch"
                    android:layout_marginHorizontal="@dimen/_50sdp"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
+                   android:fontFamily="@font/robotolight"
                    android:layout_centerVertical="true"
                    android:textColor="@color/black"/>
                <ImageView
@@ -104,8 +106,8 @@
                android:id="@+id/rlVibrateDevice"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_margin="@dimen/_10sdp"
-               android:layout_below="@+id/rlVibrate">
+               android:layout_below="@+id/rlVibrate"
+               android:layout_marginVertical="@dimen/_5sdp">
 
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -120,8 +122,9 @@
                    android:layout_height="wrap_content"
                    android:text="Vibrate using device haptic feedback"
                    android:layout_marginHorizontal="@dimen/_50sdp"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:layout_centerVertical="true"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="@color/black"/>
                <ImageView
                    android:id="@+id/img_feedback"
@@ -142,8 +145,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Swipe margin to change brightness"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <TextView
                    android:id="@+id/tvdesc_swipe"
@@ -151,8 +155,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Swipe along the touch area at the bottom of the screen when the panel is collapsed to change brightness"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <ImageView
@@ -178,22 +183,25 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/rlSwipe"
                android:layout_marginVertical="@dimen/_10sdp">
+
                <TextView
                    android:id="@+id/tvSmooth"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:layout_marginHorizontal="@dimen/_50sdp"
                    android:text="@string/smooth_brightness"
-                   android:textSize="@dimen/_16sdp"
                    android:textColor="@color/black"
-                   android:layout_marginHorizontal="@dimen/_50sdp"/>
+                   android:fontFamily="@font/robotolight"
+                   android:textSize="@dimen/_14sdp" />
                <TextView
                    android:id="@+id/tvdesc_smooth"
                    android:layout_below="@+id/tvSmooth"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Enables logarithmic brightness for the brightness sliders"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <ImageView
@@ -224,8 +232,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="@string/open_panel_directly_to_expaned"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <TextView
                    android:id="@+id/tvdesc"
@@ -233,8 +242,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Opening the panel will go directly to the expanded view, skipping the anchored small quick setting columns view"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <ImageView
@@ -265,7 +275,8 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Auto close panel"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <TextView
@@ -274,8 +285,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Close the panel after tapping on a quick setting tile"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <ImageView
@@ -306,8 +318,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Show WIFI network SSID"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <TextView
                    android:id="@+id/tvdesc_showWifi"
@@ -315,9 +328,10 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Show the connected WiFi network name. Requires location permission and location to be enable on Oreo and higher"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -347,8 +361,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Quick expand panel"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <TextView
                    android:id="@+id/tvdesc_quickexpand"
@@ -356,8 +371,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Select a corner to quick expand the panel from when swiping up"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_50sdp"/>
                <ImageView
@@ -366,7 +382,7 @@
                    android:layout_centerVertical="true"
                    android:padding="@dimen/_2sdp"
                    android:layout_marginLeft="@dimen/_10sdp"
-                   android:src="@drawable/ic_wifi"/>
+                   android:src="@drawable/ic_expand"/>
            </RelativeLayout>
        </RelativeLayout>
     </ScrollView>

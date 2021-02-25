@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingStart="@dimen/_20sdp"
+    android:background="@drawable/bg_dialog_base"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:padding="@dimen/_15sdp"
+    android:id="@+id/rlsum"
+    android:elevation="@dimen/_10sdp">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_title"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_night"
+            android:tint="@color/text_primary"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/_16sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:fontFamily="@font/robotolight"
+            android:layout_toRightOf="@+id/img_title"
+            android:text="Night mode"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvDes"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title"
+        android:textSize="@dimen/_13sdp"
+        android:fontFamily="@font/robotolight"
+        android:textColor="@color/black"
+        android:text="Set the night mode screen filter color"/>
+    <RelativeLayout
+        android:id="@+id/rl_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDes"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_40sdp">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter color"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_circle"
+            android:layout_toRightOf="@id/tv1"
+            android:layout_marginLeft="@dimen/_20sdp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:background="@drawable/bg_btn_line"
+            android:text="ok"
+            android:textSize="@dimen/_13sdp"
+            android:paddingHorizontal="@dimen/_40sdp"
+            android:fontFamily="@font/robotolight"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/text_primary" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -3,13 +3,16 @@ package com.example.settingapp.extra;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
@@ -29,6 +32,7 @@ public class ExtraActivity extends AppCompatActivity {
 
     ImageView imgBack;
     ImageView img_lock_screen,img_vibrate,img_feedback,img_swipe,img_smooth,img_open_panel,img_auto_close,img_ssid;
+    RelativeLayout rlQuickExpand;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -49,6 +53,20 @@ public class ExtraActivity extends AppCompatActivity {
         img_open_panel = findViewById(R.id.img_open_panel);
         img_auto_close = findViewById(R.id.img_auto_close);
         img_ssid = findViewById(R.id.img_ssid);
+        rlQuickExpand = findViewById(R.id.rlQuickExpand);
+
+        rlQuickExpand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(ExtraActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(R.layout.dialog_backgroundtype);
+                dialog.show();
+            }
+        });
+
+
 
         img_lock_screen.setOnClickListener(new View.OnClickListener() {
             @Override

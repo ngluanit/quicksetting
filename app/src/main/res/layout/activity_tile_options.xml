@@ -25,11 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_18sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
             android:text="@string/tile_options"
             android:layout_toRightOf="@id/imgBack"
+            android:fontFamily="@font/robotolight"
             android:layout_marginLeft="@dimen/_20sdp" />
 
     </RelativeLayout>
@@ -45,6 +46,7 @@
             android:layout_width="@dimen/_24sdp"
             android:src="@drawable/ic_mobile"
             android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
             android:tint="@color/text_primary"/>
 
         <TextView
@@ -52,10 +54,11 @@
             android:layout_toEndOf="@id/imgScreen"
             android:layout_marginStart="@dimen/_20sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_13sdp"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:text="@string/screen_timeout"
+            android:fontFamily="@font/robotolight"
             android:layout_toRightOf="@id/imgScreen"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
@@ -72,20 +75,23 @@
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:src="@drawable/ic_night"
+            android:padding="@dimen/_2sdp"
             app:tint="@color/text_primary" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_toEndOf="@id/imgNight"
             android:layout_marginStart="@dimen/_20sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_13sdp"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:text="@string/night_mode"
             android:layout_toRightOf="@id/imgNight"
+            android:fontFamily="@font/robotolight"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/rlMusic_player"
         android:layout_below="@id/rlNightmode"
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/_20sdp"
@@ -97,16 +103,18 @@
             android:layout_width="@dimen/_24sdp"
             android:src="@drawable/ic_music"
             android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
             android:tint="@color/text_primary"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_toEndOf="@id/imgMusic"
             android:layout_marginStart="@dimen/_20sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_13sdp"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:text="@string/music_player"
+            android:fontFamily="@font/robotolight"
             android:layout_toRightOf="@id/imgMusic"
             android:layout_marginLeft="@dimen/_20sdp" />
     </RelativeLayout>

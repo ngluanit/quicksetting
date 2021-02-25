@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:text="Show on the lock screen"
                     android:layout_marginHorizontal="@dimen/_50sdp"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black"/>
                 <ImageView
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MIUI notification fix"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <TextView
@@ -151,14 +151,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Attempt to fix notification layout on MIUI"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
-                    android:padding="@dimen/_2sdp"
+                    android:padding="@dimen/_4sdp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/ic_xiaomi"
@@ -199,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/notification_background"
                     android:layout_marginHorizontal="@dimen/_50sdp"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black"/>
                 <ImageView
@@ -227,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dynamic_notification_colors"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <TextView
@@ -236,7 +236,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/notification_colors_will_match_the_app_icon_colors"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -276,7 +276,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/blacklist"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <TextView
@@ -285,7 +285,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/choose_apps_to_hide_notifications_from"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -326,8 +326,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hide_persistent_notifications"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
+                    android:layout_centerVertical="true"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
@@ -365,8 +366,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Only show music notifications"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
+                    android:layout_centerVertical="true"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
                     android:layout_width="@dimen/_24sdp"
@@ -404,7 +406,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Remove spacing between notifications"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
@@ -443,7 +446,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Auto expand notifications"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView
@@ -481,7 +485,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/quick_clear_all_notifications"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <TextView
@@ -490,7 +494,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Show a button in panel footer to clear all notications"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="#7f7f7f"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -529,7 +533,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Auto close after clearing notifications"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/black"
                     android:layout_marginHorizontal="@dimen/_60sdp"/>
                 <ImageView

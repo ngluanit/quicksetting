@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_18sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
             android:text="Bottom Status Bar"
@@ -90,7 +90,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Show bottom status bar"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
@@ -99,7 +99,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Show a status bar at the bottom of the screen "
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -130,7 +130,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Disable top status bar"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
@@ -139,7 +139,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="This option must be disables before uninstalling the app"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -170,7 +170,8 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Show notifications"
-                   android:textSize="@dimen/_16sdp"
+                   android:layout_centerVertical="true"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
@@ -201,7 +202,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="System icons"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
@@ -210,7 +211,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Enable or disable icons in the system icon area"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -235,7 +236,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="@string/blacklist"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
@@ -244,7 +245,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="@string/choose_apps_to_hide_notifications_from"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -277,7 +278,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="@string/hide_while_keyboard_is_open"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
@@ -286,7 +287,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="@string/enable_if_you_are_experiencing_issues_while_the_keyboard_is_open"
-                   android:textSize="@dimen/_14sdp"
+                   android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
@@ -318,7 +319,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Hide in landscape mode"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
@@ -350,8 +351,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Background color"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:layout_centerVertical="true"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -380,8 +382,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Icon color"
-                   android:textSize="@dimen/_16sdp"
+                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:layout_centerVertical="true"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
                    android:layout_width="@dimen/_24sdp"

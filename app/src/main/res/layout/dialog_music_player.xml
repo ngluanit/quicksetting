@@ -12,65 +12,58 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FF3333"
-        android:textSize="@dimen/_14sdp"
-        android:layout_centerHorizontal="true"
-        android:text="Image method"/>
-    <TextView
-        android:id="@+id/tvDes"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:textSize="@dimen/_12sdp"
-        android:text="@string/select_a_method_to_toggle_secure_settings_nsuch_as_mobile_data"/>
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/_16sdp"
+        android:fontFamily="@font/robotolight"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:text="Select music player"/>
+
     <RelativeLayout
-        android:id="@+id/rlNormal"
-        android:layout_below="@+id/tvDes"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/rlDefault"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/radio_normal"
+            android:id="@+id/radio_Default"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_on"/>
         <TextView
-            android:text="@string/normal"
-            android:id="@+id/tvNormal"
+            android:text="Default / Other"
+            android:id="@+id/tv_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/radio_normal"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/rladb"
-        android:layout_below="@+id/rlNormal"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/radio_ADB"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_radio_off"/>
-        <TextView
-            android:id="@+id/tvadb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/radio_ADB"
-            android:text="@string/adb_root"
-            android:textSize="14sp"
+            android:layout_toRightOf="@id/radio_Default"
+            android:textSize="@dimen/_14sdp"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_below="@+id/rladb"
+        android:id="@+id/rlSpotify"
+        android:layout_below="@+id/rlDefault"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/radio_spotify"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_radio_off"/>
+        <TextView
+            android:id="@+id/tvspotify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/radio_spotify"
+            android:text="Spotify"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/rlSpotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -81,20 +74,13 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_30sdp"
             android:background="@drawable/bg_btn_line"
-            android:text="Cancel"
-            android:textSize="@dimen/_10sdp"
-            android:paddingHorizontal="@dimen/_15sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:text="cancel"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:fontFamily="@font/robotolight"
+            android:textSize="@dimen/_15sdp"
             android:textColor="@color/text_primary"/>
-        <Button
-            android:id="@+id/btn_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_30sdp"
-            android:background="@drawable/bg_primary"
-            android:text="OK"
-            android:textSize="@dimen/_10sdp"
-            android:layout_toRightOf="@+id/btn_cancel"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:textColor="@color/white"/>
 
     </RelativeLayout>
 </RelativeLayout>

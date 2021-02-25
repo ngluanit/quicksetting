@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:padding="@dimen/_15sdp"
+    android:id="@+id/rlsum"
     android:elevation="@dimen/_10sdp">
 
     <TextView
@@ -14,46 +15,46 @@
         android:layout_height="wrap_content"
         android:textColor="#FF3333"
         android:textSize="@dimen/_14sdp"
-        android:fontFamily="@font/robotolight"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:text="Select an Icon Pack"/>
+        android:text="System permission required"/>
     <TextView
         android:id="@+id/tvDes"
         android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
-        android:layout_centerHorizontal="true"
-        android:textSize="18sp"
-        android:text="Get icon packs"/>
+        android:textSize="@dimen/_14sdp"
+        android:fontFamily="@font/robotolight"
+        android:text="MIUI-ify need to be able to modify system settings to perform this action."/>
 
     <RelativeLayout
         android:layout_below="@+id/tvDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp">
 
-        <TextView
-            android:id="@+id/tv_default"
+        <Button
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_centerVertical="true"
-            android:text="DEFAULT"/>
-        <RelativeLayout
+            android:background="@drawable/bg_btn_line"
+            android:text="Not now"
+            android:textSize="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_15sdp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/text_primary"/>
+        <Button
+            android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/_15sdp">
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_btn_line"
-                android:text="CANCEL"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"/>
-        </RelativeLayout>
+            android:background="@drawable/bg_primary"
+            android:text="settings"
+            android:textSize="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/btn_cancel"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 </RelativeLayout>
