@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.hardware.Camera;
@@ -39,6 +40,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,8 +51,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarFinalValueListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.example.settingapp.R;
 import com.example.settingapp.tiles.ItemNotification;
+import com.example.settingapp.util.SharePref;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -65,13 +71,18 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.mancj.slideup.SlideUp;
 import com.mancj.slideup.SlideUpBuilder;
+import com.mohammedalaa.seekbar.RangeSeekBarView;
+import com.ramotion.fluidslider.FluidSlider;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.xw.repo.BubbleSeekBar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import app.minimize.com.seek_bar_compat.SeekBarCompat;
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
 import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
@@ -84,7 +95,10 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     private Context mContext;
     private WindowManager mWindowManager;
     private View mView;
-    private SeekBar seekBar;
+    private RangeSeekBarView seekBar,seekbarMedia,seekbarAlarm,seekbarRing,seekbarNotification,seekbarVoiceCall;
+    private RelativeLayout rlBrightBar,rlMediaBar,rlAlarmBar,rlRingBar,rlNotificationBar,rlVoicecallBar;
+    TextView tvDate, tvHour;
+
     //Variable to store brightness value
     private int brightness;
     //Content resolver used as a handle to the system's settings
@@ -103,7 +117,11 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     private CameraManager camManager;
     Activity activity;
     ImageView imgBluetooth,imgPin,imgMang,imgWifi,imgLoca,imgSound,imgRotate;
-
+    int mediaVolume;
+    int alarmVolume;
+    int ringVolume;
+    int notificationVolume;
+    int voicecallVolume;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -111,7 +129,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 
     LocationSettingsRequest mLocationSettingsRequest;
     LocationRequest mLocationRequest;
-
+    AudioManager am;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -138,15 +156,29 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             itemNotification.setName(text1.get(i));
             list.add(itemNotification);
         }
+    am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    mediaVolume=am.getStreamVolume(AudioManager.STREAM_MUSIC);
+    alarmVolume=am.getStreamVolume(AudioManager.STREAM_ALARM);
+    ringVolume=am.getStreamVolume(AudioManager.STREAM_RING);
+    notificationVolume=am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+    voicecallVolume=am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        //testLayout();
-        allAboutLayout(intent);
-        moveView();
-        return super.onStartCommand(intent, flags, startId);
+        if (intent.getAction()!=null&&intent.getAction().equals("startagain")){
+            initRelative();
+            settime();
+            setData();
+            setSeekBar();
+        }else{
+            mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+            //testLayout();
+            allAboutLayout();
+            moveView();
+        }
+
+        return START_STICKY;
     }
 
     @Override
@@ -237,14 +269,13 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 //        });
     }
 
-    private void allAboutLayout(Intent intent) {
+    private void allAboutLayout() {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.ovelay_window, null);
         mView.setFocusable(false);
         mView.setClickable(false);
-        seekBar = (SeekBar) mView.findViewById(R.id.BrightBar);
-        cResolver = getContentResolver();
-        BrightnessControl(seekBar);
+        setSeekBar();
+        initRelative();
         View view = mView.findViewById(R.id.view);
         LinearLayout lnSlide = mView.findViewById(R.id.dragView);
         slideUp = new SlideUpBuilder(lnSlide)
@@ -267,8 +298,14 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
+                Intent intent=new Intent(mContext,FloatingWindow.class);
+                intent.setAction("startagain");
+                startService(intent);
+
                 slideUp.show();
                 view.setVisibility(View.GONE);
+
                 return false;
             }
         });
@@ -280,9 +317,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 return false;
             }
         });
-
         //mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
-        TextView tvDate, tvHour;
         imgBluetooth=mView.findViewById(R.id.imgBluetooth);
         imgPin=mView.findViewById( R.id.imgPin);
         imgMang=mView.findViewById(R.id.imgMang);
@@ -293,87 +328,9 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         imgSound.setVisibility(View.GONE);
         imgLoca.setVisibility(View.GONE);
         imgWifi.setVisibility(View.GONE);
-        imgMang.setVisibility(View.GONE);
         imgRotate.setVisibility(View.GONE);
         rcvIconSetting = mView.findViewById(R.id.rcvIconSetting);
         rcvIconSetting.setLayoutManager(new GridLayoutManager(this, 4));
-        int powifi = -1;
-        int podata = -1;
-        int pobluetooth = -1;
-        int polocation = -1;
-        int porotetion = -1;
-        for (int i = 0; i < text1.size(); i++) {
-            if (text1.get(i).contains("Wifi")) {
-                powifi = i;
-            } else if (text1.get(i).contains("Mobile data")) {
-                podata = i;
-            } else if (text1.get(i).contains("Bluetooth")) {
-                pobluetooth = i;
-            } else if (text1.get(i).contains("Location")) {
-                polocation = i;
-            } else if (text1.get(i).contains("Auto-rotate")) {
-                porotetion = i;
-            }
-        }
-        AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        switch (am.getRingerMode()) {
-            case AudioManager.RINGER_MODE_SILENT:
-                Log.i("MyApp", "Silent mode");
-                break;
-            case AudioManager.RINGER_MODE_VIBRATE:
-                Log.i("MyApp", "Vibrate mode");
-                break;
-            case AudioManager.RINGER_MODE_NORMAL:
-                Log.i("MyApp", "Normal mode");
-                break;
-        }
-        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        boolean wifiEnabled = wifiManager.isWifiEnabled();
-        boolean mobileDataAllowed = Settings.Secure.getInt(getContentResolver(), "mobile_data", 1) == 1;
-        if (mobileDataAllowed && podata != -1) {
-            list.get(podata).setImg(R.drawable.ic_data_e);
-        }
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter.isEnabled()) {
-            list.get(pobluetooth).setImg(R.drawable.ic_bluetooth_e);
-            imgBluetooth.setVisibility(View.VISIBLE);
-        }
-        if (isLocationEnabled(this)) {
-            list.get(polocation).setImg(R.drawable.ic_location_e);
-            imgLoca.setVisibility(View.VISIBLE);
-        } else {
-            list.get(polocation).setImg(R.drawable.ic_location_n);
-        }
-        if (getRotationScreenFromSettingsIsEnabled(this)) {
-            list.get(porotetion).setImg(R.drawable.ic_auto_rotate_e);
-            imgRotate.setVisibility(View.VISIBLE);
-
-        } else {
-            list.get(porotetion).setImg(R.drawable.ic_auto_rotate_n);
-        }
-        WifiManager manager1 = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (manager1.isWifiEnabled()) {
-            WifiInfo wifiInfo = manager1.getConnectionInfo();
-            if (wifiInfo != null) {
-                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
-                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
-                    if (wifiEnabled) {
-                        if (powifi != -1) {
-                            list.get(powifi).setName(wifiInfo.getSSID());
-                            list.get(powifi).setImg(R.drawable.ic_wifi_e);
-                            imgWifi.setVisibility(View.VISIBLE);
-                        }
-                    } else {
-
-                    }
-                }
-            }
-        }
-        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list);
-        iconSettingAdapter.setIClick(this);
-        rcvIconSetting.setAdapter(iconSettingAdapter);
         ImageView imgEdit, imgSetting, imgProfile;
         tvDate = (TextView) mView.findViewById(R.id.tvDate);
         tvHour = (TextView) mView.findViewById(R.id.tvHour);
@@ -393,12 +350,9 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 startActivity(new Intent(Settings.ACTION_SETTINGS));
             }
         });
-        DateFormat df = new SimpleDateFormat("EEE,MMM d");
-        String date = df.format(Calendar.getInstance().getTime());
-        tvDate.setText(date);
-        DateFormat dfhour = new SimpleDateFormat("HH:mm");
-        String hour = dfhour.format(Calendar.getInstance().getTime());
-        tvHour.setText(hour);
+        setData();
+        settime();
+
 //        mLayout.setAnchorPoint(0.4f);
 //        mLayout.setClipPanel(true);
 //
@@ -431,7 +385,205 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 
 
     }
+    public void setData(){
+        int powifi = -1;
+        int podata = -1;
+        int pobluetooth = -1;
+        int polocation = -1;
+        int porotetion = -1;
+        int poamthanh=-1;
+        for (int i = 0; i < text1.size(); i++) {
+            if (text1.get(i).contains("Wifi")) {
+                powifi = i;
+            } else if (text1.get(i).contains("Mobile data")) {
+                podata = i;
+            } else if (text1.get(i).contains("Bluetooth")) {
+                pobluetooth = i;
+            } else if (text1.get(i).contains("Location")) {
+                polocation = i;
+            } else if (text1.get(i).contains("Auto-rotate")) {
+                porotetion = i;
+            }else if (text1.get(i).contains("Do not")){
+                poamthanh=i;
+            }
+        }
 
+        imgSound.setVisibility(View.VISIBLE);
+        switch (am.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                Log.i("MyApp", "Silent mode");
+                list.get(poamthanh).setImg(R.drawable.ic_disturb_n);
+                list.get(poamthanh).setName("Slient");
+                imgSound.setImageResource(R.drawable.ic_im_lang_c);
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                Log.i("MyApp", "Vibrate mode");
+                list.get(poamthanh).setImg(R.drawable.ic_disturb_rung);
+                list.get(poamthanh).setName("Vibrate");
+                imgSound.setImageResource(R.drawable.ic_rung_c);
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                Log.i("MyApp", "Normal mode");
+                list.get(poamthanh).setImg(R.drawable.ic_disturb_e);
+                list.get(poamthanh).setName("Sound");
+                imgSound.setImageResource(R.drawable.ic_am_thanh_c);
+                break;
+        }
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        boolean wifiEnabled = wifiManager.isWifiEnabled();
+        boolean mobileDataAllowed = Settings.Secure.getInt(getContentResolver(), "mobile_data", 1) == 1;
+        if (mobileDataAllowed && podata != -1) {
+            list.get(podata).setImg(R.drawable.ic_data_e);
+        }else {
+            list.get(podata).setImg(R.drawable.ic_data_n);
+        }
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter.isEnabled()) {
+            list.get(pobluetooth).setImg(R.drawable.ic_bluetooth_e);
+            imgBluetooth.setVisibility(View.VISIBLE);
+        }else {
+            list.get(pobluetooth).setImg(R.drawable.ic_bluetooth_n);
+            imgBluetooth.setVisibility(View.GONE);
+        }
+        if (isLocationEnabled(this)) {
+            list.get(polocation).setImg(R.drawable.ic_location_e);
+            imgLoca.setVisibility(View.VISIBLE);
+        } else {
+            list.get(polocation).setImg(R.drawable.ic_location_n);
+            imgLoca.setVisibility(View.GONE);
+        }
+        if (getRotationScreenFromSettingsIsEnabled(this)) {
+            list.get(porotetion).setImg(R.drawable.ic_auto_rotate_e);
+            imgRotate.setVisibility(View.VISIBLE);
+        } else {
+            list.get(porotetion).setImg(R.drawable.ic_auto_rotate_n);
+            imgRotate.setVisibility(View.GONE);
+        }
+        WifiManager manager1 = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (manager1.isWifiEnabled()) {
+            WifiInfo wifiInfo = manager1.getConnectionInfo();
+            if (wifiInfo != null) {
+                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
+                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR) {
+                    if (wifiEnabled) {
+                        if (powifi != -1) {
+                            list.get(powifi).setName(wifiInfo.getSSID());
+                            list.get(powifi).setImg(R.drawable.ic_wifi_e);
+                            imgWifi.setVisibility(View.VISIBLE);
+                        }
+                    } else {
+
+                    }
+                }
+            }
+        }
+        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list);
+        iconSettingAdapter.setIClick(this);
+        rcvIconSetting.setAdapter(iconSettingAdapter);
+    }
+    public void settime(){
+        DateFormat df = new SimpleDateFormat("EEE,MMM d");
+        String date = df.format(Calendar.getInstance().getTime());
+        tvDate.setText(date);
+        DateFormat dfhour = new SimpleDateFormat("HH:mm");
+        String hour = dfhour.format(Calendar.getInstance().getTime());
+        tvHour.setText(hour);
+    }
+public void setSeekBar(){
+    seekBar = (RangeSeekBarView) mView.findViewById(R.id.BrightBar);
+    seekbarAlarm = (RangeSeekBarView) mView.findViewById(R.id.AlarmBar);
+    seekbarMedia = (RangeSeekBarView) mView.findViewById(R.id.MediaBar);
+    seekbarNotification = (RangeSeekBarView) mView.findViewById(R.id.NotificationBar);
+    seekbarRing = (RangeSeekBarView) mView.findViewById(R.id.RingBar);
+    seekbarVoiceCall = (RangeSeekBarView) mView.findViewById(R.id.CallBar);
+    cResolver = getContentResolver();
+    BrightnessControl(seekBar);
+    seekbarAlarm.setProgress(alarmVolume);
+    seekbarVoiceCall.setProgress(voicecallVolume);
+    seekbarRing.setProgress(ringVolume);
+    seekbarNotification.setProgress(notificationVolume);
+    seekbarMedia.setProgress(mediaVolume);
+    seekbarMedia.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            setVolume(progress,AudioManager.STREAM_MUSIC);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    });
+    seekbarNotification.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            setVolume(progress,AudioManager.STREAM_NOTIFICATION);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    });
+    seekbarRing.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            setVolume(progress,AudioManager.STREAM_RING);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    });
+    seekbarVoiceCall.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            setVolume(progress,AudioManager.STREAM_VOICE_CALL);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    });
+    seekbarAlarm.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            setVolume(progress,AudioManager.STREAM_ALARM);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    });
+}
     public static void enableDisableView(View view, boolean enabled) {
         view.setEnabled(enabled);
         if (view instanceof ViewGroup) {
@@ -443,10 +595,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         }
     }
 
-    private void BrightnessControl(SeekBar seekBar) {
-        seekBar.setMax(255);
-        seekBar.setKeyProgressIncrement(1);
-
+    private void BrightnessControl(RangeSeekBarView seekBar) {
         try {
             //Get the current system brightness
             brightness = Settings.System.getInt(cResolver, Settings.System.SCREEN_BRIGHTNESS);
@@ -455,38 +604,77 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             Log.e("Error", "Cannot access system brightness");
             e.printStackTrace();
         }
-
+       // seekBar.setPosition(CrystalSeekbar.Position.RIGHT).apply();
+      //  seekBar.getConfigBuilder().max(255).min(1).build();
         //Set the progress of the seek bar based on the system's brightness
+       // seekBar.setProgress(brightness);
+        seekBar.setMaxValue(255);
+        seekBar.setMinValue(0);
         seekBar.setProgress(brightness);
-
-        //Register OnSeekBarChangeListener, so it can actually change values
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                //Set the system brightness using the brightness variable value
-                Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
-
-            }
-
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //Nothing handled here
-            }
-
+            @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress <= 20) {
                     brightness = 20;
-                } else //brightness is greater than 20
+                } else
                 {
-                    //Set brightness variable based on the progress bar
                     brightness = progress;
                 }
-                //Calculate the brightness percentage
-                float perc = (brightness / (float) 255) * 100;
-                //Set the brightness percentage
-                //  txtPerc.setText((int)perc +" %");
+                System.out.println("122322132213//"+brightness);
+                Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
-    }
 
+
+    }
+    public void initRelative(){
+        rlAlarmBar=mView.findViewById(R.id.rlAlarmBar);
+        rlBrightBar=mView.findViewById(R.id.rlBrightBar);
+        rlMediaBar=mView.findViewById(R.id.rlMediaBar);
+        rlNotificationBar=mView.findViewById(R.id.rlNotificationBar);
+        rlRingBar=mView.findViewById(R.id.rlRingBar);
+        rlVoicecallBar=mView.findViewById(R.id.rlCallBar);
+        if (SharePref.getBooleanPref(this,"brightbar")){
+            rlBrightBar.setVisibility(View.VISIBLE);
+        }else {
+            rlBrightBar.setVisibility(View.GONE);
+        }
+        if (SharePref.getBooleanPref(this,"alarmbar")){
+            rlAlarmBar.setVisibility(View.VISIBLE);
+        }else {
+            rlAlarmBar.setVisibility(View.GONE);
+        }
+        if (SharePref.getBooleanPref(this,"mediabar")){
+            rlMediaBar.setVisibility(View.VISIBLE);
+        }else {
+            rlMediaBar.setVisibility(View.GONE);
+        }
+        if (SharePref.getBooleanPref(this,"notificationbar")){
+            rlNotificationBar.setVisibility(View.VISIBLE);
+        }else {
+            rlNotificationBar.setVisibility(View.GONE);
+        }
+        if (SharePref.getBooleanPref(this,"ringbar")){
+            rlRingBar.setVisibility(View.VISIBLE);
+        }else {
+            rlRingBar.setVisibility(View.GONE);
+        }
+        if (SharePref.getBooleanPref(this,"voicecallbar")){
+            rlVoicecallBar.setVisibility(View.VISIBLE);
+        }else {
+            rlVoicecallBar.setVisibility(View.GONE);
+        }
+    }
 
     @Override
     public void onItemclick1(int position) {
@@ -556,10 +744,24 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 list.get(position).setImg(R.drawable.ic_sync_n);
             }
         } else if (text1.get(position).contains("Do not")) {
-            if (list.get(position).getImg().equals(R.drawable.ic_sync_n)) {
-                list.get(position).setImg(R.drawable.ic_sync_e);
-            } else {
-                list.get(position).setImg(R.drawable.ic_sync_n);
+            if (list.get(position).getImg().equals(R.drawable.ic_disturb_n)) {
+                list.get(position).setImg(R.drawable.ic_disturb_rung);
+                list.get(position).setName("Vibrate");
+                changeRinger(AudioManager.RINGER_MODE_VIBRATE);
+                imgSound.setVisibility(View.VISIBLE);
+                imgSound.setImageResource(R.drawable.ic_rung_c);
+            } else if (list.get(position).getImg().equals(R.drawable.ic_disturb_rung)){
+                list.get(position).setImg(R.drawable.ic_disturb_e);
+                list.get(position).setName("Sound");
+                changeRinger(AudioManager.RINGER_MODE_NORMAL);
+                imgSound.setVisibility(View.VISIBLE);
+                imgSound.setImageResource(R.drawable.ic_am_thanh_c);
+            }else {
+                list.get(position).setImg(R.drawable.ic_disturb_n);
+                list.get(position).setName("Slient");
+                changeRinger(AudioManager.RINGER_MODE_SILENT);
+                imgSound.setVisibility(View.VISIBLE);
+                imgSound.setImageResource(R.drawable.ic_im_lang_c);
             }
         } else if (text1.get(position).contains("Location")) {
             if (list.get(position).getImg().equals(R.drawable.ic_location_n)) {
@@ -821,7 +1023,13 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             return "";
         }
     }
-
+    public void changeRinger(int type){
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        am.setRingerMode(type);
+    }
+    public void setVolume(int value,int type){
+        am.setStreamVolume(type,value,0);
+    }
     @Override
     public void onLocationChanged(@NonNull Location location) {
 

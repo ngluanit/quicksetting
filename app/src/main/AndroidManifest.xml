@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -61,11 +62,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
         <activity android:name=".required.PermissionRequired" />
-
-        <activity android:name=".required.PermissionRequired" />
         <activity android:name=".systemIcons.SystemIcons" />
 
-
+        <receiver android:name="com.example.miui_ify.MyBroadcastreceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
         <service
             android:name=".util.NotifyListener"
             android:label="NotificationService"

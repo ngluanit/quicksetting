@@ -62,6 +62,7 @@ import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
 import com.example.settingapp.util.QSIntentService;
+import com.example.settingapp.util.SharePref;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharePref.setBooleanPref(this,"brightbar",true);
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         SharedPreferences.Editor editor = pref.edit();
         Window window = getWindow();
@@ -115,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String simOperator = manager.getSimOperator();
         String simOperatorName = manager.getSimOperatorName();
         int simState = manager.getSimState();
-        System.out.println("mzmaqmwk3m21112////" + simOperator + "///" + simOperatorName + "///" + simState + "///" + countryiso);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
@@ -154,25 +155,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @SuppressLint({"ResourceAsColor", "Range"})
             @Override
             public void onClick(View v) {
-                acesspermission(getApplicationContext());
-//                if ((img_turnservice != null) && (img_turnserviceShown)) {
-//                    img_turnservice.setImageResource(R.drawable.ic_switch_on);
-//                    img_turnserviceShown = false;
-//                    status_service.setBackgroundResource(R.drawable.bg_service);
-//                    tv_service.setTextColor(getColor(R.color.white));
-//                    if (isAccessibilitySettingsOn(MainActivity.this) && Settings.canDrawOverlays(MainActivity.this)) {
-//                        openFloatingWindow(MainActivity.this);
-//                    } else {
-//                        startActivity(new Intent(MainActivity.this, PermissionRequired.class));
-//                    }
-//
-//                } else {
-//                    if (img_turnservice != null)
-//                        img_turnservice.setImageResource(R.drawable.ic_switch_off);
-//                    img_turnserviceShown = true;
-//                    status_service.setBackgroundResource(R.drawable.bg_cardview1);
-//                    tv_service.setTextColor(getColor(R.color.black));
-//                }
+                if ((img_turnservice != null) && (img_turnserviceShown)) {
+                    img_turnservice.setImageResource(R.drawable.ic_switch_on);
+                    img_turnserviceShown = false;
+                    status_service.setBackgroundResource(R.drawable.bg_service);
+                    tv_service.setTextColor(getColor(R.color.white));
+                    if (isAccessibilitySettingsOn(MainActivity.this) && Settings.canDrawOverlays(MainActivity.this)) {
+                        openFloatingWindow(MainActivity.this);
+                    } else {
+                        startActivity(new Intent(MainActivity.this, PermissionRequired.class));
+                    }
+
+                } else {
+                    if (img_turnservice != null)
+                        img_turnservice.setImageResource(R.drawable.ic_switch_off);
+                    img_turnserviceShown = true;
+                    stopService(new Intent(MainActivity.this,FloatingWindow.class));
+                    status_service.setBackgroundResource(R.drawable.bg_cardview1);
+                    tv_service.setTextColor(getColor(R.color.black));
+                }
             }
         });
         lnNotification.setOnClickListener(new View.OnClickListener() {

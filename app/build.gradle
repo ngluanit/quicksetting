@@ -45,6 +45,12 @@ dependencies {
     implementation project(':libraryslide')
     implementation "com.github.mancj:SlideUp-Android:2.2.8"
     implementation 'com.google.android.gms:play-services-location:15.0.1'
+    compile 'com.minimize.library:seekbar-compat:0.3.0'
+    implementation 'com.ramotion.fluidslider:fluid-slider:0.1.0'
+    implementation 'com.xw.repo:bubbleseekbar:3.20'
+    implementation 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
+    implementation 'com.jemshit:crystal-range-seekbar:1.2.0'
+    implementation 'com.github.Mohammed-Alaa:RangeSeekBar:1.0.1'
 
     implementation 'ru.ztrap:RxSlideUp2:2.0.1' //optional, for reactive listeners based on RxJava-2
     //implementation 'com.sothree.slidinguppanel:library:3.4.0'
