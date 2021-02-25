@@ -1,14 +1,15 @@
 package com.example.settingapp.tiles;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 
 public class ItemApp {
     String tv_itemapp;
-    int img_itemapp;
+    Drawable icon;
 
-    public ItemApp(String tv_itemapp, int img_itemapp) {
+    public ItemApp(String tv_itemapp, Drawable icon) {
         this.tv_itemapp = tv_itemapp;
-        this.img_itemapp = img_itemapp;
+        this.icon = icon;
     }
 
     public String getTv_itemapp() {
@@ -19,11 +20,11 @@ public class ItemApp {
         this.tv_itemapp = tv_itemapp;
     }
 
-    public int getImg_itemapp() {
-        return img_itemapp;
+    public Drawable getIcon() {
+        return icon;
     }
 
-    public void setImg_itemapp(int img_itemapp) {
-        this.img_itemapp = img_itemapp;
+    public void setIcon(Drawable icon) {
+        this.icon = icon;
     }
 }
