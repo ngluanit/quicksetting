@@ -5,15 +5,14 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -26,12 +25,14 @@ import kotlinx.android.synthetic.main.activity_tiles.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
 
 
-
 class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNotiAdapter.ItemClick {
     var list:MutableList<ItemNotification>?=null
     var list1:MutableList<ItemNotification>?=null
     var iconNotiAdapter:IconNotiAdapter?=null
     var iconNotiAdapter1:IconActiveNotiAdapter?=null
+    private fun isSystemPackage(pkgInfo: PackageInfo): Boolean {
+        return pkgInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM !== 0
+    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,38 +137,30 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.dialog_shortcut_tiles)
         val rcv_short_cut: RecyclerView = dialog.findViewById<View>(R.id.rcv_short_cut) as RecyclerView
-        val apps: List<ApplicationInfo> = packageManager.getInstalledApplications(0)
+        val pm = packageManager
+        val packs: List<PackageInfo> = packageManager.getInstalledPackages(0)
         var adapter: ItemAppAdapter
-        var appArrayList: ArrayList<ItemApp> = ArrayList(apps.size)
+        var appArrayList: ArrayList<ItemApp> = ArrayList()
         adapter = ItemAppAdapter(this, appArrayList)
-        rcv_short_cut.layoutManager =  LinearLayoutManager(this);
-        appArrayList.add(ItemApp(applicationInfo.packageName,applicationInfo.icon))
+        for (i in packs.indices) {
+            val p = packs[i]
+            if (!isSystemPackage(p)) {
+                val appName = p.applicationInfo.loadLabel(packageManager).toString()
+                val icon: Drawable = p.applicationInfo.loadIcon(packageManager)
+                appArrayList.add(ItemApp(appName, icon))
+            }
+        }
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rcv_short_cut.setLayoutManager(layoutManager)
         rcv_short_cut.adapter = adapter
+        Log.d("sout111///", adapter.itemCount.toString());
         adapter!!.notifyDataSetChanged()
-
-//        appArrayList.add(ItemApp("album", R.drawable.ic_gradient1))
-//        appArrayList.add(ItemApp("e an com chua", R.drawable.ic_gradient1))
-//        appArrayList.add(ItemApp("ahihi", R.drawable.ic_gradient1))
-//        appArrayList.add(ItemApp("aaaaa", R.drawable.ic_gradient1))
-//        appArrayList.add(ItemApp("bbbbbbbb", R.drawable.ic_gradient1))
-//        rcv_app.adapter = adapter;
-//        adapter!!.notifyDataSetChanged()
-//        val apps: List<ApplicationInfo> = packageManager.getInstalledApplications(0)
-//        val stringsList = arrayOfNulls<String>(apps.size)
-//        val List2 = arrayOfNulls<Int>(apps.size)
-//        var i = 0
-//        for (applicationInfo in apps) {
-//            stringsList[i] = applicationInfo.packageName
-//             i++
-//        }
-//        list_app.setAdapter(ArrayAdapter<Int>(this, android.R.layout.simple_list_item_1,List2))
 
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.btn_cancel.setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
-
     }
     @Suppress("LocalVariableName")
     private fun showDialogApp(tilesActivity: TilesActivity) {
@@ -178,14 +171,20 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         val rcv_app: RecyclerView = dialog.findViewById<View>(R.id.rcv_app) as RecyclerView
         var adapter: ItemAppAdapter
         var appArrayList: ArrayList<ItemApp> = ArrayList()
+        val pm = packageManager
+        val apps = packageManager.getInstalledPackages(0)
         adapter = ItemAppAdapter(this, appArrayList)
-        rcv_app.layoutManager =  LinearLayoutManager(this);
-        appArrayList.add(ItemApp("album", R.drawable.ic_gradient1))
-        appArrayList.add(ItemApp("e an com chua", R.drawable.ic_gradient1))
-        appArrayList.add(ItemApp("ahihi", R.drawable.ic_gradient1))
-        appArrayList.add(ItemApp("aaaaa", R.drawable.ic_gradient1))
-        appArrayList.add(ItemApp("bbbbbbbb", R.drawable.ic_gradient1))
+        for (i in apps.indices) {
+            val p = apps[i]
+            val appName = p.applicationInfo.loadLabel(packageManager).toString()
+            val icon: Drawable = p.applicationInfo.loadIcon(packageManager)
+            appArrayList.add(ItemApp(appName, icon))
+        }
+
         rcv_app.adapter = adapter;
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rcv_app.setLayoutManager(layoutManager)
+        Log.d("sout1118944///", adapter.itemCount.toString());
         adapter!!.notifyDataSetChanged()
 
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -195,7 +194,6 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         dialog.show()
 
     }
-
     fun showDialog(activity: Activity?) {
         val dialog = Dialog(activity!!)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

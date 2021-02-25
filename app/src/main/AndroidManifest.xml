@@ -60,11 +60,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SettingApp">
+        <activity android:name=".listofInstalled.InstalledList"></activity>
         <activity android:name=".required.PermissionRequired" />
-
         <activity android:name=".required.PermissionRequired" />
         <activity android:name=".systemIcons.SystemIcons" />
-
 
         <service
             android:name=".util.NotifyListener"

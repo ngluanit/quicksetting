@@ -33,7 +33,7 @@ public class ItemAppAdapter extends RecyclerView.Adapter<ItemAppAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_itemapp.setText(appArrayList.get(position).getTv_itemapp());
-        holder.img_itemapp.setImageResource(appArrayList.get(position).getImg_itemapp());
+        holder.img_itemapp.setImageDrawable(appArrayList.get(position).getIcon());
 
     }
 
