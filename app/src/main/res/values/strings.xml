@@ -97,4 +97,8 @@
     <string name="quick_clear_all_notifications">Quick clear all notifications</string>
     <string name="hide_while_keyboard_is_open">Hide while keyboard is open</string>
     <string name="enable_if_you_are_experiencing_issues_while_the_keyboard_is_open">Enable if you are experiencing issues while the keyboard is open</string>
+    <string name="service_active">Active</string>
+    <string name="service_inactive">Inactive</string>
+    <string name="tile_label">tile label</string>
+    <string name="tile_name">tile name</string>
 </resources>

@@ -23,7 +23,6 @@
         android:layout_centerHorizontal="true"
         android:background="@color/red"/>
     <LinearLayout
-        android:visibility="gone"
         android:animateLayoutChanges="false"
         android:focusableInTouchMode="false"
         android:gravity="bottom"
@@ -141,12 +140,14 @@
                     android:textSize="@dimen/_6sdp" />
 
                 <ImageView
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:id="@+id/imgPin"
                     android:layout_width="@dimen/_10sdp"
                     android:layout_height="@dimen/_10sdp"
                     android:layout_toEndOf="@id/tvMang"
                     android:layout_toRightOf="@id/tvMang"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/ic_battery_c"
+                    android:layout_marginRight="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/tvMang"
@@ -169,7 +170,7 @@
                     android:layout_marginRight="@dimen/_4sdp"
                     android:layout_toEndOf="@id/imgWifi"
                     android:layout_toRightOf="@id/imgWifi"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/ic_song_c" />
 
                 <ImageView
                     android:id="@+id/imgWifi"
@@ -179,7 +180,7 @@
                     android:layout_marginRight="@dimen/_4sdp"
                     android:layout_toEndOf="@id/imgBluetooth"
                     android:layout_toRightOf="@id/imgBluetooth"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/ic_wifi_c" />
 
                 <ImageView
                     android:id="@+id/imgBluetooth"
@@ -189,7 +190,8 @@
                     android:layout_marginRight="@dimen/_4sdp"
                     android:layout_toEndOf="@id/imgLoca"
                     android:layout_toRightOf="@id/imgLoca"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/ic_bluetooth_c" />
+
 
                 <ImageView
                     android:id="@+id/imgLoca"
@@ -199,7 +201,7 @@
                     android:layout_marginRight="@dimen/_4sdp"
                     android:layout_toEndOf="@id/imgSound"
                     android:layout_toRightOf="@id/imgSound"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/ic_location_c" />
 
                 <ImageView
                     android:id="@+id/imgSound"
@@ -207,7 +209,16 @@
                     android:layout_height="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_4sdp"
                     android:layout_marginRight="@dimen/_4sdp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:layout_toEndOf="@id/imgRotate"
+                    android:layout_toRightOf="@id/imgRotate"
+                    android:src="@drawable/ic_am_thanh_c" />
+                <ImageView
+                    android:id="@+id/imgRotate"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:src="@drawable/ic_rotate_c" />
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>

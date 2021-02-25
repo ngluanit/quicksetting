@@ -1,34 +1,31 @@
 package com.example.miui_ify;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.database.ContentObserver;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.media.AudioManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -39,34 +36,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.settingapp.R;
 import com.example.settingapp.tiles.ItemNotification;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.mancj.slideup.SlideUp;
 import com.mancj.slideup.SlideUpBuilder;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -76,15 +72,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
 import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
 import static android.hardware.camera2.CameraMetadata.FLASH_MODE_TORCH;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class FloatingWindow extends Service implements IconSettingAdapter.ItemClick {
-
+public class FloatingWindow extends Service implements IconSettingAdapter.ItemClick, LocationListener {
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 111;
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
     private Context mContext;
@@ -103,6 +97,12 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     ArrayList<ItemNotification> list = new ArrayList<>();
     RecyclerView rcvIconSetting;
     SlideUp slideUp;
+    Camera camera;
+    private Camera mCamera;
+    private Camera.Parameters parameters;
+    private CameraManager camManager;
+    Activity activity;
+    ImageView imgBluetooth,imgPin,imgMang,imgWifi,imgLoca,imgSound,imgRotate;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -157,9 +157,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         }
         super.onDestroy();
     }
-
     WindowManager.LayoutParams mWindowsParams;
-
     private void moveView() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
         int width = (int) (metrics.widthPixels * 1f);
@@ -282,8 +280,21 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 return false;
             }
         });
+
         //mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
         TextView tvDate, tvHour;
+        imgBluetooth=mView.findViewById(R.id.imgBluetooth);
+        imgPin=mView.findViewById( R.id.imgPin);
+        imgMang=mView.findViewById(R.id.imgMang);
+        imgWifi=mView.findViewById(R.id.imgWifi);
+        imgLoca=mView.findViewById(R.id.imgLoca);
+        imgSound=mView.findViewById(R.id.imgSound);
+        imgRotate=mView.findViewById(R.id.imgRotate);
+        imgSound.setVisibility(View.GONE);
+        imgLoca.setVisibility(View.GONE);
+        imgWifi.setVisibility(View.GONE);
+        imgMang.setVisibility(View.GONE);
+        imgRotate.setVisibility(View.GONE);
         rcvIconSetting = mView.findViewById(R.id.rcvIconSetting);
         rcvIconSetting.setLayoutManager(new GridLayoutManager(this, 4));
         int powifi = -1;
@@ -304,6 +315,20 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 porotetion = i;
             }
         }
+        AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        switch (am.getRingerMode()) {
+            case AudioManager.RINGER_MODE_SILENT:
+                Log.i("MyApp", "Silent mode");
+                break;
+            case AudioManager.RINGER_MODE_VIBRATE:
+                Log.i("MyApp", "Vibrate mode");
+                break;
+            case AudioManager.RINGER_MODE_NORMAL:
+                Log.i("MyApp", "Normal mode");
+                break;
+        }
         WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         boolean wifiEnabled = wifiManager.isWifiEnabled();
         boolean mobileDataAllowed = Settings.Secure.getInt(getContentResolver(), "mobile_data", 1) == 1;
@@ -313,14 +338,18 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter.isEnabled()) {
             list.get(pobluetooth).setImg(R.drawable.ic_bluetooth_e);
+            imgBluetooth.setVisibility(View.VISIBLE);
         }
         if (isLocationEnabled(this)) {
             list.get(polocation).setImg(R.drawable.ic_location_e);
+            imgLoca.setVisibility(View.VISIBLE);
         } else {
             list.get(polocation).setImg(R.drawable.ic_location_n);
         }
         if (getRotationScreenFromSettingsIsEnabled(this)) {
             list.get(porotetion).setImg(R.drawable.ic_auto_rotate_e);
+            imgRotate.setVisibility(View.VISIBLE);
+
         } else {
             list.get(porotetion).setImg(R.drawable.ic_auto_rotate_n);
         }
@@ -334,6 +363,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                         if (powifi != -1) {
                             list.get(powifi).setName(wifiInfo.getSSID());
                             list.get(powifi).setImg(R.drawable.ic_wifi_e);
+                            imgWifi.setVisibility(View.VISIBLE);
                         }
                     } else {
 
@@ -482,9 +512,12 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                     }
                 }
                 list.get(position).setImg(R.drawable.ic_wifi_e);
+                imgWifi.setVisibility(View.VISIBLE);
+
             } else {
                 list.get(position).setImg(R.drawable.ic_wifi_n);
                 list.get(position).setName("Wifi");
+                imgWifi.setVisibility(View.GONE);
                 WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 wifi.setWifiEnabled(false);
             }
@@ -500,17 +533,21 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             if (list.get(position).getImg().equals(R.drawable.ic_bluetooth_n)) {
                 list.get(position).setImg(R.drawable.ic_bluetooth_e);
                 mBluetoothAdapter.enable();
+                imgBluetooth.setVisibility(View.VISIBLE);
             } else {
                 list.get(position).setImg(R.drawable.ic_bluetooth_n);
+                imgBluetooth.setVisibility(View.GONE);
                 mBluetoothAdapter.disable();
             }
         } else if (text1.get(position).contains("Auto-rotate")) {
             if (list.get(position).getImg().equals(R.drawable.ic_auto_rotate_n)) {
                 list.get(position).setImg(R.drawable.ic_auto_rotate_e);
                 setRotationScreenFromSettings(this, true);
+                imgRotate.setVisibility(View.VISIBLE);
             } else {
                 list.get(position).setImg(R.drawable.ic_auto_rotate_n);
                 setRotationScreenFromSettings(this, false);
+                imgRotate.setVisibility(View.GONE);
             }
         } else if (text1.get(position).contains("Sync")) {
             if (list.get(position).getImg().equals(R.drawable.ic_sync_n)) {
@@ -527,19 +564,23 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         } else if (text1.get(position).contains("Location")) {
             if (list.get(position).getImg().equals(R.drawable.ic_location_n)) {
                 list.get(position).setImg(R.drawable.ic_location_e);
+                imgLoca.setVisibility(View.VISIBLE);
 //                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                turnGPSOn();
+             //   displayLocationSettingsRequest(this,activity);
+                //turnlocation(this);
+                //turnGPSOn();
             } else {
                 list.get(position).setImg(R.drawable.ic_location_n);
+                imgLoca.setVisibility(View.GONE);
                 turnGPSOff();
             }
         } else if (text1.get(position).contains("Torch")) {
             if (list.get(position).getImg().equals(R.drawable.ic_torch_n)) {
                 list.get(position).setImg(R.drawable.ic_torch_e);
-                turnOn();
+                turnFlashlightOn();
             } else {
                 list.get(position).setImg(R.drawable.ic_torch_n);
-                turnOn();
+                turnFlashlightOff();
             }
         }
         IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list);
@@ -573,6 +614,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             final Intent poke = new Intent();
             poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
             poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+
             poke.setData(Uri.parse("3"));
             sendBroadcast(poke);
         }
@@ -581,8 +623,96 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 .setInterval(UPDATE_INTERVAL_IN_MILLISECONDS)
                 .setFastestInterval(UPDATE_INTERVAL_IN_MILLISECONDS / 2);
         buildLocationSettingsRequest();
+
     }
 
+    protected GoogleApiClient mGoogleApiClient;
+    protected LocationRequest locationRequest;
+    int REQUEST_CHECK_SETTINGS = 100;
+    protected LocationManager locationManager;
+
+    private void turnlocation(Context context) {
+        LocationRequest request;
+        request=new LocationRequest();
+        request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).setInterval(5000).setFastestInterval(1000);
+
+        LocationSettingsRequest settingsRequest = new LocationSettingsRequest.Builder().addLocationRequest(request).build();
+        LocationServices.getSettingsClient(context)
+                .checkLocationSettings(settingsRequest).addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                Toast.makeText(context, "Dc roi", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            System.out.println("chua chua1111");
+//
+//            return;
+//        }else {
+//            System.out.println("chua chua");
+//        }
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+//        locationRequest = LocationRequest.create();
+//        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//        locationRequest.setInterval(30 * 1000);
+//        locationRequest.setFastestInterval(5 * 1000);
+//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+//                .addLocationRequest(locationRequest);
+//        builder.setAlwaysShow(true);
+
+    }
+    private void displayLocationSettingsRequest(Context context,Activity activity) {
+        GoogleApiClient googleApiClient = new GoogleApiClient.Builder(context)
+                .addApi(LocationServices.API).build();
+        googleApiClient.connect();
+
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(10000 / 2);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
+        builder.setAlwaysShow(true);
+        PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+            @Override
+            public void onResult(LocationSettingsResult result) {
+                final Status status = result.getStatus();
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.SUCCESS:
+                        Log.i("TAG", "All location settings are satisfied.");
+                        break;
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        Log.i("TAG", "Location settings are not satisfied. Show the user a dialog to upgrade location settings ");
+
+                        try {
+                            // Show the dialog by calling startResolutionForResult(), and check the result
+                            // in onActivityResult().
+                            status.startResolutionForResult( activity, REQUEST_CHECK_SETTINGS);
+                        } catch (IntentSender.SendIntentException e) {
+                            Log.i("TAG", "PendingIntent unable to execute request.");
+                        }
+                        break;
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        Log.i("TAG", "Location settings are inadequate, and cannot be fixed here. Dialog not created.");
+                        break;
+                }
+            }
+        });
+    }
     protected void buildLocationSettingsRequest() {
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
         builder.addLocationRequest(mLocationRequest);
@@ -637,38 +767,47 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         return result == 1;
     }
 
-    public void turnFlash(boolean isTurn) {
+    private void turnFlashlightOn() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            String cameraId = null;
             try {
-                cameraId = camManager.getCameraIdList()[0];
-                camManager.setTorchMode(cameraId, isTurn);
+                camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+                String cameraId = null;
+                if (camManager != null) {
+                    cameraId = camManager.getCameraIdList()[0];
+                    camManager.setTorchMode(cameraId, true);
+                }
+            } catch (CameraAccessException e) {
+                Log.e("TAG", e.toString());
+            }
+        } else {
+            mCamera = Camera.open();
+            parameters = mCamera.getParameters();
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            mCamera.setParameters(parameters);
+            mCamera.startPreview();
+        }
+    }
 
+    private void turnFlashlightOff() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                String cameraId;
+                camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+                if (camManager != null) {
+                    cameraId = camManager.getCameraIdList()[0]; // Usually front camera is at 0 position.
+                    camManager.setTorchMode(cameraId, false);
+                }
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
+        } else {
+            mCamera = Camera.open();
+            parameters = mCamera.getParameters();
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            mCamera.setParameters(parameters);
+            mCamera.stopPreview();
         }
     }
-
-    Camera camera;
-
-    public void turnOn() {
-        camera = Camera.open();
-        try {
-            Camera.Parameters parameters = camera.getParameters();
-            parameters.setFlashMode(getFlashOnParameter());
-            camera.setParameters(parameters);
-
-            camera.setPreviewTexture(new SurfaceTexture(0));
-
-            camera.startPreview();
-
-        } catch (Exception e) {
-            // We are expecting this to happen on devices that don't support autofocus.
-        }
-    }
-
     private String getFlashOnParameter() {
         List<String> flashModes = camera.getParameters().getSupportedFlashModes();
 
@@ -681,6 +820,11 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         }else {
             return "";
         }
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+
     }
 }
 

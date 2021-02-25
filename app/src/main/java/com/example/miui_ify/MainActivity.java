@@ -22,10 +22,12 @@ import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -69,8 +71,19 @@ import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
+import com.example.settingapp.util.QSIntentService;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.material.navigation.NavigationView;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
@@ -120,20 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         }
-        AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        switch (am.getRingerMode()) {
-            case AudioManager.RINGER_MODE_SILENT:
-                Log.i("MyApp", "Silent mode");
-                break;
-            case AudioManager.RINGER_MODE_VIBRATE:
-                Log.i("MyApp", "Vibrate mode");
-                break;
-            case AudioManager.RINGER_MODE_NORMAL:
-                Log.i("MyApp", "Normal mode");
-                break;
-        }
+
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
@@ -246,8 +246,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lnColors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
+//                startActivity(intent);
+               // gotoSetting();
+                //displayLocationSettingsRequest(context,MainActivity.this);
+                try {
+
+                   Object service = getSystemService("statusbar");
+                    Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
+
+                    // expands the notification bar into the quick settings mode
+                    // - replace expandSettingsPanel with expandNotificationsPanel
+                    // if you just want the normal notifications panel shown
+                    Method expand = statusBarManager.getMethod("expandSettingsPanel");
+                    expand.invoke(service);
+                    Class<?> statusbarManager = Class.forName("android.app.StatusBarManager");
+                    Method disable = statusbarManager.getMethod("disable", Integer.TYPE); //takes an int
+                    disable.invoke(service, 2);
+                } catch (Exception e) {
+                    // do something else
+                }
             }
         });
         lnTiles.setOnClickListener(new View.OnClickListener() {
@@ -404,13 +422,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void openFloatingWindow(Activity c) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-            intent.setData(Uri.parse("package:" + context.getPackageName()));
+            intent.setData(Uri.parse("package:" + c.getPackageName()));
+
             startActivityForResult(intent, 123);
+            System.out.println("zo day");
 //                Intent intent = new Intent(context, FloatingWindow.class);
 //                context.stopService(intent);
 //                context.startService(intent);
         } else {
             ActivityCompat.requestPermissions(c, new String[]{Manifest.permission.WRITE_SETTINGS}, 123);
+            System.out.println("zo day nua");
         }
     }
 
@@ -451,7 +472,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+    int REQUEST_CHECK_SETTINGS = 100;
+    private void displayLocationSettingsRequest(Context context,Activity activity) {
+        GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API).build();
+        googleApiClient.connect();
 
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(10000 / 2);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
+        builder.setAlwaysShow(true);
+        PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+            @Override
+            public void onResult(LocationSettingsResult result) {
+                final Status status = result.getStatus();
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.SUCCESS:
+                        Log.i("TAG", "All location settings are satisfied.");
+                        break;
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        Log.i("TAG", "Location settings are not satisfied. Show the user a dialog to upgrade location settings ");
+
+                        try {
+                            // Show the dialog by calling startResolutionForResult(), and check the result
+                            // in onActivityResult().
+                            status.startResolutionForResult( activity, REQUEST_CHECK_SETTINGS);
+                        } catch (IntentSender.SendIntentException e) {
+                            Log.i("TAG", "PendingIntent unable to execute request.");
+                        }
+                        break;
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        Log.i("TAG", "Location settings are inadequate, and cannot be fixed here. Dialog not created.");
+                        break;
+                }
+            }
+        });
+    }
+    private void gotoSetting(){
+            Intent panelIntent = new Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY);
+            startActivityForResult(panelIntent, 545);
+
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -476,7 +541,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_ACCESSIBILITY && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_ACCESSIBILITY ) {
             checkDrawOverlayPermission(this);
         } else if (requestCode == Overlay_REQUEST_CODE) {
             if (Build.VERSION.SDK_INT >= 23) {
@@ -490,6 +555,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, FloatingWindow.class);
             this.stopService(intent);
             this.startService(intent);
+        }else if (requestCode==545){
+            Toast.makeText(context, "Hello done", Toast.LENGTH_SHORT).show();
         }
     }
 
