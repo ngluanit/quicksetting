@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.settingapp.R
+import com.example.settingapp.util.SharePref
 import kotlinx.android.synthetic.main.activity_tiles.*
 import kotlinx.android.synthetic.main.dialog_tile_toggle.*
 
@@ -105,6 +106,7 @@ class TilesActivity : AppCompatActivity(),IconNotiAdapter.ItemClick,IconActiveNo
         iconNotiAdapter1= IconActiveNotiAdapter(list1, this)
         rcvInActive.adapter=iconNotiAdapter
         rcvActive.adapter=iconNotiAdapter1
+        SharePref.setIntPref(this,"total_tile",iconNotiAdapter1!!.itemCount)
     }
     private fun showDialog1(tilesActivity: TilesActivity) {
         val dialog = Dialog(tilesActivity!!)

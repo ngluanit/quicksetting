@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
 import com.example.settingapp.systemIcons.SystemIcons;
+import com.example.settingapp.util.SharePref;
 
 public class Layout_Activity extends AppCompatActivity {
 
@@ -56,9 +57,7 @@ public class Layout_Activity extends AppCompatActivity {
         tv_panel_radius = findViewById(R.id.tv_panel_radius);
         tv_panel_padding = findViewById(R.id.tv_panel_padding);
         tv_tilesize = findViewById(R.id.tv_tilesize);
-
         rlsystemicon = findViewById(R.id.rlsystemicon);
-
         imgshow_footer = findViewById(R.id.imgshow_footer);
         imgHideText = findViewById(R.id.imgHideText);
         imgAlarm_footer = findViewById(R.id.imgAlarm_footer);
@@ -155,6 +154,7 @@ public class Layout_Activity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tvnumber_row.setText(""+progress);
+                SharePref.setIntPref(getApplicationContext(),"number_row",progress);
             }
 
             @Override
@@ -172,6 +172,7 @@ public class Layout_Activity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tv_number_columns.setText(""+progress);
+                SharePref.setIntPref(getApplicationContext(),"number_column",progress);
             }
 
             @Override
@@ -189,6 +190,7 @@ public class Layout_Activity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tv_number_small_columns.setText(""+progress);
+                SharePref.setIntPref(getApplicationContext(),"number_small_column",progress);
             }
 
             @Override
@@ -206,6 +208,7 @@ public class Layout_Activity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tv_panel_radius.setText(""+progress);
+                SharePref.setIntPref(getApplicationContext(),"panel_radius",progress);
             }
 
             @Override
@@ -223,6 +226,7 @@ public class Layout_Activity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tv_panel_padding.setText(""+progress);
+                SharePref.setIntPref(getApplicationContext(),"panel_padding",progress);
             }
 
             @Override
@@ -240,6 +244,7 @@ public class Layout_Activity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 tv_tilesize.setText(""+progress);
+                SharePref.setIntPref(getApplicationContext(),"tile_size",progress);
             }
 
             @Override
