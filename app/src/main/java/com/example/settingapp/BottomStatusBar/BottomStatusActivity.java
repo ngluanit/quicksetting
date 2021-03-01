@@ -10,14 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.example.blacklist.BlacklistActivity;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
 
 public class BottomStatusActivity extends AppCompatActivity {
     ImageView imgBack;
     ImageView swich_show_bottom,switch_disable,switch_show_notification,img_show_icon,switch_blacklist,switch_hide_while,switch_hide_landscape;
-
+    RelativeLayout rlblack_list;
     private boolean swich_show_bottomShown= true;
     private boolean switch_disableShown= true;
     private boolean switch_show_notificationShown= true;
@@ -41,8 +43,16 @@ public class BottomStatusActivity extends AppCompatActivity {
         switch_blacklist = findViewById(R.id.switch_blacklist);
         switch_hide_while = findViewById(R.id.switch_hide_while);
         switch_hide_landscape = findViewById(R.id.switch_hide_landscape);
+        rlblack_list = findViewById(R.id.rlblack_list);
         imgBack = findViewById(R.id.imgBack);
 
+
+        rlblack_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BottomStatusActivity.this, BlacklistActivity.class));
+            }
+        });
         swich_show_bottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

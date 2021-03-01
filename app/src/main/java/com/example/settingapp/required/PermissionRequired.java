@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -27,7 +28,10 @@ import android.widget.Toast;
 import com.example.miui_ify.FloatingWindow;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
+import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
+
+import org.jetbrains.annotations.NotNull;
 
 public class PermissionRequired extends AppCompatActivity {
 
@@ -270,5 +274,32 @@ public class PermissionRequired extends AppCompatActivity {
         if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startActivity(new Intent(this, MainActivity.class));
         }
+    }
+
+    public static void youDesirePermissionCode1(@NotNull HandlesActivity context) {
+        boolean permission;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            permission = Settings.System.canWrite(context);
+        } else {
+            permission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
+        }
+        if (permission) {
+            context.startActivity(new Intent(context, HandlesActivity.class));
+            
+
+
+        } else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                intent.setData(Uri.parse("package:" + context.getPackageName()));
+                context.startActivityForResult(intent, 123);
+//                Intent intent = new Intent(context, FloatingWindow.class);
+//                context.stopService(intent);
+//                context.startService(intent);
+            } else {
+                ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.WRITE_SETTINGS}, 123);
+            }
+        }
+
     }
 }

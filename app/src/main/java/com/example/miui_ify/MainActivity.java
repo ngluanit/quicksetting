@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HandlesActivity.class));
+
             }
         });
 
@@ -243,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //displayLocationSettingsRequest(context,MainActivity.this);
                 try {
 
-                   Object service = getSystemService("statusbar");
+                   @SuppressLint("WrongConstant") Object service = getSystemService("statusbar");
                     Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
 
                     // expands the notification bar into the quick settings mode

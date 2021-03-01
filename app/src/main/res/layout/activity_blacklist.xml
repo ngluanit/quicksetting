@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.blacklist.BlacklistActivity">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/robotolight"
+            android:text="Black List"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:id="@+id/img_reload"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_reload"
+            android:layout_toLeftOf="@id/seclect_all"
+            android:layout_marginRight="@dimen/_10sdp"/>
+
+        <ImageView
+            android:id="@+id/seclect_all"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:src="@drawable/ic_check_all"
+            android:tint="@color/black"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_blacklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_below="@id/rlTop"/>
+    
+</RelativeLayout>

@@ -202,6 +202,5 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rlTapOnTheme"
         android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp" />
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
 </RelativeLayout>

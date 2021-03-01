@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_18sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
             android:text="@string/handles"
@@ -93,6 +93,7 @@
                    android:textSize="@dimen/_14sdp"
                    android:id="@+id/tvBlackList"
                    android:layout_height="wrap_content"
+                   android:fontFamily="@font/robotolight"
                    android:text="@string/blacklist"
                    android:layout_toRightOf="@id/imgBlackList"
                    android:layout_marginLeft="@dimen/_20sdp" />
@@ -106,6 +107,7 @@
                    android:layout_marginTop="@dimen/_5sdp"
                    android:layout_height="wrap_content"
                    android:text="@string/choose_apps_to_hide_the_handles_in"
+                   android:fontFamily="@font/robotolight"
                    android:layout_below="@id/tvBlackList"
                    android:layout_toRightOf="@id/imgBlackList"
                    android:layout_marginLeft="@dimen/_20sdp" />
@@ -133,6 +135,7 @@
                    android:id="@+id/tvFullleght"
                    android:layout_height="wrap_content"
                    android:text="Full leght handle icon"
+                   android:fontFamily="@font/robotolight"
                    android:layout_toRightOf="@id/imgFullleght"
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
@@ -169,6 +172,7 @@
                    android:layout_height="wrap_content"
                    android:text="@string/hide_handle_icon"
                    android:layout_toRightOf="@id/imgHideHandle"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
                    android:id="@+id/imgTurnHideHandle"
@@ -200,6 +204,7 @@
                    android:id="@+id/tvHideFullScreen"
                    android:layout_height="wrap_content"
                    android:text="@string/hide_in_fullscreen"
+                   android:fontFamily="@font/robotolight"
                    android:layout_toRightOf="@id/imgHideFullScreen"
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
@@ -233,6 +238,7 @@
                    android:id="@+id/tvHidelandscape"
                    android:layout_height="wrap_content"
                    android:text="@string/hide_in_landscape_mode"
+                   android:fontFamily="@font/robotolight"
                    android:layout_toRightOf="@id/imgHidelandscape"
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
@@ -265,6 +271,7 @@
                    android:id="@+id/tvHideKeyboardOpen"
                    android:layout_height="wrap_content"
                    android:text="@string/hide_while_keyboard_is_open"
+                   android:fontFamily="@font/robotolight"
                    android:layout_toRightOf="@id/imgHideKeyboardOpen"
                    android:layout_marginLeft="@dimen/_20sdp" />
                <ImageView
