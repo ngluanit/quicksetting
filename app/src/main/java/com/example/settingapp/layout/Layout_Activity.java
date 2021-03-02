@@ -1,8 +1,5 @@
 package com.example.settingapp.layout;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -14,6 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
@@ -42,21 +42,31 @@ public class Layout_Activity extends AppCompatActivity {
         Window window = getWindow();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         getWindow().setStatusBarColor(Color.parseColor("#f0f0f0"));// set status background white
-
-
         imgBack = findViewById(R.id.imgBack);
         seekbar_number_rows = findViewById(R.id.seekbar_number_rows);
+        seekbar_number_rows.setProgress(SharePref.getIntPref(this,"number_row"));
         seekbar_number_columns = findViewById(R.id.seekbar_number_columns);
+        seekbar_number_columns.setProgress(SharePref.getIntPref(this,"number_column"));
         seekbar_number_small_columns = findViewById(R.id.seekbar_number_small_columns);
+        seekbar_number_small_columns.setProgress(SharePref.getIntPref(this,"number_small_column"));
         seekbar_panel_radius = findViewById(R.id.seekbar_panel_radius);
+        seekbar_panel_radius.setProgress(SharePref.getIntPref(this,"panel_radius"));
         seekbar_panel_padding = findViewById(R.id.seekbar_panel_padding);
+        seekbar_panel_padding.setProgress(SharePref.getIntPref(this,"panel_padding"));
         seekbar_tilesize = findViewById(R.id.seekbar_tilesize);
+        seekbar_tilesize.setProgress(SharePref.getIntPref(this,"tile_size"));
         tvnumber_row = findViewById(R.id.tv_number_row);
+        tvnumber_row.setText(String.valueOf(SharePref.getIntPref(this,"number_row")));
         tv_number_columns = findViewById(R.id.tv_number_columns);
+        tv_number_columns.setText(String.valueOf(SharePref.getIntPref(this,"number_column")));
         tv_number_small_columns = findViewById(R.id.tv_number_small_columns);
+        tv_number_small_columns.setText(String.valueOf(SharePref.getIntPref(this,"number_small_column")));
         tv_panel_radius = findViewById(R.id.tv_panel_radius);
+        tv_panel_radius.setText(String.valueOf(SharePref.getIntPref(this,"panel_radius")));
         tv_panel_padding = findViewById(R.id.tv_panel_padding);
+        tv_panel_padding.setText(String.valueOf(SharePref.getIntPref(this,"panel_padding")));
         tv_tilesize = findViewById(R.id.tv_tilesize);
+        tv_tilesize.setText(String.valueOf(SharePref.getIntPref(this,"tile_size")));
         rlsystemicon = findViewById(R.id.rlsystemicon);
         imgshow_footer = findViewById(R.id.imgshow_footer);
         imgHideText = findViewById(R.id.imgHideText);
@@ -159,13 +169,11 @@ public class Layout_Activity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(Layout_Activity.this, "start", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(Layout_Activity.this, "stop", Toast.LENGTH_SHORT).show();
             }
         });
         seekbar_number_columns.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -177,13 +185,11 @@ public class Layout_Activity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(Layout_Activity.this, "start", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(Layout_Activity.this, "stop", Toast.LENGTH_SHORT).show();
             }
         });
         seekbar_number_small_columns.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -60,6 +60,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="com.example.miui_ify.SettingApplicaiton"
         android:theme="@style/Theme.SettingApp">
         <activity android:name="com.example.miui_ify.IconSettingFragment"></activity>
         <activity android:name=".listofInstalled.InstalledList" />
@@ -120,6 +121,11 @@
             android:exported="true"
             android:permission="android.permission.SYSTEM_ALERT_WINDOW"
             android:theme="@style/Theme.OverLay" />
+        <receiver android:name="com.example.miui_ify.ScreenReceiver">
+        <intent-filter>
+            <action android:name="android.intent.action.SCREEN_OFF"/>
+        </intent-filter>
+        </receiver>
         <service
             android:name=".util.MyAccessibilityService"
             android:enabled="true"

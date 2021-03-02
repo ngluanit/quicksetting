@@ -12,7 +12,7 @@ public class SharePref {
     }
     public static int getIntPref(Context context,String key){
         SharedPreferences pref = context.getApplicationContext().getSharedPreferences("MyPref", 0);
-        return pref.getInt(key,0);
+        return pref.getInt(key,1);
     }
     public static void setStringPref(Context context,String key,String value){
         SharedPreferences pref = context.getApplicationContext().getSharedPreferences("MyPref", 0);

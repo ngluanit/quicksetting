@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:blurkit="http://schemas.android.com/apk/res-auto"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sliding_layout"
@@ -15,14 +16,21 @@
     android:isScrollContainer="false"
     android:longClickable="false">
 
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/view"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_10sdp"
         android:layout_centerHorizontal="true"
-
         android:layout_marginBottom="@dimen/_10sdp"
         android:background="@color/red" />
+    <!--    <net.robinx.lib.blurview.BlurBehindView-->
+    <!--        android:id="@+id/blur_behind_view"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_height="150dp">-->
+    <!--    </net.robinx.lib.blurview.BlurBehindView>-->
 
     <LinearLayout
         android:id="@+id/dragView"
@@ -30,13 +38,14 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:animateLayoutChanges="false"
-        android:background="#66000000"
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:gravity="bottom"
         android:longClickable="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/activity_main"
@@ -49,6 +58,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_horizontal_margin">
+
             <RelativeLayout
                 android:id="@+id/rlBrightBar"
                 android:layout_width="match_parent"
@@ -79,8 +89,8 @@
 
                 <ImageView
                     android:id="@+id/imgEndBb"
-                    android:layout_width="@dimen/_12sdp"
-                    android:layout_height="@dimen/_12sdp"
+                    android:layout_width="6dp"
+                    android:layout_height="12dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -88,12 +98,13 @@
                     android:layout_marginRight="@dimen/_30sdp"
                     android:src="@drawable/ic_bright_bar" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlMediaBar"
-                android:layout_below="@+id/rlBrightBar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlBrightBar"
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <com.mohammedalaa.seekbar.RangeSeekBarView
                     android:id="@+id/MediaBar"
@@ -128,12 +139,13 @@
                     android:layout_marginRight="@dimen/_30sdp"
                     android:src="@drawable/ic_media_volume" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlAlarmBar"
-                android:layout_below="@+id/rlMediaBar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlMediaBar"
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <com.mohammedalaa.seekbar.RangeSeekBarView
                     android:id="@+id/AlarmBar"
@@ -169,12 +181,13 @@
                     android:layout_marginRight="@dimen/_30sdp"
                     android:src="@drawable/ic_alarm_volume" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlRingBar"
-                android:layout_below="@+id/rlAlarmBar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlAlarmBar"
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <com.mohammedalaa.seekbar.RangeSeekBarView
                     android:id="@+id/RingBar"
@@ -210,12 +223,13 @@
                     android:layout_marginRight="@dimen/_30sdp"
                     android:src="@drawable/ic_ring_volume" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlNotificationBar"
-                android:layout_below="@+id/rlRingBar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlRingBar"
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <com.mohammedalaa.seekbar.RangeSeekBarView
                     android:id="@+id/NotificationBar"
@@ -251,12 +265,13 @@
                     android:layout_marginRight="@dimen/_30sdp"
                     android:src="@drawable/ic_notification_volume" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rlCallBar"
-                android:layout_below="@+id/rlNotificationBar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlNotificationBar"
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <com.mohammedalaa.seekbar.RangeSeekBarView
                     android:id="@+id/CallBar"
@@ -292,6 +307,7 @@
                     android:layout_marginRight="@dimen/_30sdp"
                     android:src="@drawable/ic_voice_call_volume" />
             </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvIconSetting"
                 android:layout_width="match_parent"
@@ -301,11 +317,27 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_recyclerview" />
 
+            <com.chahinem.pageindicator.PageIndicator
+                android:id="@+id/pageIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rcvIconSetting" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_below="@+id/rcvIconSetting"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_recyclerview"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rcvIconSetting"
+                android:layout_below="@id/viewpager"
                 android:fontFamily="@font/robotolight"
                 android:text="Fri,Feb 5"
                 android:textColor="@color/white"
@@ -362,7 +394,7 @@
                 android:id="@+id/rlTt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rcvIconSetting"
+                android:layout_below="@id/viewpager"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/_10sdp">
@@ -462,5 +494,6 @@
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
+
 </RelativeLayout>
 

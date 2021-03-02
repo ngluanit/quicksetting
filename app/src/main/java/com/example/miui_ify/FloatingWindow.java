@@ -1,17 +1,17 @@
 package com.example.miui_ify;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.graphics.Rect;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
@@ -37,23 +37,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
-import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarFinalValueListener;
-import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
+import com.chahinem.pageindicator.PageIndicator;
 import com.example.settingapp.R;
 import com.example.settingapp.tiles.ItemNotification;
 import com.example.settingapp.util.SharePref;
@@ -71,18 +67,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.mancj.slideup.SlideUp;
 import com.mancj.slideup.SlideUpBuilder;
+import com.mohammedalaa.seekbar.OnRangeSeekBarChangeListener;
 import com.mohammedalaa.seekbar.RangeSeekBarView;
-import com.ramotion.fluidslider.FluidSlider;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-import com.xw.repo.BubbleSeekBar;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import app.minimize.com.seek_bar_compat.SeekBarCompat;
 
 import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
 import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
@@ -95,10 +90,10 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     private Context mContext;
     private WindowManager mWindowManager;
     private View mView;
-    private RangeSeekBarView seekBar,seekbarMedia,seekbarAlarm,seekbarRing,seekbarNotification,seekbarVoiceCall;
-    private RelativeLayout rlBrightBar,rlMediaBar,rlAlarmBar,rlRingBar,rlNotificationBar,rlVoicecallBar;
+    RelativeLayout relativeLayout;
+    private RangeSeekBarView seekBar, seekbarMedia, seekbarAlarm, seekbarRing, seekbarNotification, seekbarVoiceCall;
+    private RelativeLayout rlBrightBar, rlMediaBar, rlAlarmBar, rlRingBar, rlNotificationBar, rlVoicecallBar;
     TextView tvDate, tvHour;
-
     //Variable to store brightness value
     private int brightness;
     //Content resolver used as a handle to the system's settings
@@ -110,18 +105,34 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     ArrayList<Integer> posts = new ArrayList();
     ArrayList<ItemNotification> list = new ArrayList<>();
     RecyclerView rcvIconSetting;
+    PageIndicator indicatorView;
     SlideUp slideUp;
     Camera camera;
     private Camera mCamera;
     private Camera.Parameters parameters;
     private CameraManager camManager;
     Activity activity;
-    ImageView imgBluetooth,imgPin,imgMang,imgWifi,imgLoca,imgSound,imgRotate;
+    ImageView imgBluetooth, imgPin, imgMang, imgWifi, imgLoca, imgSound, imgRotate;
+    ImageView imgStartBb, imgEndBb, imgStartMb, imgEndMb, imgStartAb, imgEndAb, imgStartRb, imgEndRb, imgStartNb, imgEndNb, imgStartCb, imgEndCb;
+    ViewPager viewPager;
+    ViewPagerAdapter viewPagerAdapter;
+
+    WindowManager.LayoutParams mWindowsParams;
+
     int mediaVolume;
     int alarmVolume;
     int ringVolume;
     int notificationVolume;
     int voicecallVolume;
+    // BlurringView blurringView;
+    View blurredView;
+
+    int lastAction = 0;
+    int initialX = 0;
+    int initialY = 0;
+    float initialTouchX = 0f;
+    float initialTouchY = 0f;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -130,18 +141,34 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     LocationSettingsRequest mLocationSettingsRequest;
     LocationRequest mLocationRequest;
     AudioManager am;
+    BroadcastReceiver mReceiver;
+
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        text1.add("Wifi");
-        text1.add("Mobile data");
-        text1.add("Bluetooth");
-        text1.add("Sync");
-        text1.add("Location");
-        text1.add("Auto-rotate");
-        text1.add("Do not disturb");
-        text1.add("Torch");
+        setupListText();
+        setupListIcon();
+        initMedia();
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        allAboutLayout();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        mReceiver = new ScreenReceiver();
+        registerReceiver(mReceiver, filter);
+    }
+
+    private void initMedia() {
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mediaVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+        alarmVolume = am.getStreamVolume(AudioManager.STREAM_ALARM);
+        ringVolume = am.getStreamVolume(AudioManager.STREAM_RING);
+        notificationVolume = am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+        voicecallVolume = am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
+    }
+
+    private void setupListIcon() {
         posts.add(R.drawable.ic_wifi_n);
         posts.add(R.drawable.ic_data_n);
         posts.add(R.drawable.ic_bluetooth_n);
@@ -156,40 +183,58 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             itemNotification.setName(text1.get(i));
             list.add(itemNotification);
         }
-    am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-    mediaVolume=am.getStreamVolume(AudioManager.STREAM_MUSIC);
-    alarmVolume=am.getStreamVolume(AudioManager.STREAM_ALARM);
-    ringVolume=am.getStreamVolume(AudioManager.STREAM_RING);
-    notificationVolume=am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-    voicecallVolume=am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
+    }
+
+    private void setupListText() {
+        text1.add("Wifi");
+        text1.add("Mobile data");
+        text1.add("Bluetooth");
+        text1.add("Sync");
+        text1.add("Location");
+        text1.add("Auto-rotate");
+        text1.add("Do not disturb");
+        text1.add("Torch");
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        super.onStart(intent, startId);
+        boolean screenOn = intent.getBooleanExtra("screen_state", false);
+        if ( !screenOn) {
+            Log.i("screenON", "Called");
+            Toast.makeText(getApplicationContext(), "Awake", Toast.LENGTH_LONG)
+                    .show();
+        } else {
+            Log.i("screenOFF", "Called");
+            Toast.makeText(getApplicationContext(), "Sleep",
+                    Toast.LENGTH_LONG)
+                    .show();
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent.getAction()!=null&&intent.getAction().equals("startagain")){
+        if (intent.getAction() != null && intent.getAction().equals("startagain")) {
             initRelative();
             settime();
             setData();
             setSeekBar();
-        }else{
-            mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-            //testLayout();
-            allAboutLayout();
+        }else {
             moveView();
         }
-
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-
         if (mView != null) {
             mWindowManager.removeView(mView);
         }
+        unregisterReceiver(mReceiver);
+
         super.onDestroy();
     }
-    WindowManager.LayoutParams mWindowsParams;
+
     private void moveView() {
         DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
         int width = (int) (metrics.widthPixels * 1f);
@@ -201,111 +246,78 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 //WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
                 (Build.VERSION.SDK_INT <= 25) ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                        WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                        | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                 //     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 //     | WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW
                 ,
-
                 PixelFormat.TRANSLUCENT);
         mWindowsParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
         //params.x = 0;
         //        mWindowsParams.y = 100;
-
+        mWindowsParams.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_VISIBLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
         mWindowManager.addView(mView, mWindowsParams);
+
     }
 
-    private boolean isViewInBounds(View view, int x, int y) {
-        Rect outRect = new Rect();
-        int[] location = new int[2];
-        view.getDrawingRect(outRect);
-        view.getLocationOnScreen(location);
-        outRect.offset(location[0], location[1]);
-        return outRect.contains(x, y);
-    }
-
-    private void testLayout() {
-        LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mView = layoutInflater.inflate(R.layout.bottomsheetlayout, null);
-        LinearLayout lnContainer = mView.findViewById(R.id.dragView);
-        Button btnTest = mView.findViewById(R.id.btnTest);
-        slideUp = new SlideUpBuilder(lnContainer)
-                .withListeners(new SlideUp.Listener.Events() {
-                    @Override
-                    public void onSlide(float percent) {
-
-                    }
-
-                    @Override
-                    public void onVisibilityChanged(int visibility) {
-
-                    }
-                })
-                .withStartGravity(Gravity.BOTTOM)
-                .withLoggingEnabled(true)
-                .withGesturesEnabled(true)
-                .withStartState(SlideUp.State.HIDDEN)
-                .build();
-        btnTest.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                slideUp.show();
-                return false;
-            }
-        });
-        lnContainer.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                slideUp.hide();
-                return false;
-            }
-        });
-//        btnTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                slideUp.show();
-//            }
-//        });
-    }
-
+    @SuppressLint("ClickableViewAccessibility")
     private void allAboutLayout() {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.ovelay_window, null);
         mView.setFocusable(false);
         mView.setClickable(false);
+        relativeLayout = mView.findViewById(R.id.sliding_layout);
         setSeekBar();
         initRelative();
+
         View view = mView.findViewById(R.id.view);
+        viewPager = mView.findViewById(R.id.viewpager);
+
+        //    viewPagerAdapter = new ViewPagerAdapter(((FloatingWindow) mContext).getFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
         LinearLayout lnSlide = mView.findViewById(R.id.dragView);
         slideUp = new SlideUpBuilder(lnSlide)
-                .withListeners(new SlideUp.Listener.Events() {
-                    @Override
-                    public void onSlide(float percent) {
-
-                    }
-
-                    @Override
-                    public void onVisibilityChanged(int visibility) {
-
-                    }
-                })
                 .withStartGravity(Gravity.BOTTOM)
                 .withLoggingEnabled(true)
                 .withGesturesEnabled(true)
                 .withStartState(SlideUp.State.HIDDEN)
+//                .withListeners(new SlideUp.Listener.Events() {
+//                    @Override
+//                    public void onSlide(float percent) {
+//                       // lnSlide.setAlpha(percent/100);
+////                        Blurry.with(mContext).radius((int) percent).onto(frameLayout);
+//                    }
+//
+//                    @Override
+//                    public void onVisibilityChanged(int visibility) {
+//
+//                    }
+//                })
                 .build();
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
-                Intent intent=new Intent(mContext,FloatingWindow.class);
+                Intent intent = new Intent(mContext, FloatingWindow.class);
                 intent.setAction("startagain");
                 startService(intent);
-
                 slideUp.show();
-                view.setVisibility(View.GONE);
+                slideUp.addSlideListener(new SlideUp.Listener.Slide() {
+                    @Override
+                    public void onSlide(float percent) {
 
+                    }
+                });
+                view.setVisibility(View.GONE);
                 return false;
             }
         });
@@ -317,20 +329,27 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 return false;
             }
         });
+
+        //  blurringView.setBlurredView(lnSlide);
+
+
         //mLayout = (SlidingUpPanelLayout) mView.findViewById(R.id.sliding_layout);
-        imgBluetooth=mView.findViewById(R.id.imgBluetooth);
-        imgPin=mView.findViewById( R.id.imgPin);
-        imgMang=mView.findViewById(R.id.imgMang);
-        imgWifi=mView.findViewById(R.id.imgWifi);
-        imgLoca=mView.findViewById(R.id.imgLoca);
-        imgSound=mView.findViewById(R.id.imgSound);
-        imgRotate=mView.findViewById(R.id.imgRotate);
+        imgBluetooth = mView.findViewById(R.id.imgBluetooth);
+        imgPin = mView.findViewById(R.id.imgPin);
+        imgMang = mView.findViewById(R.id.imgMang);
+        imgWifi = mView.findViewById(R.id.imgWifi);
+        imgLoca = mView.findViewById(R.id.imgLoca);
+        imgSound = mView.findViewById(R.id.imgSound);
+        imgRotate = mView.findViewById(R.id.imgRotate);
         imgSound.setVisibility(View.GONE);
         imgLoca.setVisibility(View.GONE);
         imgWifi.setVisibility(View.GONE);
         imgRotate.setVisibility(View.GONE);
         rcvIconSetting = mView.findViewById(R.id.rcvIconSetting);
-        rcvIconSetting.setLayoutManager(new GridLayoutManager(this, 4));
+        //rcvIconSetting.setLayoutManager(new GridLayoutManager(this, 4));
+        rcvIconSetting.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        indicatorView = mView.findViewById(R.id.pageIndicator);
         ImageView imgEdit, imgSetting, imgProfile;
         tvDate = (TextView) mView.findViewById(R.id.tvDate);
         tvHour = (TextView) mView.findViewById(R.id.tvHour);
@@ -382,16 +401,40 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 //              //  mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
 //            }
 //        });
-
-
     }
-    public void setData(){
+
+    @SuppressLint("ClickableViewAccessibility")
+    private View.OnTouchListener getSlideTouch(View view) {
+        return (v, event) -> {
+            slideUp.hide();
+            view.setVisibility(View.VISIBLE);
+            return false;
+        };
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private View.OnTouchListener getIndicatorListener(View view, LinearLayout lnSlide) {
+        return (v, event) -> {
+            startInitData();
+            slideUp.show();
+            view.setVisibility(View.GONE);
+            return false;
+        };
+    }
+
+    private void startInitData() {
+        Intent intent = new Intent(mContext, FloatingWindow.class);
+        intent.setAction("startagain");
+        startService(intent);
+    }
+
+    public void setData() {
         int powifi = -1;
         int podata = -1;
         int pobluetooth = -1;
         int polocation = -1;
         int porotetion = -1;
-        int poamthanh=-1;
+        int poamthanh = -1;
         for (int i = 0; i < text1.size(); i++) {
             if (text1.get(i).contains("Wifi")) {
                 powifi = i;
@@ -403,11 +446,10 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 polocation = i;
             } else if (text1.get(i).contains("Auto-rotate")) {
                 porotetion = i;
-            }else if (text1.get(i).contains("Do not")){
-                poamthanh=i;
+            } else if (text1.get(i).contains("Do not")) {
+                poamthanh = i;
             }
         }
-
         imgSound.setVisibility(View.VISIBLE);
         switch (am.getRingerMode()) {
             case AudioManager.RINGER_MODE_SILENT:
@@ -434,14 +476,14 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         boolean mobileDataAllowed = Settings.Secure.getInt(getContentResolver(), "mobile_data", 1) == 1;
         if (mobileDataAllowed && podata != -1) {
             list.get(podata).setImg(R.drawable.ic_data_e);
-        }else {
+        } else {
             list.get(podata).setImg(R.drawable.ic_data_n);
         }
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter.isEnabled()) {
             list.get(pobluetooth).setImg(R.drawable.ic_bluetooth_e);
             imgBluetooth.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             list.get(pobluetooth).setImg(R.drawable.ic_bluetooth_n);
             imgBluetooth.setVisibility(View.GONE);
         }
@@ -477,11 +519,49 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 }
             }
         }
-        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list);
+        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list, mContext);
         iconSettingAdapter.setIClick(this);
-        rcvIconSetting.setAdapter(iconSettingAdapter);
+        List<List<ItemNotification>> lists = new ArrayList<>();
+        List<ItemNotification> list1 = new ArrayList<>();
+//        list1=list;
+//        lists.add(list);
+//        lists.add(list1);
+        int page = 0;
+//        SharePref.setIntPref(getApplicationContext(),"number_row",1);
+//        SharePref.setIntPref(getApplicationContext(),"number_column",3);
+        System.out.println("zzzzzz///" + SharePref.getIntPref(mContext, "number_row") + SharePref.getIntPref(mContext, "number_column"));
+        int num = (SharePref.getIntPref(mContext, "number_row") * SharePref.getIntPref(mContext, "number_column"));
+        page = list.size() / num;
+        if (list.size() % num != 0) {
+            for (int i = 0; i <= page; i++) {
+                list1 = new ArrayList<>();
+                for (int k = num * i; k < num * (i + 1); k++) {
+                    if (k < list.size()) {
+                        list1.add(list.get(k));
+                    }
+                }
+                lists.add(list1);
+            }
+        } else {
+            for (int i = 0; i < page; i++) {
+                list1 = new ArrayList<>();
+                for (int k = num * i; k < num * (i + 1); k++) {
+                    if (k < list.size()) {
+                        list1.add(list.get(k));
+                    }
+                }
+                lists.add(list1);
+            }
+        }
+
+        PageIconAdapter pageIconAdapter = new PageIconAdapter(lists, mContext);
+        rcvIconSetting.setAdapter(pageIconAdapter);
+        indicatorView.attachTo(rcvIconSetting);
+        System.out.println("12312///" + rcvIconSetting.getHeight());
+
     }
-    public void settime(){
+
+    public void settime() {
         DateFormat df = new SimpleDateFormat("EEE,MMM d");
         String date = df.format(Calendar.getInstance().getTime());
         tvDate.setText(date);
@@ -489,101 +569,138 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         String hour = dfhour.format(Calendar.getInstance().getTime());
         tvHour.setText(hour);
     }
-public void setSeekBar(){
-    seekBar = (RangeSeekBarView) mView.findViewById(R.id.BrightBar);
-    seekbarAlarm = (RangeSeekBarView) mView.findViewById(R.id.AlarmBar);
-    seekbarMedia = (RangeSeekBarView) mView.findViewById(R.id.MediaBar);
-    seekbarNotification = (RangeSeekBarView) mView.findViewById(R.id.NotificationBar);
-    seekbarRing = (RangeSeekBarView) mView.findViewById(R.id.RingBar);
-    seekbarVoiceCall = (RangeSeekBarView) mView.findViewById(R.id.CallBar);
-    cResolver = getContentResolver();
-    BrightnessControl(seekBar);
-    seekbarAlarm.setProgress(alarmVolume);
-    seekbarVoiceCall.setProgress(voicecallVolume);
-    seekbarRing.setProgress(ringVolume);
-    seekbarNotification.setProgress(notificationVolume);
-    seekbarMedia.setProgress(mediaVolume);
-    seekbarMedia.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setVolume(progress,AudioManager.STREAM_MUSIC);
-        }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+    public void setSeekBar() {
+        seekBar = (RangeSeekBarView) mView.findViewById(R.id.BrightBar);
+//        GradientDrawable shape = new GradientDrawable();
+//        shape.setCornerRadius(200);
+//        seekBar.setBackgroundDrawable(shape);
+        seekbarAlarm = (RangeSeekBarView) mView.findViewById(R.id.AlarmBar);
+        seekbarMedia = (RangeSeekBarView) mView.findViewById(R.id.MediaBar);
+        seekbarNotification = (RangeSeekBarView) mView.findViewById(R.id.NotificationBar);
+        seekbarRing = (RangeSeekBarView) mView.findViewById(R.id.RingBar);
+        seekbarVoiceCall = (RangeSeekBarView) mView.findViewById(R.id.CallBar);
+        imgStartAb = (ImageView) mView.findViewById(R.id.imgStartAb);
+        imgStartBb = (ImageView) mView.findViewById(R.id.imgStartBb);
+        imgStartCb = (ImageView) mView.findViewById(R.id.imgStartCb);
+        imgStartMb = (ImageView) mView.findViewById(R.id.imgStartMb);
+        imgStartNb = (ImageView) mView.findViewById(R.id.imgStartNb);
+        imgStartRb = (ImageView) mView.findViewById(R.id.imgStartRb);
+        imgEndAb = (ImageView) mView.findViewById(R.id.imgEndAb);
+        imgEndBb = (ImageView) mView.findViewById(R.id.imgEndBb);
+        imgEndCb = (ImageView) mView.findViewById(R.id.imgEndCb);
+        imgEndMb = (ImageView) mView.findViewById(R.id.imgEndMb);
+        imgEndNb = (ImageView) mView.findViewById(R.id.imgEndNb);
+        imgEndRb = (ImageView) mView.findViewById(R.id.imgEndRb);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(SharePref.getIntPref(this, "panel_padding"), 0, SharePref.getIntPref(this, "panel_padding"), 0);
+        seekBar.setLayoutParams(lp);
+        seekbarAlarm.setLayoutParams(lp);
+        seekbarMedia.setLayoutParams(lp);
+        seekbarNotification.setLayoutParams(lp);
+        seekbarRing.setLayoutParams(lp);
+        seekbarVoiceCall.setLayoutParams(lp);
+        LinearLayout.LayoutParams lpimg = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lpimg.setMargins(SharePref.getIntPref(this, "panel_padding") + 30, 0, SharePref.getIntPref(this, "panel_padding") + 30, 0);
+        cResolver = getContentResolver();
+        BrightnessControl(seekBar);
+        seekbarAlarm.setCurrentValue(alarmVolume);
+        seekbarVoiceCall.setCurrentValue(voicecallVolume);
+        seekbarRing.setCurrentValue(ringVolume);
+        seekbarNotification.setCurrentValue(notificationVolume);
+        seekbarMedia.setCurrentValue(mediaVolume);
+        seekbarMedia.setOnRangeSeekBarViewChangeListener(new OnRangeSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
+            }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStartTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
-    });
-    seekbarNotification.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setVolume(progress,AudioManager.STREAM_NOTIFICATION);
-        }
+            }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onProgressChanged(@Nullable RangeSeekBarView seekBar, int progress, boolean fromUser) {
+                setVolume(progress, AudioManager.STREAM_MUSIC);
+            }
 
-        }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+        });
+        seekbarNotification.setOnRangeSeekBarViewChangeListener(new OnRangeSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
-    });
-    seekbarRing.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setVolume(progress,AudioManager.STREAM_RING);
-        }
+            }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStartTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
+            }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onProgressChanged(@Nullable RangeSeekBarView seekBar, int progress, boolean fromUser) {
+                setVolume(progress, AudioManager.STREAM_MUSIC);
+            }
 
-        }
-    });
-    seekbarVoiceCall.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setVolume(progress,AudioManager.STREAM_VOICE_CALL);
-        }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+        });
+        seekbarRing.setOnRangeSeekBarViewChangeListener(new OnRangeSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
+            }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onStartTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
-    });
-    seekbarAlarm.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            setVolume(progress,AudioManager.STREAM_ALARM);
-        }
+            }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+            @Override
+            public void onProgressChanged(@Nullable RangeSeekBarView seekBar, int progress, boolean fromUser) {
+                setVolume(progress, AudioManager.STREAM_MUSIC);
+            }
 
-        }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+        });
+        seekbarVoiceCall.setOnRangeSeekBarViewChangeListener(new OnRangeSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
 
-        }
-    });
-}
+            }
+
+            @Override
+            public void onStartTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
+
+            }
+
+            @Override
+            public void onProgressChanged(@Nullable RangeSeekBarView seekBar, int progress, boolean fromUser) {
+                setVolume(progress, AudioManager.STREAM_MUSIC);
+            }
+
+
+        });
+        seekbarAlarm.setOnRangeSeekBarViewChangeListener(new OnRangeSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
+
+            }
+
+            @Override
+            public void onProgressChanged(@Nullable RangeSeekBarView seekBar, int progress, boolean fromUser) {
+                setVolume(progress, AudioManager.STREAM_MUSIC);
+            }
+
+
+        });
+    }
+
     public static void enableDisableView(View view, boolean enabled) {
         view.setEnabled(enabled);
         if (view instanceof ViewGroup) {
@@ -604,74 +721,75 @@ public void setSeekBar(){
             Log.e("Error", "Cannot access system brightness");
             e.printStackTrace();
         }
-       // seekBar.setPosition(CrystalSeekbar.Position.RIGHT).apply();
-      //  seekBar.getConfigBuilder().max(255).min(1).build();
+        // seekBar.setPosition(CrystalSeekbar.Position.RIGHT).apply();
+        //  seekBar.getConfigBuilder().max(255).min(1).build();
         //Set the progress of the seek bar based on the system's brightness
-       // seekBar.setProgress(brightness);
+        // seekBar.setProgress(brightness);
         seekBar.setMaxValue(255);
         seekBar.setMinValue(0);
-        seekBar.setProgress(brightness);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.setCurrentValue(brightness);
+        seekBar.setOnRangeSeekBarViewChangeListener(new OnRangeSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onStopTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(@Nullable RangeSeekBarView seekBar, int progress) {
+
+            }
+
+            @Override
+            public void onProgressChanged(@Nullable RangeSeekBarView seekBar, int progress, boolean fromUser) {
                 if (progress <= 20) {
                     brightness = 20;
-                } else
-                {
+                } else {
                     brightness = progress;
                 }
-                System.out.println("122322132213//"+brightness);
+                System.out.println("122322132213//" + brightness);
                 Settings.System.putInt(cResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
 
     }
-    public void initRelative(){
-        rlAlarmBar=mView.findViewById(R.id.rlAlarmBar);
-        rlBrightBar=mView.findViewById(R.id.rlBrightBar);
-        rlMediaBar=mView.findViewById(R.id.rlMediaBar);
-        rlNotificationBar=mView.findViewById(R.id.rlNotificationBar);
-        rlRingBar=mView.findViewById(R.id.rlRingBar);
-        rlVoicecallBar=mView.findViewById(R.id.rlCallBar);
-        if (SharePref.getBooleanPref(this,"brightbar")){
+
+    public void initRelative() {
+        rlAlarmBar = mView.findViewById(R.id.rlAlarmBar);
+        rlBrightBar = mView.findViewById(R.id.rlBrightBar);
+        rlMediaBar = mView.findViewById(R.id.rlMediaBar);
+        rlNotificationBar = mView.findViewById(R.id.rlNotificationBar);
+        rlRingBar = mView.findViewById(R.id.rlRingBar);
+        rlVoicecallBar = mView.findViewById(R.id.rlCallBar);
+
+        if (SharePref.getBooleanPref(this, "brightbar")) {
             rlBrightBar.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             rlBrightBar.setVisibility(View.GONE);
         }
-        if (SharePref.getBooleanPref(this,"alarmbar")){
+        if (SharePref.getBooleanPref(this, "alarmbar")) {
             rlAlarmBar.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             rlAlarmBar.setVisibility(View.GONE);
         }
-        if (SharePref.getBooleanPref(this,"mediabar")){
+        if (SharePref.getBooleanPref(this, "mediabar")) {
             rlMediaBar.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             rlMediaBar.setVisibility(View.GONE);
         }
-        if (SharePref.getBooleanPref(this,"notificationbar")){
+        if (SharePref.getBooleanPref(this, "notificationbar")) {
             rlNotificationBar.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             rlNotificationBar.setVisibility(View.GONE);
         }
-        if (SharePref.getBooleanPref(this,"ringbar")){
+        if (SharePref.getBooleanPref(this, "ringbar")) {
             rlRingBar.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             rlRingBar.setVisibility(View.GONE);
         }
-        if (SharePref.getBooleanPref(this,"voicecallbar")){
+        if (SharePref.getBooleanPref(this, "voicecallbar")) {
             rlVoicecallBar.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             rlVoicecallBar.setVisibility(View.GONE);
         }
     }
@@ -750,13 +868,13 @@ public void setSeekBar(){
                 changeRinger(AudioManager.RINGER_MODE_VIBRATE);
                 imgSound.setVisibility(View.VISIBLE);
                 imgSound.setImageResource(R.drawable.ic_rung_c);
-            } else if (list.get(position).getImg().equals(R.drawable.ic_disturb_rung)){
+            } else if (list.get(position).getImg().equals(R.drawable.ic_disturb_rung)) {
                 list.get(position).setImg(R.drawable.ic_disturb_e);
                 list.get(position).setName("Sound");
                 changeRinger(AudioManager.RINGER_MODE_NORMAL);
                 imgSound.setVisibility(View.VISIBLE);
                 imgSound.setImageResource(R.drawable.ic_am_thanh_c);
-            }else {
+            } else {
                 list.get(position).setImg(R.drawable.ic_disturb_n);
                 list.get(position).setName("Slient");
                 changeRinger(AudioManager.RINGER_MODE_SILENT);
@@ -768,7 +886,7 @@ public void setSeekBar(){
                 list.get(position).setImg(R.drawable.ic_location_e);
                 imgLoca.setVisibility(View.VISIBLE);
 //                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-             //   displayLocationSettingsRequest(this,activity);
+                //   displayLocationSettingsRequest(this,activity);
                 //turnlocation(this);
                 //turnGPSOn();
             } else {
@@ -785,7 +903,7 @@ public void setSeekBar(){
                 turnFlashlightOff();
             }
         }
-        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list);
+        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list, mContext);
         iconSettingAdapter.setIClick(this::onItemclick1);
         iconSettingAdapter.notifyDataSetChanged();
         rcvIconSetting.setAdapter(iconSettingAdapter);
@@ -835,7 +953,7 @@ public void setSeekBar(){
 
     private void turnlocation(Context context) {
         LocationRequest request;
-        request=new LocationRequest();
+        request = new LocationRequest();
         request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).setInterval(5000).setFastestInterval(1000);
 
         LocationSettingsRequest settingsRequest = new LocationSettingsRequest.Builder().addLocationRequest(request).build();
@@ -876,7 +994,8 @@ public void setSeekBar(){
 //        builder.setAlwaysShow(true);
 
     }
-    private void displayLocationSettingsRequest(Context context,Activity activity) {
+
+    private void displayLocationSettingsRequest(Context context, Activity activity) {
         GoogleApiClient googleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API).build();
         googleApiClient.connect();
@@ -903,7 +1022,7 @@ public void setSeekBar(){
                         try {
                             // Show the dialog by calling startResolutionForResult(), and check the result
                             // in onActivityResult().
-                            status.startResolutionForResult( activity, REQUEST_CHECK_SETTINGS);
+                            status.startResolutionForResult(activity, REQUEST_CHECK_SETTINGS);
                         } catch (IntentSender.SendIntentException e) {
                             Log.i("TAG", "PendingIntent unable to execute request.");
                         }
@@ -915,6 +1034,7 @@ public void setSeekBar(){
             }
         });
     }
+
     protected void buildLocationSettingsRequest() {
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
         builder.addLocationRequest(mLocationRequest);
@@ -1010,6 +1130,7 @@ public void setSeekBar(){
             mCamera.stopPreview();
         }
     }
+
     private String getFlashOnParameter() {
         List<String> flashModes = camera.getParameters().getSupportedFlashModes();
 
@@ -1019,21 +1140,25 @@ public void setSeekBar(){
             return FLASH_MODE_ON;
         } else if (flashModes.contains(FLASH_MODE_AUTO)) {
             return FLASH_MODE_AUTO;
-        }else {
+        } else {
             return "";
         }
     }
-    public void changeRinger(int type){
+
+    public void changeRinger(int type) {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.setRingerMode(type);
     }
-    public void setVolume(int value,int type){
-        am.setStreamVolume(type,value,0);
+
+    public void setVolume(int value, int type) {
+        am.setStreamVolume(type, value, 0);
     }
+
     @Override
     public void onLocationChanged(@NonNull Location location) {
 
     }
+
 }
 
 

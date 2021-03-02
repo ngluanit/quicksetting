@@ -1,11 +1,11 @@
 package com.example.miui_ify;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.legacy.app.FragmentPagerAdapter;
 
 import com.example.settingapp.util.SharePref;
 
@@ -14,6 +14,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     int num;
     int du;
     public static int numpager ;
+    private Context context;
     public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }

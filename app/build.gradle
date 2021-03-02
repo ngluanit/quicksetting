@@ -11,13 +11,15 @@ android {
 
     defaultConfig {
         applicationId "com.example.settingapp"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -31,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+//    defaultConfig {
+//        renderscriptTargetApi 19
+//        renderscriptSupportModeEnabled  true
+//    }
 }
 
 dependencies {
@@ -43,6 +49,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     testImplementation 'junit:junit:4.+'
     implementation project(':libraryslide')
+    implementation project(':seekbar')
     implementation "com.github.mancj:SlideUp-Android:2.2.8"
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     compile 'com.minimize.library:seekbar-compat:0.3.0'
@@ -50,8 +57,11 @@ dependencies {
     implementation 'com.xw.repo:bubbleseekbar:3.20'
     implementation 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
     implementation 'com.jemshit:crystal-range-seekbar:1.2.0'
-    implementation 'com.github.Mohammed-Alaa:RangeSeekBar:1.0.1'
-
+  //  implementation 'com.github.Mohammed-Alaa:RangeSeekBar:1.0.1'
+    implementation 'com.android.support:support-v13:28.0.0'
+    implementation 'com.android.support:support-v4:23.1.1'
+    implementation 'com.github.martinstamenkovski:ARIndicatorView:2.0.0'
+    compile 'com.github.chahine:pageindicator:0.2.8'
     implementation 'ru.ztrap:RxSlideUp2:2.0.1' //optional, for reactive listeners based on RxJava-2
     //implementation 'com.sothree.slidinguppanel:library:3.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -59,4 +69,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
    // implementation 'com.github.tombayley:DropDownTipsList:1.2.1'
+    implementation 'jp.wasabeef:blurry:4.0.0'
+
 }

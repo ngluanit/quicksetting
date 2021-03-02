@@ -1,2 +1,2 @@
-include ':app',':libraryslide'
+include ':app',':libraryslide',':seekbar'
 rootProject.name = "SettingApp"

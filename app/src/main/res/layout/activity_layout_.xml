@@ -72,12 +72,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:thumbTint="@color/text_primary"
                     android:max="7"
+                    android:min="1"
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_number_row"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="1"
                     android:maxLines="1"
                     android:textSize="@dimen/_14sdp"
                     android:layout_toRightOf="@+id/seekbar_number_rows"
@@ -108,12 +109,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:thumbTint="@color/text_primary"
                     android:max="8"
+                    android:min="1"
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_number_columns"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="1"
                     android:maxLines="1"
                     android:textSize="@dimen/_14sdp"
                     android:layout_toRightOf="@+id/seekbar_number_columns"
@@ -144,12 +146,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:thumbTint="@color/text_primary"
                     android:max="8"
+                    android:min="1"
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_number_small_columns"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="1"
                     android:maxLines="1"
                     android:textSize="@dimen/_14sdp"
                     android:layout_toRightOf="@+id/seekbar_number_small_columns"
@@ -180,12 +183,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:thumbTint="@color/text_primary"
                     android:max="30"
+                    android:min="1"
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_panel_radius"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="1"
                     android:maxLines="1"
                     android:textSize="@dimen/_14sdp"
                     android:layout_toRightOf="@+id/seekbar_panel_radius"
@@ -216,6 +220,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:thumbTint="@color/text_primary"
                     android:max="25"
+                    android:min="0"
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_panel_padding"
@@ -252,12 +257,13 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:thumbTint="@color/text_primary"
                     android:max="50"
+                    android:min="40"
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_tilesize"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="1"
                     android:maxLines="1"
                     android:textSize="@dimen/_14sdp"
                     android:layout_toRightOf="@+id/seekbar_tilesize"

@@ -1,35 +1,18 @@
 package com.example.miui_ify;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.KeyguardManager;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,13 +23,22 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
 import com.example.settingapp.R;
@@ -55,13 +47,10 @@ import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.layout.Layout_Activity;
 import com.example.settingapp.notifications.NotificationActivity;
 import com.example.settingapp.required.PermissionRequired;
-import com.example.settingapp.tiles.TilesActivity;
-import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
-import com.example.settingapp.util.QSIntentService;
 import com.example.settingapp.util.SharePref;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -75,12 +64,6 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.material.navigation.NavigationView;
 
 import java.lang.reflect.Method;
-import java.util.List;
-
-import static android.hardware.Camera.Parameters.FLASH_MODE_AUTO;
-import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
-import static android.hardware.camera2.CameraMetadata.FLASH_MODE_TORCH;
-import static android.provider.SyncStateContract.Columns.ACCOUNT_TYPE;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -124,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         }
-
         lnTiles = findViewById(R.id.lnTiles);
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
@@ -170,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (img_turnservice != null)
                         img_turnservice.setImageResource(R.drawable.ic_switch_off);
                     img_turnserviceShown = true;
+//                    Intent intent=new Intent(MainActivity.this,FloatingWindow.class);
+//                    intent.putExtra("acti", (Parcelable) MainActivity.this);
                     stopService(new Intent(MainActivity.this,FloatingWindow.class));
                     status_service.setBackgroundResource(R.drawable.bg_cardview1);
                     tv_service.setTextColor(getColor(R.color.black));
@@ -367,7 +351,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
     }
-
     private void acesspermission(Context mContext) {
 //        Intent intent=new Intent(this, MaintwoActivity.class);
 //        startActivity(intent);
@@ -513,7 +496,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             //do your code
-            Intent intent = new Intent(this, FloatingWindow.class);
+             Intent intent = new Intent(this, FloatingWindow.class);
             this.stopService(intent);
             this.startService(intent);
         }
