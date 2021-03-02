@@ -55,6 +55,7 @@ import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.layout.Layout_Activity;
 import com.example.settingapp.notifications.NotificationActivity;
 import com.example.settingapp.required.PermissionRequired;
+import com.example.settingapp.required.SystemRequiredBlur;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     ImageView menu_nav,img_turnservice;
     LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles, lnLayout, lnExtra, lnBackgroundType, lnNotification, lnStatusbar;
-    RelativeLayout rlConnect,status_service;
+    RelativeLayout rlConnect,status_service,rladb,rlblurWallpaper;
     TextView tv_service;
     Button btnTest, btn_ok;
     Context context;
@@ -197,6 +198,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setContentView(R.layout.dialog_backgroundtype);
+                rladb = dialog.findViewById(R.id.rladb);
+                rlblurWallpaper = dialog.findViewById(R.id.rlblurWallpaper);
+                rladb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      startActivity(new Intent(MainActivity.this, SystemRequiredBlur.class));
+                    }
+                });
+                rlblurWallpaper.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        isStoragePermission(MainActivity.this);
+                    }
+                });
+
                 dialog.show();
             }
         });
@@ -517,6 +533,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, FloatingWindow.class);
             this.stopService(intent);
             this.startService(intent);
+        }else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Write external storage permission required", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -549,6 +567,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.startService(intent);
         }else if (requestCode==545){
             Toast.makeText(context, "Hello done", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public boolean isStoragePermission(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }else {
+            return true;
         }
     }
 

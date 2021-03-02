@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3f3f3"
+    tools:context=".required.SystemRequiredBlur">
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotolight"
+            android:text="System permission required"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/_10sdp">
+        <TextView
+            android:id="@+id/footer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If you are having issues, tap here to read the FAQ"
+            android:textColor="@color/black"
+            android:fontFamily="@font/robotolight"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/footer2"
+            android:layout_below="@+id/footer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy policy"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/_15sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="@dimen/_40sdp"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTop">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Some permissions are required for background blur and screenshots"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_below="@id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your screen is only captured  when taking a screenshot or for the blur efect"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_below="@id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The screen Cast icon will appear when blur is enabled and the panel is opened"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_below="@id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The blur effect an cause lag on some devices"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/black" />
+
+
+            <RelativeLayout
+                android:id="@+id/rlDevice_storage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv4"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_15sdp"
+                android:background="@drawable/bg_cardview1"
+                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_2sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Device Storage"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/robotolight"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/ic_sd_card"
+                    android:padding="@dimen/_2sdp"
+                    android:tint="@color/text_primary"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/img_turndevice"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_switch_off"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlCapture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlDevice_storage"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/bg_cardview1"
+                android:translationZ="@dimen/_2sdp"
+                android:elevation="@dimen/_2sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Screen Capture"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/robotolight"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/tit2"
+                    android:layout_below="@+id/tit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Please select 'Don't show again' when enabling screen capture"
+                    android:layout_marginHorizontal="@dimen/_45sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/robotolight"
+                    android:textColor="#737373"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:src="@drawable/ic_cap_screen"
+                    android:tint="@color/text_primary"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:id="@+id/img_turnCapture"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_switch_off"/>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

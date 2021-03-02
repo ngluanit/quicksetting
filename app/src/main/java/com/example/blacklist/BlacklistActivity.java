@@ -86,6 +86,7 @@ public class BlacklistActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                blacklistAdapter.selecteAll();
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {

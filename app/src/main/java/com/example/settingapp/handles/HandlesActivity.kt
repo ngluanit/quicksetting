@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.blacklist.BlacklistActivity
 import com.example.miui_ify.FloatingWindow
 import com.example.miui_ify.MainActivity
 import com.example.settingapp.R
@@ -140,6 +141,10 @@ class HandlesActivity : AppCompatActivity() {
         }
         imgBack.setOnClickListener {
           onBackPressed()
+        }
+        rlBlackList.setOnClickListener {
+            val intent = Intent(this, BlacklistActivity::class.java);
+            startActivity(intent)
         }
     }
 

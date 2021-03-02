@@ -20,10 +20,24 @@ import java.util.ArrayList;
 public class BlacklistAdapter  extends RecyclerView.Adapter<BlacklistAdapter.MyViewHolder>{
     Context context;
     ArrayList<ItemBlacklist> itemBlacklists;
-
+    ArrayList<ItemBlacklist> selected=new ArrayList<>() ;
+    ISelectall iSelectall;
+    public void setiSelectall(ISelectall iSelectall){
+        this.iSelectall=iSelectall;
+    }
     public BlacklistAdapter(Context context, ArrayList<ItemBlacklist> itemBlacklists) {
         this.context = context;
         this.itemBlacklists = itemBlacklists;
+    }
+    public void selecteAll() {
+        selected.clear();
+        selected.addAll(itemBlacklists);
+        notifyDataSetChanged();
+    }
+
+    public void clearAll() {
+        selected.clear();
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -37,6 +51,11 @@ public class BlacklistAdapter  extends RecyclerView.Adapter<BlacklistAdapter.MyV
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_app_bl.setText(itemBlacklists.get(position).getTv_app_bl());
         holder.img_app_bl.setImageDrawable(itemBlacklists.get(position).getImg_app_bl());
+        if (selected.containsAll(itemBlacklists)){
+            holder.check_bl.setImageResource(R.drawable.ic_checkbox);
+        }else {
+
+        }
 
     }
 
@@ -72,5 +91,8 @@ public class BlacklistAdapter  extends RecyclerView.Adapter<BlacklistAdapter.MyV
                 }
             });
         }
+    }
+    public interface ISelectall{
+        void onSelectall(boolean isSelectall);
     }
 }
