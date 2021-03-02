@@ -10,19 +10,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.example.blacklist.BlacklistActivity;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
 
 public class BottomStatusActivity extends AppCompatActivity {
     ImageView imgBack;
-    ImageView swich_show_bottom,switch_disable,switch_show_notification,img_show_icon,switch_blacklist,switch_hide_while,switch_hide_landscape;
-
+    ImageView swich_show_bottom,switch_disable,switch_hide_while,switch_hide_landscape;
+    RelativeLayout rlblack_list;
     private boolean swich_show_bottomShown= true;
     private boolean switch_disableShown= true;
-    private boolean switch_show_notificationShown= true;
-    private boolean img_show_iconShown= true;
-    private boolean switch_blacklistShown= true;
     private boolean switch_hide_whileShown= true;
     private boolean switch_hide_landscapeShown= true;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -36,13 +35,18 @@ public class BottomStatusActivity extends AppCompatActivity {
 
         swich_show_bottom = findViewById(R.id.swich_show_bottom);
         switch_disable = findViewById(R.id.switch_disable);
-        switch_show_notification = findViewById(R.id.switch_show_notification);
-        img_show_icon = findViewById(R.id.img_show_icon);
-        switch_blacklist = findViewById(R.id.switch_blacklist);
         switch_hide_while = findViewById(R.id.switch_hide_while);
         switch_hide_landscape = findViewById(R.id.switch_hide_landscape);
+        rlblack_list = findViewById(R.id.rlblack_list);
         imgBack = findViewById(R.id.imgBack);
 
+
+        rlblack_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BottomStatusActivity.this, BlacklistActivity.class));
+            }
+        });
         swich_show_bottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,48 +71,6 @@ public class BottomStatusActivity extends AppCompatActivity {
                 else {
                     if (switch_disable != null) switch_disable.setImageResource(R.drawable.ic_switch_off);
                     switch_disableShown = true;
-                }
-            }
-        });
-
-        switch_show_notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ((switch_show_notification != null) && (switch_show_notificationShown)){
-                    switch_show_notification.setImageResource(R.drawable.ic_switch_on);
-                    switch_show_notificationShown = false;
-                }
-                else {
-                    if (switch_show_notification != null) switch_show_notification.setImageResource(R.drawable.ic_switch_off);
-                    switch_show_notificationShown = true;
-                }
-            }
-        });
-
-        img_show_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ((img_show_icon != null) && (img_show_iconShown)){
-                    img_show_icon.setImageResource(R.drawable.ic_switch_on);
-                    img_show_iconShown = false;
-                }
-                else {
-                    if (img_show_icon != null) img_show_icon.setImageResource(R.drawable.ic_switch_off);
-                    img_show_iconShown = true;
-                }
-            }
-        });
-
-        switch_blacklist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ((switch_blacklist != null) && (switch_blacklistShown)){
-                    switch_blacklist.setImageResource(R.drawable.ic_switch_on);
-                    switch_blacklistShown = false;
-                }
-                else {
-                    if (switch_blacklist != null) switch_blacklist.setImageResource(R.drawable.ic_switch_off);
-                    switch_blacklistShown = true;
                 }
             }
         });

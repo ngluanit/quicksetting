@@ -62,7 +62,9 @@
         android:supportsRtl="true"
         android:name="com.example.miui_ify.SettingApplicaiton"
         android:theme="@style/Theme.SettingApp">
-        <activity android:name="com.example.miui_ify.IconSettingFragment"></activity>
+        <activity android:name=".required.SystemRequiredBlur"></activity>
+        <activity android:name="com.example.blacklist.BlacklistActivity" />
+        <activity android:name="com.example.miui_ify.IconSettingFragment" />
         <activity android:name=".listofInstalled.InstalledList" />
         <activity android:name=".required.PermissionRequired" />
         <activity android:name=".required.PermissionRequired" />

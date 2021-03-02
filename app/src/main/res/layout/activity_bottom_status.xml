@@ -29,6 +29,7 @@
             android:textSize="@dimen/_18sdp"
             android:id="@+id/tvTitle"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotolight"
             android:text="Bottom Status Bar"
             android:layout_toRightOf="@id/imgBack"
             android:layout_marginLeft="@dimen/_20sdp" />
@@ -58,6 +59,7 @@
                    android:layout_height="wrap_content"
                    android:layout_marginLeft="@dimen/_40sdp"
                    android:layout_marginRight="@dimen/_20sdp"
+                   android:fontFamily="@font/robotolight"
                    android:text="Due to Android retrictions, dual SIM support cannot be  added."/>
                <TextView
                    android:id="@+id/tvpurchasedes1"
@@ -69,6 +71,7 @@
                    android:layout_marginLeft="@dimen/_40sdp"
                    android:layout_marginRight="@dimen/_20sdp"
                    android:paddingBottom="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:text="For the same reason, it is not possible to creat space at the bottom of the screen to prevent overlap."/>
 
                <ImageView
@@ -91,6 +94,7 @@
                    android:layout_height="wrap_content"
                    android:text="Show bottom status bar"
                    android:textSize="@dimen/_14sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
@@ -102,6 +106,7 @@
                    android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -132,6 +137,7 @@
                    android:text="Disable top status bar"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="#7f7f7f"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
                    android:id="@+id/tvdesc_DisableTopbar"
@@ -141,6 +147,7 @@
                    android:text="This option must be disables before uninstalling the app"
                    android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="#7f7f7f"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
@@ -173,6 +180,7 @@
                    android:layout_centerVertical="true"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -181,14 +189,7 @@
                    android:padding="@dimen/_2sdp"
                    android:layout_marginLeft="@dimen/_10sdp"
                    android:src="@drawable/ic_notification"/>
-               <ImageView
-                   android:id="@+id/switch_show_notification"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_switch_off"
-                   android:layout_centerVertical="true"
-                   android:layout_marginRight="@dimen/_10sdp"/>
+
            </RelativeLayout>
 
            <RelativeLayout
@@ -204,6 +205,7 @@
                    android:text="System icons"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
                    android:id="@+id/tvdesc_System_icon"
@@ -214,15 +216,9 @@
                    android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
-               <ImageView
-                   android:id="@+id/img_show_icon"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_switch_off"
-                   android:layout_centerVertical="true"
-                   android:layout_marginRight="@dimen/_10sdp"/>
+
            </RelativeLayout>
 
            <RelativeLayout
@@ -231,19 +227,22 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/rlSystem_icon"
                android:layout_marginVertical="@dimen/_10sdp">
+
                <TextView
                    android:id="@+id/tvblacklist"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:layout_marginHorizontal="@dimen/_60sdp"
+                   android:fontFamily="@font/robotolight"
                    android:text="@string/blacklist"
-                   android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
-                   android:layout_marginHorizontal="@dimen/_60sdp"/>
+                   android:textSize="@dimen/_14sdp" />
                <TextView
                    android:id="@+id/tvdesc_blacklist"
                    android:layout_below="@+id/tvblacklist"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:fontFamily="@font/robotolight"
                    android:text="@string/choose_apps_to_hide_notifications_from"
                    android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
@@ -257,14 +256,7 @@
                    android:layout_marginLeft="@dimen/_10sdp"
                    android:src="@drawable/ic_blacklist"
                    android:tint="#737373"/>
-               <ImageView
-                   android:id="@+id/switch_blacklist"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_switch_off"
-                   android:layout_centerVertical="true"
-                   android:layout_marginRight="@dimen/_10sdp"/>
+
            </RelativeLayout>
 
            <RelativeLayout
@@ -280,6 +272,7 @@
                    android:text="@string/hide_while_keyboard_is_open"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <TextView
                    android:id="@+id/tvdesc_Hide_keyboard"
@@ -290,6 +283,7 @@
                    android:textSize="@dimen/_12sdp"
                    android:layout_marginTop="@dimen/_5sdp"
                    android:textColor="#7f7f7f"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
                    android:layout_width="@dimen/_24sdp"
@@ -320,6 +314,7 @@
                    android:layout_height="wrap_content"
                    android:text="Hide in landscape mode"
                    android:textSize="@dimen/_14sdp"
+                   android:fontFamily="@font/robotolight"
                    android:textColor="@color/black"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
@@ -351,6 +346,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Background color"
+                   android:fontFamily="@font/robotolight"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
                    android:layout_centerVertical="true"
@@ -384,6 +380,7 @@
                    android:text="Icon color"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_centerVertical="true"
                    android:layout_marginHorizontal="@dimen/_60sdp"/>
                <ImageView
@@ -414,6 +411,7 @@
                    android:layout_height="wrap_content"
                    android:textSize="@dimen/_14sdp"
                    android:textColor="@color/black"
+                   android:fontFamily="@font/robotolight"
                    android:layout_marginStart="@dimen/_60sdp"
                    android:layout_marginTop="@dimen/_10sdp"
                    android:layout_marginLeft="@dimen/_60sdp"

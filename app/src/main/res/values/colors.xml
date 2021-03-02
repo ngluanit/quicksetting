@@ -10,5 +10,6 @@
     <color name="text_primary">#f1604b</color>
     <color name="red">#FF3333</color>
     <color name="gray">#808080</color>
+    <color name="gray1">#c1c1c1</color>
     <color name="statusbar">#f0f0f0</color>
 </resources>

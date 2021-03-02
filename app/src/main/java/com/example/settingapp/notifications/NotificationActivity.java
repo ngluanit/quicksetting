@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.example.blacklist.BlacklistActivity;
 import com.example.miui_ify.MainActivity;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.BottomStatusBar.BottomStatusActivity;
@@ -22,6 +24,7 @@ public class NotificationActivity extends AppCompatActivity {
     ImageView switch_lockscreen,switch_MIUI,swich_background,switch_dynamic,switch_blacklist,switch_hide_presi,switch_music,
             switch_remove, switch_expand,switch_clear,switch_auto_close;
     ImageView imgBack;
+    RelativeLayout rlblack_list;
 
     private boolean switch_lockscreenShown= true;
     private boolean switch_MIUIShown= true;
@@ -51,13 +54,22 @@ public class NotificationActivity extends AppCompatActivity {
         switch_MIUI = findViewById(R.id.switch_MIUI);
         swich_background = findViewById(R.id.swich_background);
         switch_dynamic = findViewById(R.id.switch_dynamic);
-        switch_blacklist = findViewById(R.id.switch_blacklist);
+
         switch_hide_presi = findViewById(R.id.switch_hide_presi);
         switch_music = findViewById(R.id.switch_music);
         switch_remove = findViewById(R.id.switch_remove);
         switch_expand = findViewById(R.id.switch_expand);
         switch_clear = findViewById(R.id.switch_clear);
         switch_auto_close = findViewById(R.id.switch_auto_close);
+
+        rlblack_list = findViewById(R.id.rlblack_list);
+
+        rlblack_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NotificationActivity.this, BlacklistActivity.class));
+            }
+        });
 
 
         switch_lockscreen.setOnClickListener(new View.OnClickListener() {
@@ -116,19 +128,6 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
 
-        switch_blacklist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ((switch_blacklist != null) && (switch_blacklistShown)){
-                    switch_blacklist.setImageResource(R.drawable.ic_switch_on);
-                    switch_blacklistShown = false;
-                }
-                else {
-                    if (switch_blacklist != null) switch_blacklist.setImageResource(R.drawable.ic_switch_off);
-                    switch_blacklistShown = true;
-                }
-            }
-        });
 
         switch_hide_presi.setOnClickListener(new View.OnClickListener() {
             @Override

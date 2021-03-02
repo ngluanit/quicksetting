@@ -1,18 +1,36 @@
 package com.example.miui_ify;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.KeyguardManager;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,10 +65,13 @@ import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.layout.Layout_Activity;
 import com.example.settingapp.notifications.NotificationActivity;
 import com.example.settingapp.required.PermissionRequired;
+import com.example.settingapp.tiles.TilesActivity;
+import com.example.settingapp.colors.ColorsActivity;
 import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
+import com.example.settingapp.util.QSIntentService;
 import com.example.settingapp.util.SharePref;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -71,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     ImageView menu_nav,img_turnservice;
     LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles, lnLayout, lnExtra, lnBackgroundType, lnNotification, lnStatusbar;
-    RelativeLayout rlConnect,status_service;
+    RelativeLayout rlConnect,status_service,rladb,rlblurWallpaper;
     TextView tv_service;
     Button btnTest, btn_ok;
     Context context;
@@ -181,6 +202,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setContentView(R.layout.dialog_backgroundtype);
+                rladb = dialog.findViewById(R.id.rladb);
+                rlblurWallpaper = dialog.findViewById(R.id.rlblurWallpaper);
+                rladb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                      startActivity(new Intent(MainActivity.this, SystemRequiredBlur.class));
+                    }
+                });
+                rlblurWallpaper.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        isStoragePermission(MainActivity.this);
+                    }
+                });
+
                 dialog.show();
             }
         });
@@ -207,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HandlesActivity.class));
+
             }
         });
 
@@ -227,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //displayLocationSettingsRequest(context,MainActivity.this);
                 try {
 
-                   Object service = getSystemService("statusbar");
+                   @SuppressLint("WrongConstant") Object service = getSystemService("statusbar");
                     Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
 
                     // expands the notification bar into the quick settings mode
@@ -351,6 +388,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
     }
+
     private void acesspermission(Context mContext) {
 //        Intent intent=new Intent(this, MaintwoActivity.class);
 //        startActivity(intent);
@@ -496,9 +534,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             //do your code
-             Intent intent = new Intent(this, FloatingWindow.class);
+            Intent intent = new Intent(this, FloatingWindow.class);
             this.stopService(intent);
             this.startService(intent);
+        }else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Write external storage permission required", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -531,6 +571,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.startService(intent);
         }else if (requestCode==545){
             Toast.makeText(context, "Hello done", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public boolean isStoragePermission(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }else {
+            return true;
         }
     }
 
