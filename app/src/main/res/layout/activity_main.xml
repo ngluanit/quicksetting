@@ -9,6 +9,14 @@
     tools:openDrawer="start"
     android:id="@+id/drawer"
     tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_home"/>
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -23,16 +31,4 @@
         android:background="#f1604b"
         android:theme="@style/TextViewStyle">
     </com.google.android.material.navigation.NavigationView>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/layout_home"/>
-    </ScrollView>
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

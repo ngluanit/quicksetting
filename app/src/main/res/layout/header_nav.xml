@@ -6,8 +6,8 @@
     android:background="#f1604b">
     <ImageView
         android:id="@+id/navbar_icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_logo"
         android:layout_centerInParent="true"/>
 

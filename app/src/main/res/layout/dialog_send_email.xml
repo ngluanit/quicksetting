@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingStart="@dimen/_20sdp"
+    android:background="@drawable/bg_dialog_base"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:padding="@dimen/_15sdp"
+    android:elevation="@dimen/_10sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/robotolight"
+            android:text="Send us an email"/>
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitle"
+            android:fontFamily="@font/robotolight"
+            android:text="Please read the FAQ first"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+
+
+        <RelativeLayout
+            android:layout_below="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+           <TextView
+               android:id="@+id/tv_send"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="SEND US AN EMAIL"
+               android:layout_centerVertical="true"
+               android:layout_alignParentLeft="true"
+               android:textSize="@dimen/_10sdp"
+               android:textColor="@color/text_primary"/>
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/bg_primary"
+                android:text="OK"
+                android:layout_alignParentRight="true"
+                android:paddingHorizontal="@dimen/_30sdp"
+                android:fontFamily="@font/robotolight"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

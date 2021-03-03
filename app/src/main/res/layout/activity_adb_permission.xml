@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ADBpermission.AdbPermissionActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"/>
+
+        <TextView
+            android:layout_toEndOf="@id/imgBack"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            android:id="@+id/tvTitle"
+            android:layout_height="wrap_content"
+            android:text="ADB permissions"
+            android:fontFamily="@font/robotolight"
+            android:layout_toRightOf="@id/imgBack"
+            android:layout_marginLeft="@dimen/_20sdp" />
+        <ImageView
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_reload"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTop"
+        android:text="Permission not granted X "
+        android:textColor="#c42e2f"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_18sdp"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_refesh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_cardview1"
+        android:layout_below="@id/title1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:elevation="@dimen/_8sdp"
+        android:translationZ="@dimen/_1sdp"
+        android:padding="@dimen/_10sdp">
+        <TextView
+            android:id="@+id/tit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REFESH STATUS"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/text_primary"/>
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_reload"
+            android:layout_toRightOf="@id/tit2"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:tint="@color/text_primary"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_refesh"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:text="Root is NOT REQUIRED. If your phone is rooted, you will be able to skip the steps below"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:textSize="@dimen/_13sdp"
+        android:fontFamily="@font/robotolight"
+        android:textColor="@color/black"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_grant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_cardview1"
+        android:layout_below="@id/title2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:elevation="@dimen/_8sdp"
+        android:translationZ="@dimen/_1sdp"
+        android:padding="@dimen/_10sdp">
+        <TextView
+            android:id="@+id/tit3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GRANT WITH ROOT"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/robotolight"
+            android:textColor="@color/text_primary"/>
+    </RelativeLayout>
+
+</RelativeLayout>

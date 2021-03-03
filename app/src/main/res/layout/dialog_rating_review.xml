@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:background="@drawable/bg_dialog_base"
+    android:padding="@dimen/_15sdp"
+    android:id="@+id/rlsum"
+    android:elevation="@dimen/_10sdp">
+    
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/ic_logo"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/tit1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate app"
+        android:layout_below="@+id/img_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/robotolight"/>
+    <TextView
+        android:id="@+id/tit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Higher is better)"
+        android:layout_below="@+id/tit1"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/robotolight"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tit2"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:weightSum="5"
+        android:id="@+id/ln_rating">
+
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_star"/>
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_star"/>
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_star"/>
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_star"/>
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_star"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Now"
+        android:textColor="@color/text_primary"
+        android:layout_below="@id/ln_rating"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_15sdp"/>
+
+</RelativeLayout>

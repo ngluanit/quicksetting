@@ -34,7 +34,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -66,15 +68,18 @@ import com.google.android.material.navigation.NavigationView;
 import java.lang.reflect.Method;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
     ImageView menu_nav,img_turnservice;
     LinearLayout lnTiles, lnSlides, lnColors, lnTileStyle, lnHandles, lnLayout, lnExtra, lnBackgroundType, lnNotification, lnStatusbar;
+    LinearLayout ln_write_review,ln_send_email;
     RelativeLayout rlConnect,status_service;
     TextView tv_service;
     Button btnTest, btn_ok;
     Context context;
+    Toolbar toolbar;
     LinearLayout dragView;
     private final int REQUEST_ACCESSIBILITY = 777;
     SharedPreferences pref;
@@ -111,7 +116,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lnSlides = findViewById(R.id.lnSlides);
         lnColors = findViewById(R.id.lnColors);
         btn_ok = findViewById(R.id.btn_ok);
+
         dragView = findViewById(R.id.dragView);
+        drawerLayout = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.navigation_view);
+//        menu_nav = findViewById(R.id.menu_nav);
+
+        toolbar = findViewById(R.id.toolbar);
+
         lnTileStyle = findViewById(R.id.lnTileStyles);
         lnHandles = findViewById(R.id.lnHandler);
         lnLayout = findViewById(R.id.lnLayout);
@@ -122,6 +134,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         img_turnservice = findViewById(R.id.img_turnservice);
         status_service = findViewById(R.id.status_service);
         tv_service = findViewById(R.id.tv_service);
+
+        //Bottom layout//
+        ln_write_review = findViewById(R.id.ln_write_review);
+        ln_send_email = findViewById(R.id.ln_send_email);
+
+        setSupportActionBar(toolbar);
+
         if (isAccessibilitySettingsOn(this) && Settings.canDrawOverlays(this)) {
             img_turnservice.setImageResource(R.drawable.ic_switch_on);
             img_turnserviceShown = false;
@@ -166,14 +185,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, NotificationActivity.class));
             }
         });
-
         lnStatusbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BottomStatusActivity.class));
             }
         });
-
         lnBackgroundType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //displayLocationSettingsRequest(context,MainActivity.this);
                 try {
 
-                   Object service = getSystemService("statusbar");
+                   @SuppressLint("WrongConstant") Object service = getSystemService("statusbar");
                     Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
 
                     // expands the notification bar into the quick settings mode
@@ -251,55 +268,90 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-        drawerLayout = findViewById(R.id.drawer);
-        navigationView = findViewById(R.id.navigation_view);
-        menu_nav = findViewById(R.id.menu_nav);
 
-        menu_nav.setOnClickListener(new View.OnClickListener() {
+
+        //
+        ln_write_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(R.layout.dialog_rating_review);
+                dialog.show();
             }
         });
-        navigationView.setNavigationItemSelectedListener(this);
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                int id = item.getItemId();
-//                drawerLayout.closeDrawer(GravityCompat.START);
-//                switch (id) {
-//                    case R.id.theme_aplica:
-//                        Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.ADB:
-//                        Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.tasker_setting:
-//                        Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.playstore:
-//                        Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.twitter:
-//                        Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.telegram:
-//                        Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.help_forum:
-//                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.help_translate:
-//                        Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    default:
-//                        return true;
-//                }
-//                return true;
-//            }
-//
-//        });
+        ln_send_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(R.layout.dialog_send_email);
+                dialog.show();
+            }
+        });
 
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_open,R.string.navigation_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+//        menu_nav.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                drawerLayout.openDrawer(GravityCompat.START);
+//            }
+//        });
+//        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                System.out.println("121123" + menuItem.getItemId() + ".....zzzz");
+                menuItem.setChecked(true);
+                drawerLayout.closeDrawers();
+                switch (menuItem.getItemId()) {
+                    case R.id.theme_aplica:
+                        DialogApptheme();
+                        break;
+                    case R.id.ADB:
+                        Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.tasker_setting:
+                        Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.playstore:
+                        Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.twitter:
+                        Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.telegram:
+                        Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.help_forum:
+                        Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.help_translate:
+                        Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        return true;
+                }
+                drawerLayout = findViewById(R.id.drawer);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
+            }
+
+        });
+
+    }
+
+    private void DialogApptheme() {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(R.layout.dialog_app_theme);
+        dialog.show();
     }
 
     private boolean isAccessibilitySettingsOn(Context mContext) {
@@ -534,38 +586,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        System.out.println("121123" + item.getItemId() + ".....zzzz");
-        switch (item.getItemId()) {
-            case R.id.theme_aplica:
-                Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.ADB:
-                Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.tasker_setting:
-                Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.playstore:
-                Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.twitter:
-                Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.telegram:
-                Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.help_forum:
-                Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.help_translate:
-                Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                return true;
-        }
-        return false;
-    }
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        System.out.println("121123" + item.getItemId() + ".....zzzz");
+//        switch (item.getItemId()) {
+//            case R.id.theme_aplica:
+//                Toast.makeText(MainActivity.this, "Home is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.ADB:
+//                Toast.makeText(MainActivity.this, "Message is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.tasker_setting:
+//                Toast.makeText(MainActivity.this, "Synch is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.playstore:
+//                Toast.makeText(MainActivity.this, "Trash is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.twitter:
+//                Toast.makeText(MainActivity.this, "Settings is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.telegram:
+//                Toast.makeText(MainActivity.this, "Login is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.help_forum:
+//                Toast.makeText(MainActivity.this, "Share is clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.help_translate:
+//                Toast.makeText(MainActivity.this, "Rate us is Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//            default:
+//                return true;
+//        }
+//        return false;
+//    }
 
 }

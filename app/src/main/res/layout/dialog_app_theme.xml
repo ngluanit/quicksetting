@@ -26,8 +26,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/radio_Default"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_on"/>
         <TextView
             android:id="@+id/tv_default"
@@ -35,8 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/radio_Default"
             android:text="Default"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_13sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotolight"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true" />
     </RelativeLayout>
@@ -48,8 +49,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/radio_dark"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_off"/>
         <TextView
             android:id="@+id/tvdark"
@@ -57,8 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/radio_dark"
             android:text="Dark"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_13sdp"
             android:textColor="@color/black"
+            android:fontFamily="@font/robotolight"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
@@ -70,8 +72,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/radio_black"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_off"/>
         <TextView
             android:id="@+id/tvblack"
@@ -79,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/radio_black"
             android:text="Black"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/robotolight"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true"/>
@@ -92,8 +95,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/radio_system"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             android:src="@drawable/ic_radio_off"/>
         <TextView
             android:id="@+id/tvsystem"
@@ -101,7 +104,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/radio_system"
             android:text="System default"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/robotolight"
             android:textColor="@color/black"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_centerVertical="true"/>
@@ -117,11 +121,10 @@
         <Button
             android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:background="@drawable/bg_primary"
             android:text="OK"
             android:layout_toRightOf="@+id/btn_cancel"
-            android:layout_marginLeft="@dimen/_15sdp"
             android:textColor="@color/white"/>
 
     </RelativeLayout>
