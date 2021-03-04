@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_centerHorizontal="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/rlBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14:13"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:id="@+id/tvTimeBottom"
+            android:textSize="@dimen/_5sdp"/>
+        <ImageView
+            android:layout_width="@dimen/_5sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/tvTimeBottom"
+            android:src="@drawable/ic_am_thanh_c"
+            android:id="@+id/imgAmthanhBottom"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:tint="@color/black" />
+        <ImageView
+            android:layout_width="@dimen/_5sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imgAmthanhBottom"
+            android:src="@drawable/ic_wifi_c"
+            android:id="@+id/imgWifiBottom"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:tint="@color/black" />
+        <ImageView
+            android:layout_width="@dimen/_5sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imgWifiBottom"
+            android:src="@drawable/ic_song_c"
+            android:id="@+id/imgSongBottom"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:tint="@color/black" />
+        <ImageView
+            android:layout_width="@dimen/_5sdp"
+            android:layout_height="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imgSongBottom"
+            android:src="@drawable/ic_battery_c"
+            android:id="@+id/imgPinBottom"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:tint="@color/black" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100%"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:id="@+id/tvBatteryBottom"
+            android:layout_toEndOf="@id/imgPinBottom"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:textSize="@dimen/_5sdp"/>
+    </RelativeLayout>
+</RelativeLayout>

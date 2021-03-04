@@ -1,15 +1,7 @@
 package com.example.settingapp.required;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,7 +17,15 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.miui_ify.FloatingWindow;
+import com.example.miui_ify.LockScreenTextService;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
 import com.example.settingapp.handles.HandlesActivity;
@@ -252,6 +252,7 @@ public class PermissionRequired extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_ACCESSIBILITY && resultCode == RESULT_OK) {
+
             checkDrawOverlayPermission(this);
         } else if (requestCode == Overlay_REQUEST_CODE) {
             if (Build.VERSION.SDK_INT >= 23) {

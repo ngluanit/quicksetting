@@ -184,6 +184,7 @@
                     android:thumbTint="@color/text_primary"
                     android:max="30"
                     android:min="1"
+
                     android:progressTint="@color/text_primary"/>
                 <TextView
                     android:id="@+id/tv_panel_radius"

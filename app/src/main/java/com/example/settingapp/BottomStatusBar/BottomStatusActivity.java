@@ -1,8 +1,5 @@
 package com.example.settingapp.BottomStatusBar;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -12,9 +9,13 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.blacklist.BlacklistActivity;
 import com.example.miui_ify.MainActivity;
 import com.example.settingapp.R;
+import com.example.settingapp.util.SharePref;
 
 public class BottomStatusActivity extends AppCompatActivity {
     ImageView imgBack;
@@ -53,10 +54,12 @@ public class BottomStatusActivity extends AppCompatActivity {
               if ((swich_show_bottom != null) && (swich_show_bottomShown)){
                     swich_show_bottom.setImageResource(R.drawable.ic_switch_on);
                     swich_show_bottomShown = false;
+                  SharePref.setBooleanPref(getApplicationContext(),"show_bottom",true);
               }
               else {
                   if (swich_show_bottom != null) swich_show_bottom.setImageResource(R.drawable.ic_switch_off);
                   swich_show_bottomShown = true;
+                  SharePref.setBooleanPref(getApplicationContext(),"show_bottom",false);
               }
             }
         });

@@ -2,7 +2,6 @@ package com.example.miui_ify;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.KeyguardManager;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
@@ -25,6 +24,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -84,13 +84,13 @@ import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
 import static android.hardware.camera2.CameraMetadata.FLASH_MODE_TORCH;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class FloatingWindow extends Service implements IconSettingAdapter.ItemClick, LocationListener {
+public class FloatingWindow extends Service implements IconSettingAdapter.ItemClick, LocationListener, PageIconAdapter.ItemInPageClick {
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 111;
     private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
     private Context mContext;
     private WindowManager mWindowManager;
-    private View mView;
-    RelativeLayout relativeLayout;
+    private View mView,mView1;
+    RelativeLayout relativeLayout,rlBottomView;
     private RangeSeekBarView seekBar, seekbarMedia, seekbarAlarm, seekbarRing, seekbarNotification, seekbarVoiceCall;
     private RelativeLayout rlBrightBar, rlMediaBar, rlAlarmBar, rlRingBar, rlNotificationBar, rlVoicecallBar;
     TextView tvDate, tvHour;
@@ -116,7 +116,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     ImageView imgStartBb, imgEndBb, imgStartMb, imgEndMb, imgStartAb, imgEndAb, imgStartRb, imgEndRb, imgStartNb, imgEndNb, imgStartCb, imgEndCb;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
-
+    PageIconAdapter pageIconAdapter;
     WindowManager.LayoutParams mWindowsParams;
 
     int mediaVolume;
@@ -200,7 +200,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         boolean screenOn = intent.getBooleanExtra("screen_state", false);
-        if ( !screenOn) {
+        if (!screenOn) {
             Log.i("screenON", "Called");
             Toast.makeText(getApplicationContext(), "Awake", Toast.LENGTH_LONG)
                     .show();
@@ -219,9 +219,14 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             settime();
             setData();
             setSeekBar();
+        } else if (intent.getAction() != null && intent.getAction().equals("android.intent.action.SCREEN_OFF")) {
+            allAboutLayout();
+            moveView();
         }else {
             moveView();
         }
+
+
         return START_STICKY;
     }
 
@@ -251,7 +256,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                         | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                         | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
                         | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                 //     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 //     | WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW
                 ,
@@ -267,6 +272,9 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 | View.SYSTEM_UI_FLAG_IMMERSIVE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
         mWindowManager.addView(mView, mWindowsParams);
+        mWindowManager.addView(mView1,mWindowsParams);
+
+
 
     }
 
@@ -274,13 +282,37 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
     private void allAboutLayout() {
         LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.ovelay_window, null);
+        LayoutInflater layoutInflater1 = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView1 = layoutInflater1.inflate(R.layout.bottom_bar, null);
         mView.setFocusable(false);
         mView.setClickable(false);
         relativeLayout = mView.findViewById(R.id.sliding_layout);
+        rlBottomView=mView.findViewById(R.id.rlBottomView);
+        View view = mView.findViewById(R.id.view);
+        Vibrator vb = (Vibrator)   getSystemService(Context.VIBRATOR_SERVICE);
+        vb.vibrate(100);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)rlBottomView.getLayoutParams();
+        params.height = SharePref.getIntPref(mContext, "bottom_size");
+        params.width = SharePref.getIntPref(mContext, "bottom_length");
+        params.setMargins(SharePref.getIntPref(mContext, "bottom_position"),0,0,0);
+        rlBottomView.setLayoutParams(params);
+        View viewfull=mView.findViewById(R.id.viewfull);
+        if (SharePref.getBooleanPref(mContext,"hide_length")){
+            viewfull.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
+        }else {
+            if (SharePref.getBooleanPref(mContext,"full_length")){
+                viewfull.setVisibility(View.VISIBLE);
+                view.setVisibility(View.INVISIBLE);
+            }else {
+                viewfull.setVisibility(View.INVISIBLE);
+                view.setVisibility(View.VISIBLE);
+            }
+        }
+
         setSeekBar();
         initRelative();
 
-        View view = mView.findViewById(R.id.view);
         viewPager = mView.findViewById(R.id.viewpager);
 
         //    viewPagerAdapter = new ViewPagerAdapter(((FloatingWindow) mContext).getFragmentManager());
@@ -304,7 +336,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 //                    }
 //                })
                 .build();
-        view.setOnTouchListener(new View.OnTouchListener() {
+        rlBottomView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Intent intent = new Intent(mContext, FloatingWindow.class);
@@ -317,7 +349,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 
                     }
                 });
-                view.setVisibility(View.GONE);
+                rlBottomView.setVisibility(View.INVISIBLE);
                 return false;
             }
         });
@@ -325,7 +357,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 slideUp.hide();
-                view.setVisibility(View.VISIBLE);
+                rlBottomView.setVisibility(View.VISIBLE);
                 return false;
             }
         });
@@ -554,10 +586,10 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
             }
         }
 
-        PageIconAdapter pageIconAdapter = new PageIconAdapter(lists, mContext);
+        pageIconAdapter = new PageIconAdapter(lists, mContext);
+        pageIconAdapter.setItemInPageClick(this::onItemclick1);
         rcvIconSetting.setAdapter(pageIconAdapter);
         indicatorView.attachTo(rcvIconSetting);
-        System.out.println("12312///" + rcvIconSetting.getHeight());
 
     }
 
@@ -589,6 +621,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
         imgEndAb = (ImageView) mView.findViewById(R.id.imgEndAb);
         imgEndBb = (ImageView) mView.findViewById(R.id.imgEndBb);
         imgEndCb = (ImageView) mView.findViewById(R.id.imgEndCb);
+        imgEndMb = (ImageView) mView.findViewById(R.id.imgEndMb);
         imgEndMb = (ImageView) mView.findViewById(R.id.imgEndMb);
         imgEndNb = (ImageView) mView.findViewById(R.id.imgEndNb);
         imgEndRb = (ImageView) mView.findViewById(R.id.imgEndRb);
@@ -796,6 +829,7 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 
     @Override
     public void onItemclick1(int position) {
+
         int powifi = -1;
         int podata = -1;
         int pobluetooth = -1;
@@ -903,10 +937,46 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
                 turnFlashlightOff();
             }
         }
-        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list, mContext);
-        iconSettingAdapter.setIClick(this::onItemclick1);
-        iconSettingAdapter.notifyDataSetChanged();
-        rcvIconSetting.setAdapter(iconSettingAdapter);
+        List<List<ItemNotification>> lists = new ArrayList<>();
+        List<ItemNotification> list1 = new ArrayList<>();
+//        list1=list;
+//        lists.add(list);
+//        lists.add(list1);
+        int page = 0;
+//        SharePref.setIntPref(getApplicationContext(),"number_row",1);
+//        SharePref.setIntPref(getApplicationContext(),"number_column",3);
+        System.out.println("zzzzzz///" + SharePref.getIntPref(mContext, "number_row") + SharePref.getIntPref(mContext, "number_column"));
+        int num = (SharePref.getIntPref(mContext, "number_row") * SharePref.getIntPref(mContext, "number_column"));
+        page = list.size() / num;
+        if (list.size() % num != 0) {
+            for (int i = 0; i <= page; i++) {
+                list1 = new ArrayList<>();
+                for (int k = num * i; k < num * (i + 1); k++) {
+                    if (k < list.size()) {
+                        list1.add(list.get(k));
+                    }
+                }
+                lists.add(list1);
+            }
+        } else {
+            for (int i = 0; i < page; i++) {
+                list1 = new ArrayList<>();
+                for (int k = num * i; k < num * (i + 1); k++) {
+                    if (k < list.size()) {
+                        list1.add(list.get(k));
+                    }
+                }
+                lists.add(list1);
+            }
+        }
+        pageIconAdapter= new PageIconAdapter(lists, mContext);
+        pageIconAdapter.setItemInPageClick(this::onItemclick1);
+        pageIconAdapter.notifyDataSetChanged();
+        rcvIconSetting.setAdapter(pageIconAdapter);
+//        IconSettingAdapter iconSettingAdapter = new IconSettingAdapter(list, mContext);
+//        iconSettingAdapter.setIClick(this::onItemclick1);
+//        iconSettingAdapter.notifyDataSetChanged();
+//        rcvIconSetting.setAdapter(iconSettingAdapter);
     }
 
     public static boolean isLocationEnabled(Context context) {
@@ -1159,6 +1229,11 @@ public class FloatingWindow extends Service implements IconSettingAdapter.ItemCl
 
     }
 
+    @Override
+    public void onIteminPageclick1(int position) {
+        System.out.println("da dc chon "+position);
+
+    }
 }
 
 

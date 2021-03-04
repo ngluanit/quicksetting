@@ -75,21 +75,23 @@
             <SeekBar
                 android:id="@+id/seekbar_handles"
                 android:layout_below="@+id/title1"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_toStartOf="@id/number_handles"
                 android:thumbTint="@color/text_primary"
-                android:max="100"
                 android:progressTint="@color/text_primary"/>
+
             <TextView
                 android:id="@+id/number_handles"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:maxLines="1"
+                android:text="5"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:textSize="@dimen/_14sdp"
-                android:layout_toRightOf="@+id/seekbar_handles"
                 android:layout_centerVertical="true"
                 android:textColor="@color/black" />
         </RelativeLayout>
@@ -119,21 +121,23 @@
             <SeekBar
                 android:id="@+id/seekbar_handlesize"
                 android:layout_below="@+id/title2"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_toStartOf="@id/number_handlesize"
                 android:thumbTint="@color/text_primary"
-                android:max="50"
                 android:progressTint="@color/text_primary"/>
+
             <TextView
                 android:id="@+id/number_handlesize"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:maxLines="1"
+                android:text="5"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:textSize="@dimen/_14sdp"
-                android:layout_toRightOf="@+id/seekbar_handlesize"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/black" />
         </RelativeLayout>
@@ -163,23 +167,25 @@
             <SeekBar
                 android:id="@+id/seekbar_handleposition"
                 android:layout_below="@+id/title3"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_toStartOf="@id/number_handle_position"
                 android:thumbTint="@color/text_primary"
-                android:max="50"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handle_position"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:maxLines="1"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:textSize="@dimen/_14sdp"
-                android:layout_toRightOf="@+id/seekbar_handleposition"
                 android:layout_centerVertical="true"
                 android:textColor="@color/black" />
+
         </RelativeLayout>
         <View
             android:id="@+id/line5"
@@ -265,12 +271,13 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:thumbTint="@color/text_primary"
                 android:max="100"
+                android:min="5"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handles_left_lenghth"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="5"
                 android:maxLines="1"
                 android:textSize="@dimen/_14sdp"
                 android:layout_toRightOf="@+id/seekbar_handles_left_length"
@@ -309,12 +316,13 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:thumbTint="@color/text_primary"
                 android:max="50"
+                android:min="5"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handlesize_left"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="5"
                 android:maxLines="1"
                 android:textSize="@dimen/_14sdp"
                 android:layout_toRightOf="@+id/seekbar_handlesize_left"
@@ -353,6 +361,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:thumbTint="@color/text_primary"
                 android:max="50"
+                android:min="0"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handle_position_left"
@@ -450,12 +459,13 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:thumbTint="@color/text_primary"
                 android:max="100"
+                android:min="5"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handles_right_lenghth"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="5"
                 android:maxLines="1"
                 android:textSize="@dimen/_14sdp"
                 android:layout_toRightOf="@+id/seekbar_handles_right_length"
@@ -494,12 +504,13 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:thumbTint="@color/text_primary"
                 android:max="50"
+                android:min="5"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handlesize_right"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="5"
                 android:maxLines="1"
                 android:textSize="@dimen/_14sdp"
                 android:layout_toRightOf="@+id/seekbar_handlesize_right"
@@ -538,6 +549,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:thumbTint="@color/text_primary"
                 android:max="50"
+                android:min="0"
                 android:progressTint="@color/text_primary"/>
             <TextView
                 android:id="@+id/number_handle_position_right"
@@ -557,6 +569,5 @@
             android:background="#C1C1C1"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_below="@+id/rlhandleposition_left"/>
-
     </RelativeLayout>
 </ScrollView>

@@ -15,16 +15,30 @@
     android:gravity="bottom"
     android:isScrollContainer="false"
     android:longClickable="false">
+    <RelativeLayout
+        android:id="@+id/rlBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:visibility="invisible" />
 
+        <View
+            android:id="@+id/viewfull"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_below="@id/view"
+            android:background="@color/white"
+            android:visibility="invisible" />
+    </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/view"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_10sdp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@color/red" />
     <!--    <net.robinx.lib.blurview.BlurBehindView-->
     <!--        android:id="@+id/blur_behind_view"-->
     <!--        android:layout_width="150dp"-->

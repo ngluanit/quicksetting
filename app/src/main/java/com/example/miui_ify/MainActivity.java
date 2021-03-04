@@ -1,36 +1,17 @@
 package com.example.miui_ify;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.KeyguardManager;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,7 +22,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,15 +43,12 @@ import com.example.settingapp.R;
 import com.example.settingapp.extra.ExtraActivity;
 import com.example.settingapp.handles.HandlesActivity;
 import com.example.settingapp.layout.Layout_Activity;
-import com.example.settingapp.notifications.NotificationActivity;
 import com.example.settingapp.required.PermissionRequired;
-import com.example.settingapp.tiles.TilesActivity;
-import com.example.settingapp.colors.ColorsActivity;
+import com.example.settingapp.required.SystemRequiredBlur;
 import com.example.settingapp.sliders.SlidersActivity;
 import com.example.settingapp.tiles.TilesActivity;
 import com.example.settingapp.tilestyle.TileStylesActivity;
 import com.example.settingapp.util.MyAccessibilityService;
-import com.example.settingapp.util.QSIntentService;
 import com.example.settingapp.util.SharePref;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -184,7 +161,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lnNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+                //startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+                Intent intent1 = new Intent(MainActivity.this, LockScreenTextService.class);
+                startService(intent1);
             }
         });
 
@@ -194,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this, BottomStatusActivity.class));
             }
         });
+
 
         lnBackgroundType.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,19 +11,26 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.util.Log
+import android.view.Display
 import android.view.View
 import android.view.Window
+import android.widget.RelativeLayout
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
 import com.example.blacklist.BlacklistActivity
 import com.example.miui_ify.FloatingWindow
 import com.example.miui_ify.MainActivity
 import com.example.settingapp.R
 import com.example.settingapp.required.PermissionRequired
+import com.example.settingapp.util.SharePref
 import kotlinx.android.synthetic.main.activity_colors.imgBack
 import kotlinx.android.synthetic.main.activity_handles.*
 import kotlinx.android.synthetic.main.dialog_draw_handles.*
@@ -35,12 +42,11 @@ class HandlesActivity : AppCompatActivity() {
     private var imgTurnHideFullScreenShown = true
     private var imgTurnHidelandscapeShown = true
     private var imgTurnHideKeyboardOpenShown = true
-    private var imgTurnDisableHandleShown = true
+    private var imgTurnDisableHandleShown = false
     private var imgTurnDisableleftHandleShown = true
     private var imgTurnDisableRightHandleShown = true
     private val REQUEST_ACCESSIBILITY = 777
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_handles)
@@ -52,14 +58,51 @@ class HandlesActivity : AppCompatActivity() {
 
         Showdialog()
 
+        setTurnHandle()
+        setDataSeekbar()
+        imgBack.setOnClickListener {
+          onBackPressed()
+        }
+        rlBlackList.setOnClickListener {
+            val intent = Intent(this, BlacklistActivity::class.java);
+            startActivity(intent)
+        }
+    }
+    private fun setTurnHandle(){
+        if (SharePref.getBooleanPref(applicationContext,"full_length")){
+            viewfull.visibility=View.VISIBLE
+            view.visibility=View.INVISIBLE
+        }else{
+            viewfull.visibility=View.INVISIBLE
+            view.visibility=View.VISIBLE
+        }
+        if (SharePref.getBooleanPref(applicationContext,"hide_length")){
+            viewfull.visibility=View.INVISIBLE
+            view.visibility=View.INVISIBLE
+        }else{
+            if (SharePref.getBooleanPref(applicationContext,"full_length")){
+                viewfull.visibility=View.VISIBLE
+                view.visibility=View.INVISIBLE
+            }else{
+                viewfull.visibility=View.INVISIBLE
+                view.visibility=View.VISIBLE
+            }
+        }
         imgTurnFullleght.setOnClickListener {
             if ((imgTurnFullleght != null) && (imgTurnFullleghtShown)){
                 imgTurnFullleght.setImageResource(R.drawable.ic_switch_on);
                 imgTurnFullleghtShown = false
+                viewfull.visibility=View.VISIBLE
+                view.visibility=View.INVISIBLE
+                SharePref.setBooleanPref(applicationContext,"full_length",true)
             }
             else{
                 if (imgTurnFullleght != null) imgTurnFullleght.setImageResource(R.drawable.ic_switch_off);
                 imgTurnFullleghtShown = true
+                viewfull.visibility=View.INVISIBLE
+                view.visibility=View.VISIBLE
+                SharePref.setBooleanPref(applicationContext,"full_length",false)
+
             }
         }
 
@@ -67,10 +110,21 @@ class HandlesActivity : AppCompatActivity() {
             if ((imgTurnHideHandle != null) && (imgTurnHideHandleShown)){
                 imgTurnHideHandle.setImageResource(R.drawable.ic_switch_on);
                 imgTurnHideHandleShown = false
+                viewfull.visibility=View.INVISIBLE
+                view.visibility=View.INVISIBLE
+                SharePref.setBooleanPref(applicationContext,"hide_length",true)
             }
             else{
                 if (imgTurnHideHandle != null) imgTurnHideHandle.setImageResource(R.drawable.ic_switch_off);
                 imgTurnHideHandleShown = true
+                if (SharePref.getBooleanPref(applicationContext,"full_length")){
+                    viewfull.visibility=View.VISIBLE
+                    view.visibility=View.INVISIBLE
+                }else{
+                    viewfull.visibility=View.INVISIBLE
+                    view.visibility=View.VISIBLE
+                }
+                SharePref.setBooleanPref(applicationContext,"hide_length",false)
             }
         }
 
@@ -106,6 +160,7 @@ class HandlesActivity : AppCompatActivity() {
                 imgTurnHideKeyboardOpenShown = true
             }
         }
+        imgTurnDisableHandle.setImageResource(R.drawable.ic_switch_on);
 
         imgTurnDisableHandle.setOnClickListener {
             if ((imgTurnDisableHandle != null) && (imgTurnDisableHandleShown)){
@@ -139,15 +194,116 @@ class HandlesActivity : AppCompatActivity() {
                 imgTurnDisableRightHandleShown = true
             }
         }
-        imgBack.setOnClickListener {
-          onBackPressed()
-        }
-        rlBlackList.setOnClickListener {
-            val intent = Intent(this, BlacklistActivity::class.java);
-            startActivity(intent)
-        }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setDataSeekbar(){
+        seekbar_handles.max=100
+        seekbar_handles.min=0
+        //set width,height,margin rl
+        val params =
+            rlBottomView.layoutParams as RelativeLayout.LayoutParams
+        params.width=SharePref.getIntPref(applicationContext, "bottom_length")
+        params.height=SharePref.getIntPref(applicationContext, "bottom_size")
+        params.setMargins(SharePref.getIntPref(applicationContext, "bottom_position"),0,0,0)
+        rlBottomView.layoutParams = params
+        seekbar_handlesize.max=50
+        seekbar_handlesize.min=0
+        seekbar_handles.progress=SharePref.getIntPref(applicationContext, "progress_length")
+        number_handles.text=(SharePref.getIntPref(applicationContext, "progress_length").toString())
+        seekbar_handlesize.progress=SharePref.getIntPref(applicationContext, "progress_size")
+        number_handlesize.setText(SharePref.getIntPref(applicationContext,"progress_size").toString())
+        seekbar_handleposition.max=100
+        seekbar_handleposition.min=0
+        seekbar_handleposition.progress=SharePref.getIntPref(applicationContext, "progress_position")
+        number_handle_position.setText(SharePref.getIntPref(applicationContext,"progress_position").toString())
+        val metrics: DisplayMetrics =
+            getResources().getDisplayMetrics()
+        var widthred=metrics.widthPixels-rlBottomView.width;
+        seekbar_handles.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: SeekBar,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                println("12323///"+progress)
+                number_handles.setText("" + progress)
+                val metrics: DisplayMetrics =
+                    getResources().getDisplayMetrics()
+                val params =
+                    rlBottomView.layoutParams as RelativeLayout.LayoutParams
+                val width = (metrics.widthPixels *progress/100).toInt()
+//                params.width =
+//                    5*progress
+                params.width=width
+                rlBottomView.layoutParams = params
+                widthred=metrics.widthPixels-rlBottomView.width
+                SharePref.setIntPref(applicationContext, "bottom_length", rlBottomView.width)
+                SharePref.setIntPref(applicationContext, "progress_length", progress)
+            }
 
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+        })
+        seekbar_handlesize.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: SeekBar,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                println("12323///"+progress)
+                number_handlesize.setText("" + progress)
+                val params =
+                    rlBottomView.layoutParams as RelativeLayout.LayoutParams
+                //params.setMargins(80, 0, 0, 0) //left, top, right, bottom
+
+                params.height =
+                    5*progress
+                rlBottomView.layoutParams = params
+                SharePref.setIntPref(applicationContext, "bottom_size", rlBottomView.height)
+                SharePref.setIntPref(applicationContext, "progress_size", progress)
+
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+        })
+        seekbar_handleposition.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seekBar: SeekBar,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                number_handle_position.setText("" + progress)
+                SharePref.setIntPref(applicationContext, "bottom_position", progress)
+                val params =
+                    rlBottomView.layoutParams as RelativeLayout.LayoutParams
+               //
+                val metrics: DisplayMetrics =
+                    getResources().getDisplayMetrics()
+                var endprogress=0
+                var isEnd=false
+                    if (rlBottomView.right<(widthred)||isEnd==false){
+                        isEnd=true
+                        endprogress=progress
+                        params.setMargins(widthred*progress/100, 0, 0, 0)
+                    }else{
+                        isEnd=false
+                        params.setMargins(widthred*endprogress/100, 0, 0, 0)
+                    }
+                rlBottomView.layoutParams = params
+                SharePref.setIntPref(applicationContext, "bottom_position", rlBottomView.marginLeft)
+                SharePref.setIntPref(applicationContext, "progress_position", progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+        })
+
+    }
     private fun Showdialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

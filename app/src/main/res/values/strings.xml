@@ -101,6 +101,7 @@
     <string name="service_inactive">Inactive</string>
     <string name="tile_label">tile label</string>
     <string name="tile_name">tile name</string>
+    <string name="accessibility_service_description">update later</string>
 
     <string-array name="ahihi">
         <item>e an com chua1</item>

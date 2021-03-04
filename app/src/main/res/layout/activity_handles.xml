@@ -5,296 +5,353 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".handles.HandlesActivity">
+
     <RelativeLayout
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp">
+
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:padding="@dimen/_2sdp"
             android:src="@drawable/ic_back"
-            android:tint="@color/black"/>
+            android:tint="@color/black" />
+
         <TextView
-            android:layout_toEndOf="@id/imgBack"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_18sdp"
             android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/handles"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_toEndOf="@id/imgBack"
             android:layout_toRightOf="@id/imgBack"
-            android:layout_marginLeft="@dimen/_20sdp" />
+            android:text="@string/handles"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp" />
+
         <ImageView
             android:layout_width="@dimen/_22sdp"
             android:layout_height="@dimen/_22sdp"
-            android:padding="@dimen/_2sdp"
-            android:src="@drawable/ic_reload"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_reload" />
     </RelativeLayout>
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_below="@+id/rlTop"
-       android:layout_marginBottom="@dimen/_20sdp">
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <RelativeLayout
-               android:id="@+id/rlSwipe"
-               android:layout_below="@+id/rlTop"
-               android:layout_width="match_parent"
-               android:background="#eeeeee"
-               android:layout_height="wrap_content"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgSwipe"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_tips" />
-               <TextView
-                   android:layout_toEndOf="@id/imgSwipe"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:paddingVertical="@dimen/_10sdp"
-                   android:layout_centerVertical="true"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_13sdp"
-                   android:fontFamily="@font/robotolight"
-                   android:id="@+id/tvSwipe"
-                   android:layout_height="wrap_content"
-                   android:text="@string/swipe_upwards_to_open_the_panel_when_the_handle_is_on_the_left_or_right"
-                   android:layout_toRightOf="@id/imgSwipe"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-           </RelativeLayout>
-           <RelativeLayout
-               android:id="@+id/rlBlackList"
-               android:layout_below="@+id/rlSwipe"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgBlackList"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:padding="@dimen/_2sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_blacklist"/>
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_14sdp"
-                   android:id="@+id/tvBlackList"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/robotolight"
-                   android:text="@string/blacklist"
-                   android:layout_toRightOf="@id/imgBlackList"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-               <TextView
-                   android:layout_toEndOf="@id/imgBlackList"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:textColor="@color/gray"
-                   android:textSize="@dimen/_12sdp"
-                   android:id="@+id/tvBlackDes"
-                   android:layout_marginTop="@dimen/_5sdp"
-                   android:layout_height="wrap_content"
-                   android:text="@string/choose_apps_to_hide_the_handles_in"
-                   android:fontFamily="@font/robotolight"
-                   android:layout_below="@id/tvBlackList"
-                   android:layout_toRightOf="@id/imgBlackList"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-           </RelativeLayout>
-           <RelativeLayout
-               android:id="@+id/rlFulllenght"
-               android:layout_below="@+id/rlBlackList"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgFullleght"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_handles" />
-               <TextView
-                   android:layout_toEndOf="@id/imgFullleght"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_14sdp"
-                   android:id="@+id/tvFullleght"
-                   android:layout_height="wrap_content"
-                   android:text="Full leght handle icon"
-                   android:fontFamily="@font/robotolight"
-                   android:layout_toRightOf="@id/imgFullleght"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-               <ImageView
-                   android:id="@+id/imgTurnFullleght"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_centerVertical="true"
-                   android:layout_alignParentEnd="true"
-                   android:src="@drawable/ic_switch_off" />
-           </RelativeLayout>
-           <RelativeLayout
-               android:id="@+id/rlHideHandle"
-               android:layout_below="@+id/rlFulllenght"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgHideHandle"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:padding="@dimen/_2sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_eyedisab"
-                   android:tint="#737373"/>
-               <TextView
-                   android:layout_toEndOf="@id/imgHideHandle"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_14sdp"
-                   android:id="@+id/tvHideHandle"
-                   android:layout_height="wrap_content"
-                   android:text="@string/hide_handle_icon"
-                   android:layout_toRightOf="@id/imgHideHandle"
-                   android:fontFamily="@font/robotolight"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-               <ImageView
-                   android:id="@+id/imgTurnHideHandle"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentEnd="true"
-                   android:src="@drawable/ic_switch_off" />
-           </RelativeLayout>
-           <RelativeLayout
-               android:id="@+id/rlHideFullScreen"
-               android:layout_below="@+id/rlHideHandle"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgHideFullScreen"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_fullscreen" />
-               <TextView
-                   android:layout_toEndOf="@id/imgHideFullScreen"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_14sdp"
-                   android:id="@+id/tvHideFullScreen"
-                   android:layout_height="wrap_content"
-                   android:text="@string/hide_in_fullscreen"
-                   android:fontFamily="@font/robotolight"
-                   android:layout_toRightOf="@id/imgHideFullScreen"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-               <ImageView
-                   android:id="@+id/imgTurnHideFullScreen"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_switch_off"/>
-           </RelativeLayout>
-           <RelativeLayout
-               android:id="@+id/rlHidelandscape"
-               android:layout_below="@+id/rlHideFullScreen"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgHidelandscape"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_lock"
-                   android:tint="#737373"/>
-               <TextView
-                   android:layout_toEndOf="@id/imgHidelandscape"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_14sdp"
-                   android:id="@+id/tvHidelandscape"
-                   android:layout_height="wrap_content"
-                   android:text="@string/hide_in_landscape_mode"
-                   android:fontFamily="@font/robotolight"
-                   android:layout_toRightOf="@id/imgHidelandscape"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-               <ImageView
-                   android:id="@+id/imgTurnHidelandscape"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_switch_off" />
-           </RelativeLayout>
-           <RelativeLayout
-               android:id="@+id/rlHideKeyboardOpen"
-               android:layout_below="@+id/rlHidelandscape"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:paddingHorizontal="@dimen/_20sdp">
-               <ImageView
-                   android:id="@+id/imgHideKeyboardOpen"
-                   android:layout_width="@dimen/_24sdp"
-                   android:layout_height="@dimen/_24sdp"
-                   android:layout_centerVertical="true"
-                   android:src="@drawable/ic_keyboard" />
-               <TextView
-                   android:layout_toEndOf="@id/imgHideKeyboardOpen"
-                   android:layout_marginStart="@dimen/_20sdp"
-                   android:layout_width="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:textColor="@color/black"
-                   android:textSize="@dimen/_14sdp"
-                   android:id="@+id/tvHideKeyboardOpen"
-                   android:layout_height="wrap_content"
-                   android:text="@string/hide_while_keyboard_is_open"
-                   android:fontFamily="@font/robotolight"
-                   android:layout_toRightOf="@id/imgHideKeyboardOpen"
-                   android:layout_marginLeft="@dimen/_20sdp" />
-               <ImageView
-                   android:id="@+id/imgTurnHideKeyboardOpen"
-                   android:layout_width="@dimen/_35sdp"
-                   android:layout_height="@dimen/_35sdp"
-                   android:layout_alignParentRight="true"
-                   android:src="@drawable/ic_switch_off" />
-           </RelativeLayout>
-           <View
-               android:id="@+id/line"
-               android:layout_width="match_parent"
-               android:layout_height="0.5dp"
-               android:background="@color/gray"
-               android:layout_marginTop="@dimen/_10sdp"
-               android:layout_below="@+id/rlHideKeyboardOpen"/>
 
-           <include
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_below="@+id/line"
-               layout="@layout/layout_handle_seekbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlTop"
+        android:layout_marginBottom="@dimen/_20sdp">
 
-       </RelativeLayout>
-   </ScrollView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rlSwipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlTop"
+                android:background="#eeeeee"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgSwipe"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_tips" />
+
+                <TextView
+                    android:id="@+id/tvSwipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toEndOf="@id/imgSwipe"
+                    android:layout_toRightOf="@id/imgSwipe"
+                    android:fontFamily="@font/robotolight"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:text="@string/swipe_upwards_to_open_the_panel_when_the_handle_is_on_the_left_or_right"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlBlackList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlSwipe"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgBlackList"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_blacklist" />
+
+                <TextView
+                    android:id="@+id/tvBlackList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toRightOf="@id/imgBlackList"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/blacklist"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/tvBlackDes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvBlackList"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toEndOf="@id/imgBlackList"
+                    android:layout_toRightOf="@id/imgBlackList"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/choose_apps_to_hide_the_handles_in"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlFulllenght"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlBlackList"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgFullleght"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_handles" />
+
+                <TextView
+                    android:id="@+id/tvFullleght"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toEndOf="@id/imgFullleght"
+                    android:layout_toRightOf="@id/imgFullleght"
+                    android:fontFamily="@font/robotolight"
+                    android:text="Full leght handle icon"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/imgTurnFullleght"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_switch_off" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlHideHandle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlFulllenght"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgHideHandle"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_eyedisab"
+                    android:tint="#737373" />
+
+                <TextView
+                    android:id="@+id/tvHideHandle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toEndOf="@id/imgHideHandle"
+                    android:layout_toRightOf="@id/imgHideHandle"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/hide_handle_icon"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/imgTurnHideHandle"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_switch_off" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlHideFullScreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlHideHandle"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgHideFullScreen"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_fullscreen" />
+
+                <TextView
+                    android:id="@+id/tvHideFullScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toEndOf="@id/imgHideFullScreen"
+                    android:layout_toRightOf="@id/imgHideFullScreen"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/hide_in_fullscreen"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/imgTurnHideFullScreen"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_switch_off" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlHidelandscape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlHideFullScreen"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgHidelandscape"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_lock"
+                    android:tint="#737373" />
+
+                <TextView
+                    android:id="@+id/tvHidelandscape"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toEndOf="@id/imgHidelandscape"
+                    android:layout_toRightOf="@id/imgHidelandscape"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/hide_in_landscape_mode"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/imgTurnHidelandscape"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_switch_off" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlHideKeyboardOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlHidelandscape"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp">
+
+                <ImageView
+                    android:id="@+id/imgHideKeyboardOpen"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_keyboard" />
+
+                <TextView
+                    android:id="@+id/tvHideKeyboardOpen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_toEndOf="@id/imgHideKeyboardOpen"
+                    android:layout_toRightOf="@id/imgHideKeyboardOpen"
+                    android:fontFamily="@font/robotolight"
+                    android:text="@string/hide_while_keyboard_is_open"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+
+                <ImageView
+                    android:id="@+id/imgTurnHideKeyboardOpen"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_switch_off" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/rlHideKeyboardOpen"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/gray" />
+
+            <include
+                layout="@layout/layout_handle_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/line" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rlBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_10sdp" />
+
+        <View
+            android:id="@+id/viewfull"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_below="@id/view"
+            android:background="@color/white" />
+    </RelativeLayout>
 </RelativeLayout>

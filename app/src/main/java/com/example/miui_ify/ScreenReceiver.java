@@ -3,7 +3,9 @@ package com.example.miui_ify;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ScreenReceiver extends BroadcastReceiver {
 
@@ -21,7 +23,11 @@ public class ScreenReceiver extends BroadcastReceiver {
             Log.i("screenLog", "screen on");
             Intent intent1 = new Intent(context, FloatingWindow.class);
             context.stopService(intent1);
-            context.startService(intent1);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(intent1);
+            }else {
+                context.startService(intent1);
+            }
         }
     }
 }
